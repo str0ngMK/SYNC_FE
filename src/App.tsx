@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
+import Login from './router/Login';
+import SignUp from './router/SignUp';
+import ModifyUser from './router/user/Modify';
+import Home from './router/Home';
+import NotFound from './router/NotFound';
+
+const isLogin = true;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={isLogin ? <Home /> : <Navigate to="login" />} />
+      <Route path="/login" element={<Login />}></Route>
+      <Route path="/signup" element={<SignUp />}></Route>
+      <Route path="/:userId/modify" element={<ModifyUser />}></Route>
+      <Route path={'*'} element={<NotFound />}></Route>
+    </Routes>
   );
 }
 
