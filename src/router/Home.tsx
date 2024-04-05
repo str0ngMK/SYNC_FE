@@ -1,4 +1,34 @@
+import axios, { AxiosError } from 'axios';
+
 export default function Home() {
+  const axiosTest = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        '/signup',
+        {
+          username: 'iamso',
+          nickname: 'iamso',
+          city: 'seoul',
+          district: 'chungdong',
+          roadAddress: '15237',
+          sex: 'MAN',
+          userId: 'fronttest3',
+          password: '>iSz}]0q+pP|',
+          email: 'bbb@bbb.com',
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          withCredentials: true,
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <nav role="sidebar">
@@ -29,6 +59,7 @@ export default function Home() {
               <li>피드 컨테이너</li>
               <li>피드 컨테이너</li>
             </ul>
+            <button onClick={axiosTest}>Axios Test</button>
           </section>
         </main>
       </div>
