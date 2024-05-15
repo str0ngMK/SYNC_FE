@@ -3,14 +3,28 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
+import Layout from './components/layout/Layout';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const GlobalStyle = createGlobalStyle`
+  ${reset}
+  * {
+  box-sizing: border-box;
+  }
+`;
+
 root.render(
   <React.StrictMode>
+    <GlobalStyle />
     <BrowserRouter>
-      <App />
+      <Layout>
+        <App />
+      </Layout>
     </BrowserRouter>
   </React.StrictMode>
 );
