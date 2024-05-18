@@ -3,7 +3,8 @@ import styled from 'styled-components';
 const SideBarWrap = styled.aside`
   display: flex;
   width: 242px;
-  height: 1087px;
+  height: 100vh;
+  border-right: 2px solid black;
   flex-direction: column;
   align-items: flex-start;
   flex-shrink: 0;
@@ -13,6 +14,7 @@ const Title = styled.h1`
   display: flex;
   height: 68px;
   padding: 8px;
+  border-bottom: 2px solid black;
   font-size: 20px;
   font-weight: 800;
   justify-content: center;
@@ -25,7 +27,6 @@ const Title = styled.h1`
 const SideBarCombine = styled.ul`
   display: flex;
   width: 242px;
-  height: 1019px;
   padding: 32px 16px;
   flex-direction: column;
   align-items: flex-start;
