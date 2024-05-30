@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 const HeaderWrap = styled.header`
@@ -151,6 +152,7 @@ const Temp = styled.div`
 export default function Header() {
   const profileMoreRef = useRef<HTMLDivElement>(null);
   const [showsMenuDropdown, setShowsMenuDropdown] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleDetectMenuDropdown = (
@@ -165,6 +167,10 @@ export default function Header() {
       document.removeEventListener('click', handleDetectMenuDropdown);
     };
   }, []);
+
+  useEffect(() => {
+    setShowsMenuDropdown(false);
+  }, [location.pathname]);
 
   return (
     <HeaderWrap>
@@ -201,15 +207,21 @@ export default function Header() {
                         </UserInfo>
                       </Temp>
                     </DropdownItem>
-                    <DropdownItem>
-                      <p>프로필 설정</p>
-                    </DropdownItem>
-                    <DropdownItem>
-                      <p>설정</p>
-                    </DropdownItem>
-                    <DropdownItem>
-                      <p>멤버 관리</p>
-                    </DropdownItem>
+                    <Link to="/profile/my">
+                      <DropdownItem>
+                        <p>프로필 설정</p>
+                      </DropdownItem>
+                    </Link>
+                    <Link to="/profile/auth">
+                      <DropdownItem>
+                        <p>설정</p>
+                      </DropdownItem>
+                    </Link>
+                    <Link to="/profile/member">
+                      <DropdownItem>
+                        <p>멤버 관리</p>
+                      </DropdownItem>
+                    </Link>
                     <DropdownItem>
                       <p>로그아웃</p>
                     </DropdownItem>

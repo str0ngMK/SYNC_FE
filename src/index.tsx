@@ -16,15 +16,17 @@ const GlobalStyle = createGlobalStyle`
   * {
   box-sizing: border-box;
   }
+  a{
+    color: black;
+    text-decoration: none;
+  }
 `;
 
 root.render(
   <React.StrictMode>
     <GlobalStyle />
     <BrowserRouter>
-      <Layout>
         <App />
-      </Layout>
     </BrowserRouter>
   </React.StrictMode>
 );

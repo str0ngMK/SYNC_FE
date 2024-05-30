@@ -3,160 +3,125 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const LoginMain = styled.main`
-  width: 1920px;
-  height: 945px;
-  background-color: #c6c6c6;
-`;
-
-const Container = styled.section`
-  width: 1116px;
-  height: 666px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  border-radius: 2px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  left: 271px;
-  top: 124px;
-`;
-
-const LoginTitle = styled.h1`
-  width: 476px;
-  height: 130px;
+const Main = styled.main`
+  width: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  left: calc(355px - 271px);
-  top: calc(162px - 124px);
-  font-size: 96px;
-  font-weight: 600;
-  color: #863cff;
 `;
 
-const LoginBottom = styled.section`
-  width: 100%;
-  height: 450px;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const LoginBox = styled.article`
-  width: 440px;
-  height: 450px;
-  background-color: white;
-  border-top: 1px solid #e5e5e5;
-  border-left: 1px solid #e5e5e5;
-`;
-
-const LoginTabMenu = styled.ul`
-  height: 50px;
-  border-bottom: 1px solid #e5e5e5;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  li {
-    font-size: 20px;
-    color: #9d9d9d;
-  }
-`;
-
-const LoginContent = styled.div`
+const Wrapper = styled.section`
+  width: 460px;
+  padding: 50px 40px;
+  border-radius: 12px;
+  box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 10);
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const Input = styled.div`
-  width: 330px;
-  height: 55px;
-  input {
-    width: 100%;
-    height: 39px;
-    margin-top: 30px;
-    border: 1px solid #e5e5e5;
-    border-radius: 5px;
-    &::placeholder {
-      font-size: 15px;
-      color: #c6c6c6;
-      position: absolute;
-      left: 16px;
-      top: 12px;
-    }
+const Title = styled.h1`
+  width: 100%;
+  margin-bottom: 20px;
+  color: #1f2937;
+  font-family: Roboto;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+`;
+
+const Form = styled.form`
+  width: 100%;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const InputWrapper = styled.div`
+  width: 100%;
+  height: 54px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  position: relative;
+`;
+
+const InputIcon = styled.img`
+  position: absolute;
+  left: 16px;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  height: 100%;
+  padding-left: 48px;
+  border-radius: 4px;
+  border: 1px solid var(--input-stroke, #d2dbe2);
+  &::placeholder {
+    font-size: 14px;
   }
-  span {
-    width: 100%;
-    height: 16px;
+`;
+
+const StaySignInWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  label {
     font-size: 12px;
-    color: #ff0c0c;
+    color: #434d5b;
   }
+`;
+
+const StaySigninCheckbox = styled.input`
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
 `;
 
 const Submit = styled.input`
-  width: 330px;
-  height: 40px;
-  margin-top: 50px;
-  background-color: #863cff;
+  width: 100%;
+  height: 56px;
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.1) 100%
+    ),
+    #d2d2d2;
   border: none;
-  border-radius: 10px;
-  font-size: 14px;
-  color: #e8e8e8;
-  font-weight: 600;
-  cursor: pointer;
-`;
-
-const Options = styled.div`
-  width: 330px;
-  height: 21px;
-  margin-top: 15px;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const AutoLogin = styled.div`
-  width: 92px;
-  height: 21px;
-  span {
-    font-size: 12px;
-    font-weight: 200;
-  }
-`;
-
-const FindAccount = styled.div`
-  width: 158px;
-  height: 21px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  span {
-    font-size: 12px;
-    color: #9d9d9d;
-  }
-`;
-
-const JoinLink = styled.div`
-  width: 330px;
-  height: 40px;
-  margin-top: 50px;
-  background-color: #919191;
-  border: none;
-  border-radius: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  a {
-    color: #e8e8e8;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-  }
 `;
 
-const Footer = styled.footer`
+const LoginLinks = styled.ul`
   width: 100%;
-  height: 145px;
+  display: flex;
+`;
+
+const LoginLink = styled.li`
+  width: 33.3%;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &:before {
+    content: '';
+  }
+  &:after {
+    content: '|';
+  }
+  &:last-child {
+    &:after {
+      content: '';
+    }
+  }
 `;
 
 const DEFAULT_ERROR_MESSAGE = {
@@ -227,69 +192,50 @@ export default function Login() {
   };
 
   return (
-    <>
-      <LoginMain role="login">
-        <Container>
-          <LoginTitle>Hinc</LoginTitle>
-          <LoginBottom>
-            <article>
-              <img src={`${process.env.PUBLIC_URL}/assets/login.png`} alt="" />
-            </article>
-            <LoginBox>
-              <LoginTabMenu>
-                <li>계정 로그인</li>
-                <li>간편 로그인</li>
-              </LoginTabMenu>
-              <LoginContent>
-                <form>
-                  <Input>
-                    <input
-                      type="text"
-                      value={loginForm.userId}
-                      onChange={(e) =>
-                        setLoginForm({ ...loginForm, userId: e.target.value })
-                      }
-                      placeholder="아이디"
-                    />
-                    <span>{errorMessage.userId}</span>
-                  </Input>
+    <Main>
+      <Wrapper>
+        <Title>로그인</Title>
+        <Form>
+          <InputWrapper>
+            <InputIcon src="./assets/mail-01.svg" />
+            <Input
+              type="text"
+              value={loginForm.userId}
+              onChange={(e) =>
+                setLoginForm({ ...loginForm, userId: e.target.value })
+              }
+              placeholder="이메일을 입력해주세요"
+            />
+          </InputWrapper>
 
-                  <Input>
-                    <input
-                      type="password"
-                      value={loginForm.password}
-                      onChange={(e) =>
-                        setLoginForm({ ...loginForm, password: e.target.value })
-                      }
-                      placeholder="비밀번호"
-                    />
-                    <span>{errorMessage.password}</span>
-                  </Input>
+          <InputWrapper>
+            <InputIcon src="./assets/lock-01.svg" />
+            <Input
+              type="password"
+              value={loginForm.password}
+              onChange={(e) =>
+                setLoginForm({ ...loginForm, password: e.target.value })
+              }
+              placeholder="비밀번호를 입력해주세요"
+            />
+          </InputWrapper>
 
-                  <Submit type="submit" value="로그인" onClick={handleLogin} />
-                </form>
-                <Options>
-                  <AutoLogin>
-                    <input type="checkbox" id="auto-login" />
-                    <span>자동 로그인</span>
-                  </AutoLogin>
-                  <FindAccount>
-                    <span>아이디 찾기</span>
-                    <span>|</span>
-                    <span>비밀번호 찾기</span>
-                  </FindAccount>
-                </Options>
-                <JoinLink>
-                  <Link to="/signup" role="link">
-                    회원가입
-                  </Link>
-                </JoinLink>
-              </LoginContent>
-            </LoginBox>
-          </LoginBottom>
-        </Container>
-      </LoginMain>
-      <Footer></Footer>
-    </>
+          <StaySignInWrapper>
+            <StaySigninCheckbox id="stay-sign-in" type="checkbox" />
+            <label htmlFor="stay-sign-in">로그인 상태 유지하기</label>
+          </StaySignInWrapper>
+
+          <Submit type="submit" value="로그인" onClick={handleLogin} />
+        </Form>
+
+        <LoginLinks>
+          <LoginLink>아이디 찾기</LoginLink>
+          <LoginLink>비밀번호 찾기</LoginLink>
+          <LoginLink>
+            <Link to="/signup">회원가입</Link>
+          </LoginLink>
+        </LoginLinks>
+      </Wrapper>
+    </Main>
   );
 }
