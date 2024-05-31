@@ -26,7 +26,9 @@ root.render(
   <React.StrictMode>
     <GlobalStyle />
     <BrowserRouter>
+      <Layout>
         <App />
+      </Layout>
     </BrowserRouter>
   </React.StrictMode>
 );

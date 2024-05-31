@@ -62,27 +62,21 @@ test.skip.each([{ gender: 'MAN' }, { gender: 'WOMAN' }, { gender: '기타' }])(
 );
 
 describe.skip('회원 Form Validation 테스트', () => {
-  const validateSignUpForm = ({
-    userId,
-    password,
-    email,
-    username,
-    sex,
-  }: User) => {
+  const validateSignUpForm = ({ email, password, username }: User) => {
     const passwordRegExp = /(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\W)(?=\S+$).{8,16}/;
     const emailRegExp = /[a-z0-9]+@[a-z0-9]+.[a-z]{3,4}/;
 
-    if (!userId)
+    if (!email)
       return {
         isPass: false,
-        focus: 'userId',
-        message: '아이디는 필수 입력 요소입니다.',
+        focus: 'email',
+        message: '이메일은 필수 입력 요소입니다.',
       };
-    if (userId.length <= 7 || userId.length >= 17)
+    if (!email.match(emailRegExp))
       return {
         isPass: false,
-        focus: 'userId',
-        message: '아이디는 8자 이상 ~ 16자 이하의 길이를 입력해야 합니다.',
+        focus: 'email',
+        message: '이메일이 정규식을 통과하지 못했습니다.',
       };
     if (!password)
       return {
@@ -102,18 +96,6 @@ describe.skip('회원 Form Validation 테스트', () => {
         focus: 'password',
         message: '비밀번호는 8자 이상 ~ 16자 이하의 길이를 입력해야 합니다.',
       };
-    if (!email)
-      return {
-        isPass: false,
-        focus: 'email',
-        message: '이메일은 필수 입력 요소입니다.',
-      };
-    if (!email.match(emailRegExp))
-      return {
-        isPass: false,
-        focus: 'email',
-        message: '이메일이 정규식을 통과하지 못했습니다.',
-      };
     if (!username)
       return {
         isPass: false,
@@ -123,11 +105,9 @@ describe.skip('회원 Form Validation 테스트', () => {
   };
 
   const correctForm: User = {
-    userId: 'helloWorld',
-    password: 'thisispassword',
     email: 'example@gmail.com',
+    password: 'thisispassword',
     username: 'textcase',
-    sex: 'MAN',
   };
 
   test('userId의 길이가 18자일때 회원 Form 검증이 되지 않는다.', () => {
@@ -135,7 +115,7 @@ describe.skip('회원 Form Validation 테스트', () => {
     const userId = Math.random().toString(36).substring(2, 20);
 
     // Act
-    const validationResponse = validateSignUpForm({ ...correctForm, userId });
+    const validationResponse = validateSignUpForm({ ...correctForm });
 
     // Assertion
     expect(validationResponse?.isPass).toBeFalsy();
@@ -220,11 +200,9 @@ describe('<SignUp /> 상태 변화', () => {
 test.skip('signup API 통신이 성공했을 때 OK 메세지를 응답한다.', async () => {
   // Arrange
   const correctForm: User = {
-    userId: 'hellofront2',
-    password: '@password12',
     email: 'example@gmail.com',
+    password: '@password12',
     username: 'textcase',
-    sex: 'MAN',
   };
   render(
     <MemoryRouter initialEntries={['/signup']}>
@@ -243,11 +221,9 @@ test.skip('signup API 통신이 성공했을 때 OK 메세지를 응답한다.',
 
   // Assert
   expect(axios.post).toHaveBeenCalledWith(`/signup`, {
-    userId: correctForm.userId,
-    password: correctForm.password,
     email: correctForm.email,
+    password: correctForm.password,
     username: correctForm.username,
-    sex: correctForm.sex,
   });
 
   expect(response).toBe(mockResolvedValue);
@@ -267,11 +243,9 @@ test.skip('signup API 통신이 실패했을 때 undefined를 응답한다.', as
   );
 
   const response = await signupAPI({
-    userId: 'short',
-    password: '@12341234a',
     email: 'example@gmail.com',
+    password: '@12341234a',
     username: 'testname',
-    sex: 'MAN',
   });
 
   expect(mockedAxios.post).toHaveBeenCalledWith(`/signup`, {
