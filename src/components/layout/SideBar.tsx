@@ -8,6 +8,7 @@ const SideBarWrap = styled.aside`
   flex-direction: column;
   align-items: flex-start;
   flex-shrink: 0;
+  position: fixed;
 `;
 
 const Title = styled.h1`

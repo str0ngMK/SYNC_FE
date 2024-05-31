@@ -14,6 +14,10 @@ import FindPassword from './router/user/FindPassword';
 import MyProfile from './router/profile/MyProfile';
 import Auth from './router/profile/Auth';
 import Profile from './router/profile/Profile';
+import Settings from './router/settings';
+import ProjectSettings from './router/settings/Project';
+import MembersSettings from './router/settings/Members';
+import AlarmSettings from './router/settings/Alarm';
 
 const isLogin = true;
 
@@ -30,7 +34,11 @@ function App() {
         <Route path="/profile/my" element={<MyProfile />}></Route>
         <Route path="/profile/auth" element={<Auth />}></Route>
       </Route>
-
+      <Route path="/settings" element={<Settings />}>
+        <Route path="/settings/project" element={<ProjectSettings />} />
+        <Route path="/settings/members" element={<MembersSettings />} />
+        <Route path="/settings/alarm" element={<AlarmSettings />} />
+      </Route>
       <Route path={'*'} element={<NotFound />}></Route>
     </Routes>
   );

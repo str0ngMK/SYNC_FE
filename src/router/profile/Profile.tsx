@@ -8,6 +8,7 @@ const Main = styled.main`
   position: absolute;
   left: 242px;
   top: 68px;
+  z-index: 10;
 `;
 
 const Wrapper = styled.div`
@@ -54,33 +55,31 @@ const ProfileContentWrapper = styled.section`
 
 export default function Profile() {
   return (
-    <Main>
-      <Wrapper>
-        <ProfileMenu>
-          <ProfileMenuItem>
-            <Link to="/profile/my">프로필 설정</Link>
-          </ProfileMenuItem>
+    <Wrapper>
+      <ProfileMenu>
+        <ProfileMenuItem>
+          <Link to="/profile/my">프로필 설정</Link>
+        </ProfileMenuItem>
 
-          <ProfileMenuItem>
-            <Link to="/profile/auth">보안 설정 </Link>
-          </ProfileMenuItem>
+        <ProfileMenuItem>
+          <Link to="/profile/auth">보안 설정 </Link>
+        </ProfileMenuItem>
 
-          <ProfileMenuItem>
-            <Link to="/profile/address">주소록 </Link>
-          </ProfileMenuItem>
+        <ProfileMenuItem>
+          <Link to="/profile/address">주소록 </Link>
+        </ProfileMenuItem>
 
-          <ProfileMenuItem>
-            <Link to="/profile/project">프로젝트 관리 </Link>
-          </ProfileMenuItem>
+        <ProfileMenuItem>
+          <Link to="/profile/project">프로젝트 관리 </Link>
+        </ProfileMenuItem>
 
-          <ProfileMenuItem>
-            <Link to="/profile/alarm">알림 설정 </Link>
-          </ProfileMenuItem>
-        </ProfileMenu>
-        <ProfileContentWrapper>
-          <Outlet />
-        </ProfileContentWrapper>
-      </Wrapper>
-    </Main>
+        <ProfileMenuItem>
+          <Link to="/profile/alarm">알림 설정 </Link>
+        </ProfileMenuItem>
+      </ProfileMenu>
+      <ProfileContentWrapper>
+        <Outlet />
+      </ProfileContentWrapper>
+    </Wrapper>
   );
 }
