@@ -1,17 +1,7 @@
 import { Link, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Main = styled.main`
-  width: calc(100% - 242px);
-  height: calc(100vh - 68px);
-  padding: 30px;
-  position: absolute;
-  left: 242px;
-  top: 68px;
-  z-index: 10;
-`;
-
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   height: 100%;
   border: 1px solid black;
   display: flex;

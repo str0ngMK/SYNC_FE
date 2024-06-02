@@ -1,17 +1,22 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Wrapper = styled.ul<{ $isActive: boolean }>`
+const Wrapper = styled.section<{ $isActive: boolean }>`
   width: 216px;
   background: #fff;
   border: 1px solid #b8b8b8;
   border-radius: 8px;
   box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.3);
   display: ${(props) => (props.$isActive ? 'flex' : 'none')};
-  flex-direction: column;
   position: absolute;
   left: -200px;
   bottom: -265px;
+`;
+
+const DropdownList = styled.ul`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   z-index: 50;
 `;
 
@@ -85,28 +90,31 @@ interface MenuDropDownProps {
 export default function MenuDropDown({ isActive }: MenuDropDownProps) {
   return (
     <Wrapper $isActive={isActive}>
-      <DropDownHeader>
-        <Temp>
-          <img src="./assets/man-438081_960_720.svg" alt="프로필 이미지" />
-          <UserInfo>
-            <UserInfoHeader>Name</UserInfoHeader>
-            <UserInfoFooter>UI Designer</UserInfoFooter>
-          </UserInfo>
-        </Temp>
-      </DropDownHeader>
-      <Link to="/profile/my">
+      <DropdownList>
+        {' '}
+        <DropDownHeader>
+          <Temp>
+            <img src="./assets/man-438081_960_720.svg" alt="프로필 이미지" />
+            <UserInfo>
+              <UserInfoHeader>Name</UserInfoHeader>
+              <UserInfoFooter>UI Designer</UserInfoFooter>
+            </UserInfo>
+          </Temp>
+        </DropDownHeader>
+        <Link to="/profile/my">
+          <DropdownItem>
+            <p>프로필 설정</p>
+          </DropdownItem>
+        </Link>
+        <Link to="/profile/auth">
+          <DropdownItem>
+            <p>설정</p>
+          </DropdownItem>
+        </Link>
         <DropdownItem>
-          <p>프로필 설정</p>
+          <p>로그아웃</p>
         </DropdownItem>
-      </Link>
-      <Link to="/profile/auth">
-        <DropdownItem>
-          <p>설정</p>
-        </DropdownItem>
-      </Link>
-      <DropdownItem>
-        <p>로그아웃</p>
-      </DropdownItem>
+      </DropdownList>
     </Wrapper>
   );
 }

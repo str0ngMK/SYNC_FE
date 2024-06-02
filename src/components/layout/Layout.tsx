@@ -9,7 +9,6 @@ const Main = styled.main`
   padding-right: 30px;
   padding-top: 98px;
   padding-bottom: 30px;
-  z-index: 10;
 `;
 
 export default function Layout({ children }: { children: React.ReactNode }) {

@@ -1,3 +1,3 @@
 export default function ProfileUpdateModel() {
-  return <section></section>;
+  return <div></div>;
 }
