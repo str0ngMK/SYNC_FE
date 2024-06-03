@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Wrapper = styled.section`
@@ -62,8 +62,13 @@ export default function Settings() {
         <SettingsMenuItem>
           <Typography>프로젝트 설정</Typography>
           <SubMenu>
-            <SubItem>프로젝트 리스트</SubItem>
-            <SubItem>주소록</SubItem>
+            <Link to="/settings/project">
+              <SubItem>프로젝트 리스트</SubItem>
+            </Link>
+
+            <Link to="/settings/members">
+              <SubItem>주소록</SubItem>
+            </Link>
             <SubItem>업무명 설정</SubItem>
           </SubMenu>
         </SettingsMenuItem>
@@ -71,7 +76,9 @@ export default function Settings() {
         <SettingsMenuItem>
           <Typography>시스템 설정</Typography>
           <SubMenu>
-            <SubItem>알림 설정</SubItem>
+            <Link to="/settings/alarm">
+              <SubItem>알림 설정</SubItem>
+            </Link>
           </SubMenu>
         </SettingsMenuItem>
       </SettingsMenu>

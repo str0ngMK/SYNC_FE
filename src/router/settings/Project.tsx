@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import SettingsProjectItem from '../../containers/settings-project-item';
 
 const Header = styled.article`
   width: 302px;
@@ -28,7 +29,6 @@ const Content = styled.section`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  z-index: -1;
 `;
 
 const SearchContainer = styled.section`
@@ -104,6 +104,27 @@ const ProjectItemHeader = styled(ProjectItem)`
   height: 37px;
 `;
 
+const FakeProjectList = [
+  {
+    name: '프로젝트 1',
+    owner: '김지용',
+    role: '프로젝트 생성자',
+    createdAt: '24.05.24',
+  },
+  {
+    name: '프로젝트 2',
+    owner: '김지용',
+    role: '관리자',
+    createdAt: '24.05.21',
+  },
+  {
+    name: '프로젝트 3',
+    owner: '김지용',
+    role: '팀원',
+    createdAt: '24.05.22',
+  },
+];
+
 export default function ProjectSettings() {
   return (
     <>
@@ -133,29 +154,9 @@ export default function ProjectSettings() {
               <span>-</span>
             </ProjectItemHeader>
 
-            <ProjectItem>
-              <h6>프로젝트 1</h6>
-              <h6>김지용</h6>
-              <span>프로젝트 생성자</span>
-              <span>24.05.24</span>
-              <span>더보기</span>
-            </ProjectItem>
-
-            <ProjectItem>
-              <h6>프로젝트 2</h6>
-              <h6>김지용</h6>
-              <span>관리자</span>
-              <span>24.05.21</span>
-              <span>더보기</span>
-            </ProjectItem>
-
-            <ProjectItem>
-              <h6>프로젝트 3</h6>
-              <h6>김지용</h6>
-              <span>팀원</span>
-              <span>24.05.22</span>
-              <span>더보기</span>
-            </ProjectItem>
+            {FakeProjectList.map((projectItem) => (
+              <SettingsProjectItem key={projectItem.name} {...projectItem} />
+            ))}
           </ProjectList>
         </ProjectContainer>
       </Content>
