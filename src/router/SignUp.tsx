@@ -96,19 +96,19 @@ const Submit = styled.input`
 `;
 
 const DEFAULT_ERROR_MESSAGE = {
-  email: '',
+  userId: '',
   password: '',
   username: '',
 };
 
 export default function SignUp() {
   const [signupForm, setSignupForm] = useState<User>({
-    email: '',
+    userId: '',
     password: '',
     username: '',
   });
   const [errorMessage, setErrorMessage] = useState<User>({
-    email: '',
+    userId: '',
     password: '',
     username: '',
   });
@@ -122,10 +122,11 @@ export default function SignUp() {
     console.log({ ...signupForm });
 
     try {
-      await axios.post('https://158.247.197.212:9090/signup', {
-        userId: 'usertest',
+      const response = await axios.post('https://158.247.197.212:9090/signup', {
+        email: 'example@gmail.com',
         ...signupForm,
       });
+      console.log(response);
       window.alert('회원가입이 완료되었습니다.');
       navigate('/login');
     } catch (error) {
@@ -133,7 +134,7 @@ export default function SignUp() {
         if (error.response.data.message === 'UserId is duplicated')
           return setErrorMessage({
             ...errorMessage,
-            email: '입력된 이메일은 이미 가입된 상태입니다.',
+            userId: '입력된 이메일은 이미 가입된 상태입니다.',
           });
         console.log(error);
       }
@@ -145,7 +146,7 @@ export default function SignUp() {
     const passwordRegExp = /(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\W)(?=\S+$).{8,16}/;
     const emailRegExp = /[a-z0-9]+@[a-z0-9]+.[a-z]{3,4}/;
 
-    const { email, password, username } = signupForm;
+    const { userId, password, username } = signupForm;
     let signupErrorMessage = { ...DEFAULT_ERROR_MESSAGE };
 
     if (!password.match(passwordRegExp))
@@ -158,10 +159,10 @@ export default function SignUp() {
         ...signupErrorMessage,
         password: '비밀번호는 8자 이상 ~ 16자 이하의 길이를 입력해야 합니다.',
       };
-    if (!email.match(emailRegExp))
+    if (!userId.match(emailRegExp))
       signupErrorMessage = {
         ...signupErrorMessage,
-        email: '이메일이 정규식을 통과하지 못했습니다.',
+        userId: '이메일이 정규식을 통과하지 못했습니다.',
       };
     if (!username) {
       signupErrorMessage = {
@@ -190,9 +191,9 @@ export default function SignUp() {
             <InputIcon src="./assets/mail-01.svg" />
             <Input
               type="text"
-              value={signupForm.email}
+              value={signupForm.userId}
               onChange={(e) =>
-                setSignupForm({ ...signupForm, email: e.target.value })
+                setSignupForm({ ...signupForm, userId: e.target.value })
               }
               placeholder="이메일을 입력해주세요."
             />

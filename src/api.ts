@@ -4,15 +4,15 @@ import axios, { AxiosError } from 'axios';
 export const BASE_URL = 'https://158.247.197.212:9090';
 
 export interface User {
-  email: string;
+  userId: string;
   password: string;
   username: string;
 }
 
-export const signupAPI = ({ email, password, username }: User) => {
+export const signupAPI = ({ userId, password, username }: User) => {
   return axios
     .post('/signup', {
-      email,
+      userId,
       password,
       username,
     })

@@ -62,20 +62,20 @@ test.skip.each([{ gender: 'MAN' }, { gender: 'WOMAN' }, { gender: '기타' }])(
 );
 
 describe.skip('회원 Form Validation 테스트', () => {
-  const validateSignUpForm = ({ email, password, username }: User) => {
+  const validateSignUpForm = ({ userId, password, username }: User) => {
     const passwordRegExp = /(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\W)(?=\S+$).{8,16}/;
     const emailRegExp = /[a-z0-9]+@[a-z0-9]+.[a-z]{3,4}/;
 
-    if (!email)
+    if (!userId)
       return {
         isPass: false,
-        focus: 'email',
+        focus: 'userId',
         message: '이메일은 필수 입력 요소입니다.',
       };
-    if (!email.match(emailRegExp))
+    if (!userId.match(emailRegExp))
       return {
         isPass: false,
-        focus: 'email',
+        focus: 'userId',
         message: '이메일이 정규식을 통과하지 못했습니다.',
       };
     if (!password)
@@ -105,15 +105,12 @@ describe.skip('회원 Form Validation 테스트', () => {
   };
 
   const correctForm: User = {
-    email: 'example@gmail.com',
+    userId: 'example@gmail.com',
     password: 'thisispassword',
     username: 'textcase',
   };
 
   test('userId의 길이가 18자일때 회원 Form 검증이 되지 않는다.', () => {
-    // Arrange
-    const userId = Math.random().toString(36).substring(2, 20);
-
     // Act
     const validationResponse = validateSignUpForm({ ...correctForm });
 
@@ -145,10 +142,10 @@ describe.skip('회원 Form Validation 테스트', () => {
 
   test('email이 test^11@gmail.com일때 이메일 정규식을 통과하지 않는다.', () => {
     // Arrange
-    const email = 'test^11@gmail.com';
+    const userId = 'test^11@gmail.com';
 
     // Act
-    const validationResponse = validateSignUpForm({ ...correctForm, email });
+    const validationResponse = validateSignUpForm({ ...correctForm, userId });
 
     // Assert
     expect(validationResponse?.isPass).toBeFalsy();
@@ -200,7 +197,7 @@ describe('<SignUp /> 상태 변화', () => {
 test.skip('signup API 통신이 성공했을 때 OK 메세지를 응답한다.', async () => {
   // Arrange
   const correctForm: User = {
-    email: 'example@gmail.com',
+    userId: 'example@gmail.com',
     password: '@password12',
     username: 'textcase',
   };
@@ -221,7 +218,7 @@ test.skip('signup API 통신이 성공했을 때 OK 메세지를 응답한다.',
 
   // Assert
   expect(axios.post).toHaveBeenCalledWith(`/signup`, {
-    email: correctForm.email,
+    userId: correctForm.userId,
     password: correctForm.password,
     username: correctForm.username,
   });
@@ -243,15 +240,14 @@ test.skip('signup API 통신이 실패했을 때 undefined를 응답한다.', as
   );
 
   const response = await signupAPI({
-    email: 'example@gmail.com',
+    userId: 'example@gmail.com',
     password: '@12341234a',
     username: 'testname',
   });
 
   expect(mockedAxios.post).toHaveBeenCalledWith(`/signup`, {
-    userId: 'short',
+    userId: 'example@gmail.com',
     password: '@12341234a',
-    email: 'example@gmail.com',
     username: 'testname',
     sex: 'MAN',
   });

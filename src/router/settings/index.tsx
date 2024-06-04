@@ -5,6 +5,7 @@ const Wrapper = styled.section`
   height: 100%;
   border: 1px solid #d2dbe2;
   display: flex;
+  z-index: 5;
 `;
 
 const SettingsMenu = styled.ul`

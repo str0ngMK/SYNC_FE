@@ -141,20 +141,25 @@ export default function Login() {
 
   const handleLogin = async (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
+    console.log(loginForm);
     const isValidatePass = validateLoginForm();
     if (!isValidatePass) return false;
 
     try {
-      await axios.post('/login', { ...loginForm });
+      const response = await axios.post('https://158.247.197.212:9090/login', {
+        ...loginForm,
+      });
+      console.log(response);
     } catch (error) {
       if (error instanceof AxiosError && error.response) {
+        console.log(error);
         if (error.response.data.message === '아이디가 잘못되었습니다.')
           return setErrorMessage({
             ...errorMessage,
             userId: '아이디 또는 비밀번호가 옳지 않습니다.',
           });
       }
-      console.error('네트워크 에러');
+      console.error(error);
     }
   };
 

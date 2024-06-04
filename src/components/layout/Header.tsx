@@ -12,6 +12,7 @@ const HeaderWrap = styled.header`
   position: fixed;
   left: 240px;
   top: 0;
+  z-index: 50;
 `;
 
 const Navigation = styled.nav`
@@ -155,14 +156,14 @@ export default function Header() {
         <HeaderList>
           <SearchContainer>
             <SearchBar type="text" placeholder="Search" />
-            <SearchSvg src="./assets/search.svg" />
+            <SearchSvg src="/assets/search.svg" />
           </SearchContainer>
           <ToolContainer>
             <AlarmAndSetting>
-              <img src="./assets/bell-02.svg" alt="알림" />
+              <img src="/assets/bell-02.svg" alt="알림" />
               <Config ref={configRef}>
                 <img
-                  src="./assets/Settings.svg"
+                  src="/assets/Settings.svg"
                   alt="설정"
                   onClick={() =>
                     setShowsConfigDropdown((prevState) => !prevState)
@@ -172,7 +173,7 @@ export default function Header() {
               </Config>
             </AlarmAndSetting>
             <ProfileWrap>
-              <img src="./assets/man-438081_960_720.svg" alt="프로필 이미지" />
+              <img src="/assets/man-438081_960_720.svg" alt="프로필 이미지" />
               <Profile>
                 <UserInfo>
                   <UserInfoHeader>Name</UserInfoHeader>
@@ -181,7 +182,7 @@ export default function Header() {
               </Profile>
               <More ref={profileMoreRef}>
                 <img
-                  src="./assets/More.svg"
+                  src="/assets/More.svg"
                   alt="프로필 더 보기"
                   onClick={() =>
                     setShowsMenuDropdown((prevState) => !prevState)

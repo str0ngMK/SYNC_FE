@@ -91,10 +91,9 @@ export default function MenuDropDown({ isActive }: MenuDropDownProps) {
   return (
     <Wrapper $isActive={isActive}>
       <DropdownList>
-        {' '}
         <DropDownHeader>
           <Temp>
-            <img src="./assets/man-438081_960_720.svg" alt="프로필 이미지" />
+            <img src="/assets/man-438081_960_720.svg" alt="프로필 이미지" />
             <UserInfo>
               <UserInfoHeader>Name</UserInfoHeader>
               <UserInfoFooter>UI Designer</UserInfoFooter>
