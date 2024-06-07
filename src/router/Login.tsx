@@ -141,13 +141,13 @@ export default function Login() {
 
   const handleLogin = async (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
-    console.log(loginForm);
     const isValidatePass = validateLoginForm();
     if (!isValidatePass) return false;
 
     try {
       const response = await axios.post('https://158.247.197.212:9090/login', {
-        ...loginForm,
+        id: loginForm.userId,
+        password: loginForm.password,
       });
       console.log(response);
     } catch (error) {

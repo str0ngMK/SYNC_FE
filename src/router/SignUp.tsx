@@ -123,7 +123,7 @@ export default function SignUp() {
 
     try {
       const response = await axios.post('https://158.247.197.212:9090/signup', {
-        email: 'example@gmail.com',
+        email: 'example2@gmail.com',
         ...signupForm,
       });
       console.log(response);

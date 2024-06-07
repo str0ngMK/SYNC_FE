@@ -54,18 +54,6 @@ export default function Profile() {
         <ProfileMenuItem>
           <Link to="/profile/auth">보안 설정 </Link>
         </ProfileMenuItem>
-
-        <ProfileMenuItem>
-          <Link to="/profile/address">주소록 </Link>
-        </ProfileMenuItem>
-
-        <ProfileMenuItem>
-          <Link to="/profile/project">프로젝트 관리 </Link>
-        </ProfileMenuItem>
-
-        <ProfileMenuItem>
-          <Link to="/profile/alarm">알림 설정 </Link>
-        </ProfileMenuItem>
       </ProfileMenu>
       <ProfileContentWrapper>
         <Outlet />

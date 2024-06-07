@@ -1,4 +1,8 @@
 import styled from 'styled-components';
+import EmailUpdateModal from '../../components/modal/EmailUpdateModal';
+import { useState } from 'react';
+import PasswordUpdateModal from '../../components/modal/PasswordUpdateModal';
+import DeleteAccountModal from '../../components/modal/DeleteAccountModal';
 
 const AuthHeader = styled.article`
   margin-bottom: 30px;
@@ -81,6 +85,10 @@ const PrivacyItem = styled.li`
 `;
 
 export default function Auth() {
+  const [showsEmailUpdateModal, setShowsEmailUpdateModal] = useState(false);
+  const [showsPasswordUpdateModal, setShowsPasswordUpdateModal] =
+    useState(false);
+  const [showsAccountDeleteModal, setShowsAccountDeleteModal] = useState(false);
   return (
     <>
       <AuthHeader>
@@ -94,20 +102,38 @@ export default function Auth() {
           <section>
             <PrivacyItem>
               <p>아이디 : kimjiyong2523@gmail.com</p>
-              <button>이메일 변경</button>
+              <button onClick={() => setShowsEmailUpdateModal(true)}>
+                이메일 변경
+              </button>
             </PrivacyItem>
             <PrivacyItem>
               <p>비밀번호 : 1234****</p>
-              <button>비밀번호 변경</button>
+              <button onClick={() => setShowsPasswordUpdateModal(true)}>
+                비밀번호 변경
+              </button>
             </PrivacyItem>
           </section>
 
           <PrivacyItem>
             <p>계정 삭제</p>
-            <button>계정 삭제하기</button>
+            <button onClick={() => setShowsAccountDeleteModal(true)}>
+              계정 삭제하기
+            </button>
           </PrivacyItem>
         </PrivacyList>
       </AuthWrapper>
+      <EmailUpdateModal
+        isActive={showsEmailUpdateModal}
+        closeModal={() => setShowsEmailUpdateModal(false)}
+      />
+      <PasswordUpdateModal
+        isActive={showsPasswordUpdateModal}
+        closeModal={() => setShowsPasswordUpdateModal(false)}
+      />
+      <DeleteAccountModal
+        isActive={showsAccountDeleteModal}
+        closeModal={() => setShowsAccountDeleteModal(false)}
+      />
     </>
   );
 }

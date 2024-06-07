@@ -65,14 +65,7 @@ const Input = styled.input`
   align-items: center;
 `;
 
-const SubmitContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-`;
-
 const Submit = styled.input`
-  width: 229px;
   padding: 24px 77px;
   background: var(--New-group-Gray, #d2dbe2);
   border: 1px solid var(--New-group-Gray, #d2dbe2);
@@ -84,19 +77,19 @@ const Submit = styled.input`
   font-weight: 700;
   line-height: normal;
   display: flex;
-  flex-direction: center;
+  justify-content: center;
   align-items: center;
 `;
 
-interface ProfileUpdateModalProps {
+interface EmailUpdateModalProps {
   isActive: boolean;
   closeModal: () => void;
 }
 
-export default function ProfileUpdateModel({
+export default function EmailUpdateModal({
   isActive,
   closeModal,
-}: ProfileUpdateModalProps) {
+}: EmailUpdateModalProps) {
   const modalContentWrap = useRef<HTMLTableSectionElement>(null);
 
   useEffect(() => {
@@ -118,36 +111,14 @@ export default function ProfileUpdateModel({
   return (
     <ModalWrapper $isActive={isActive}>
       <Container ref={modalContentWrap}>
-        <Title>프로필 수정</Title>
+        <Title>이메일 변경</Title>
         <Form>
           <InputContainer>
-            <Label>이름</Label>
-            <Input type="text" placeholder="김지용" />
-          </InputContainer>
-
-          <InputContainer>
-            <Label>직무</Label>
-            <Input type="text" placeholder="UI Designer" />
-          </InputContainer>
-
-          <InputContainer>
-            <Label>상태메세지</Label>
-            <Input type="text" placeholder="집가고싶다." />
-          </InputContainer>
-
-          <InputContainer>
-            <Label>개인 이메일</Label>
+            <Label>현재 이메일</Label>
             <Input type="text" placeholder="kimjiyong2523@gmail.com" />
           </InputContainer>
 
-          <InputContainer>
-            <Label>전화번호</Label>
-            <Input type="text" placeholder="010-1234-1234" />
-          </InputContainer>
-
-          <SubmitContainer>
-            <Submit type="submit" value="저장하기" />
-          </SubmitContainer>
+          <Submit type="submit" value="이메일 코드 전송" />
         </Form>
       </Container>
     </ModalWrapper>

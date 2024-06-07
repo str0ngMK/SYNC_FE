@@ -94,7 +94,10 @@ export default function SettingsProjectItem({
         <button onClick={() => setShowsDropdown((prevState) => !prevState)}>
           더보기
         </button>
-        <SettingsProject isActive={showsDropdown} />
+        <SettingsProject
+          isActive={showsDropdown}
+          closeDropdown={() => setShowsDropdown(false)}
+        />
       </More>
     </ProjectItem>
   );

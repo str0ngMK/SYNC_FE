@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import ProfileUpdateModel from '../../components/modal/ProfileUpdateModal';
 
 const ProfileHeader = styled.article`
   display: flex;
@@ -133,6 +134,7 @@ const StatusMessageWrapper = styled(PrivacyItem)`
 
 export default function MyProfile() {
   const [showsProfileUpdateModal, setShowsProfileUpdateModal] = useState(false);
+  console.log(showsProfileUpdateModal);
   return (
     <>
       <ProfileHeader>
@@ -144,7 +146,9 @@ export default function MyProfile() {
         <MyProfileWrapper>
           <ProfileMiddle>
             <h5>프로필 사진</h5>
-            <UpdateButton>수정하기</UpdateButton>
+            <UpdateButton onClick={() => setShowsProfileUpdateModal(true)}>
+              수정하기
+            </UpdateButton>
           </ProfileMiddle>
           <MyProfileImage>
             <UpdateProfileImage>변경</UpdateProfileImage>
@@ -169,6 +173,10 @@ export default function MyProfile() {
           </PrivacyList>
         </MyProfileWrapper>
       </ProfileHeader>
+      <ProfileUpdateModel
+        isActive={showsProfileUpdateModal}
+        closeModal={() => setShowsProfileUpdateModal(false)}
+      />
     </>
   );
 }

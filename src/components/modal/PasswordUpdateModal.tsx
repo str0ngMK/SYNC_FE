@@ -22,13 +22,27 @@ const Container = styled.section`
   gap: 32px;
 `;
 
-const Title = styled.h2`
-  color: var(--main-black, #000);
-  font-family: Pretendard;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
+const ModalHeader = styled.article`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  h2 {
+    color: var(--main-black, #000);
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+  p {
+    color: #a6b3be;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
 `;
 
 const Form = styled.form`
@@ -65,14 +79,7 @@ const Input = styled.input`
   align-items: center;
 `;
 
-const SubmitContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-`;
-
 const Submit = styled.input`
-  width: 229px;
   padding: 24px 77px;
   background: var(--New-group-Gray, #d2dbe2);
   border: 1px solid var(--New-group-Gray, #d2dbe2);
@@ -84,19 +91,19 @@ const Submit = styled.input`
   font-weight: 700;
   line-height: normal;
   display: flex;
-  flex-direction: center;
+  justify-content: center;
   align-items: center;
 `;
 
-interface ProfileUpdateModalProps {
+interface PasswordUpdateModalProps {
   isActive: boolean;
   closeModal: () => void;
 }
 
-export default function ProfileUpdateModel({
+export default function PasswordUpdateModal({
   isActive,
   closeModal,
-}: ProfileUpdateModalProps) {
+}: PasswordUpdateModalProps) {
   const modalContentWrap = useRef<HTMLTableSectionElement>(null);
 
   useEffect(() => {
@@ -118,36 +125,28 @@ export default function ProfileUpdateModel({
   return (
     <ModalWrapper $isActive={isActive}>
       <Container ref={modalContentWrap}>
-        <Title>프로필 수정</Title>
+        <ModalHeader>
+          <h2>비밀번호 변경</h2>
+          <p>특수 문자를 포함한 OO글자 이상 입력해주세요.</p>
+        </ModalHeader>
+
         <Form>
           <InputContainer>
-            <Label>이름</Label>
-            <Input type="text" placeholder="김지용" />
+            <Label>현재 비밀번호</Label>
+            <Input type="password" placeholder="23412" />
           </InputContainer>
 
           <InputContainer>
-            <Label>직무</Label>
-            <Input type="text" placeholder="UI Designer" />
+            <Label>새 비밀번호</Label>
+            <Input type="password" placeholder="12341234" />
           </InputContainer>
 
           <InputContainer>
-            <Label>상태메세지</Label>
-            <Input type="text" placeholder="집가고싶다." />
+            <Label>새 비밀번호 확인</Label>
+            <Input type="password" placeholder="12341234" />
           </InputContainer>
 
-          <InputContainer>
-            <Label>개인 이메일</Label>
-            <Input type="text" placeholder="kimjiyong2523@gmail.com" />
-          </InputContainer>
-
-          <InputContainer>
-            <Label>전화번호</Label>
-            <Input type="text" placeholder="010-1234-1234" />
-          </InputContainer>
-
-          <SubmitContainer>
-            <Submit type="submit" value="저장하기" />
-          </SubmitContainer>
+          <Submit type="submit" value="비밀번호 변경" />
         </Form>
       </Container>
     </ModalWrapper>
