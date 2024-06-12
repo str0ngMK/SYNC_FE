@@ -1,13 +1,27 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Cookies } from 'react-cookie';
 
 function Home() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
+  useEffect(() => {
+    const refreshJWTToken = async () => {
+      const response = await axios.get(
+        'https://158.247.197.212:9090/api/user/auth',
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(response);
+    };
+    refreshJWTToken();
+  }, []);
+
   const handleCreateProject = async (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
-    /*
+
     const response = await axios.post(
       'https://158.247.197.212:9090/api/user/project/create',
       { title, description },
@@ -16,7 +30,6 @@ function Home() {
       }
     );
     console.log(response);
-    */
   };
 
   return (

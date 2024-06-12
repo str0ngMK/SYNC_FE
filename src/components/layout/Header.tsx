@@ -129,6 +129,7 @@ export default function Header() {
   const configRef = useRef<HTMLDivElement>(null);
   const [showsMenuDropdown, setShowsMenuDropdown] = useState(false);
   const [showsConfigDropdown, setShowsConfigDropdown] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState('');
   const location = useLocation();
 
   useEffect(() => {
@@ -143,6 +144,14 @@ export default function Header() {
     return () => {
       document.removeEventListener('click', handleDetectDropdown);
     };
+  }, []);
+
+  useEffect(() => {
+    const storedLogged = localStorage.getItem('loggedIn');
+    if (storedLogged) {
+      const loggedIn = JSON.parse(storedLogged);
+      setLoggedInUser(loggedIn.id);
+    }
   }, []);
 
   useEffect(() => {
@@ -172,25 +181,31 @@ export default function Header() {
                 <ConfigDropDown isActive={showsConfigDropdown} />
               </Config>
             </AlarmAndSetting>
-            <ProfileWrap>
-              <img src="/assets/man-438081_960_720.svg" alt="프로필 이미지" />
-              <Profile>
-                <UserInfo>
-                  <UserInfoHeader>Name</UserInfoHeader>
-                  <UserInfoFooter>UI Designer</UserInfoFooter>
-                </UserInfo>
-              </Profile>
-              <More ref={profileMoreRef}>
-                <img
-                  src="/assets/More.svg"
-                  alt="프로필 더 보기"
-                  onClick={() =>
-                    setShowsMenuDropdown((prevState) => !prevState)
-                  }
-                />
-                <MenuDropDown isActive={showsMenuDropdown} />
-              </More>
-            </ProfileWrap>
+            {loggedInUser ? (
+              <ProfileWrap>
+                <img src="/assets/man-438081_960_720.svg" alt="프로필 이미지" />
+                <Profile>
+                  <UserInfo>
+                    <UserInfoHeader>Name</UserInfoHeader>
+                    <UserInfoFooter>UI Designer</UserInfoFooter>
+                  </UserInfo>
+                </Profile>
+                <More ref={profileMoreRef}>
+                  <img
+                    src="/assets/More.svg"
+                    alt="프로필 더 보기"
+                    onClick={() =>
+                      setShowsMenuDropdown((prevState) => !prevState)
+                    }
+                  />
+                  <MenuDropDown isActive={showsMenuDropdown} />
+                </More>
+              </ProfileWrap>
+            ) : (
+              <>
+                <Link to="/login">로그인</Link>
+              </>
+            )}
           </ToolContainer>
         </HeaderList>
       </Navigation>

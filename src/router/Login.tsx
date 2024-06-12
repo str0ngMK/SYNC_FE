@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -146,7 +146,7 @@ export default function Login() {
     if (!isValidatePass) return false;
 
     try {
-      const response = await axios.post(
+      const response = (await axios.post(
         'https://158.247.197.212:9090/login',
         {},
         {
@@ -156,6 +156,12 @@ export default function Login() {
             password: loginForm.password,
           },
         }
+      )) as AxiosResponse<{ name: string; username: string }, any>;
+      console.log(response.data.username);
+
+      localStorage.setItem(
+        'loggedIn',
+        JSON.stringify({ id: response.data.username })
       );
       window.alert('로그인 성공!');
       navigate('/');

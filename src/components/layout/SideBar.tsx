@@ -12,11 +12,23 @@ const SideBarWrap = styled.aside`
   position: fixed;
 `;
 
-const Title = styled.h1`
+const TitleWrap = styled.div`
   display: flex;
   height: 68px;
   padding: 8px;
   border-bottom: 2px solid black;
+  font-size: 20px;
+  font-weight: 800;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  align-self: stretch;
+`;
+
+const Title = styled.h1`
+  display: flex;
+  height: 68px;
   font-size: 20px;
   font-weight: 800;
   justify-content: center;
@@ -80,9 +92,11 @@ const SideBarItem = styled.li`
 export default function SideBar() {
   return (
     <SideBarWrap>
-      <Link to="/">
-        <Title>LOGO</Title>
-      </Link>
+      <TitleWrap>
+        <Link to="/">
+          <Title>LOGO</Title>
+        </Link>
+      </TitleWrap>
       <SideBarCombine>
         <SideBarItemWrap>
           <SideBarItemHeader>
