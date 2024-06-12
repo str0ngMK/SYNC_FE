@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const SideBarWrap = styled.aside`
@@ -79,7 +80,9 @@ const SideBarItem = styled.li`
 export default function SideBar() {
   return (
     <SideBarWrap>
-      <Title>LOGO</Title>
+      <Link to="/">
+        <Title>LOGO</Title>
+      </Link>
       <SideBarCombine>
         <SideBarItemWrap>
           <SideBarItemHeader>

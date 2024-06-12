@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Main = styled.main`
@@ -138,6 +138,7 @@ export default function Login() {
     userId: '',
     password: '',
   });
+  const navigate = useNavigate();
 
   const handleLogin = async (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -145,11 +146,19 @@ export default function Login() {
     if (!isValidatePass) return false;
 
     try {
-      const response = await axios.post('https://158.247.197.212:9090/login', {
-        id: loginForm.userId,
-        password: loginForm.password,
-      });
-      console.log(response);
+      const response = await axios.post(
+        'https://158.247.197.212:9090/login',
+        {},
+        {
+          withCredentials: true,
+          params: {
+            id: loginForm.userId,
+            password: loginForm.password,
+          },
+        }
+      );
+      window.alert('로그인 성공!');
+      navigate('/');
     } catch (error) {
       if (error instanceof AxiosError && error.response) {
         console.log(error);

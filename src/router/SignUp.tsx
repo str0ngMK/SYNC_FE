@@ -119,14 +119,12 @@ export default function SignUp() {
     e.preventDefault();
     const isValidatePass = validateSignUpForm();
     if (!isValidatePass) return false;
-    console.log({ ...signupForm });
 
     try {
       const response = await axios.post('https://158.247.197.212:9090/signup', {
         email: 'example2@gmail.com',
         ...signupForm,
       });
-      console.log(response);
       window.alert('회원가입이 완료되었습니다.');
       navigate('/login');
     } catch (error) {
@@ -136,7 +134,6 @@ export default function SignUp() {
             ...errorMessage,
             userId: '입력된 이메일은 이미 가입된 상태입니다.',
           });
-        console.log(error);
       }
       console.error(error);
     }

@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 import Layout from './components/layout/Layout';
+import { CookiesProvider } from 'react-cookie';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -28,11 +29,13 @@ const GlobalStyle = createGlobalStyle`
 root.render(
   <React.StrictMode>
     <GlobalStyle />
-    <BrowserRouter>
-      <Layout>
-        <App />
-      </Layout>
-    </BrowserRouter>
+    <CookiesProvider>
+      <BrowserRouter>
+        <Layout>
+          <App />
+        </Layout>
+      </BrowserRouter>
+    </CookiesProvider>
   </React.StrictMode>
 );
 
