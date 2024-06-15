@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-const ModalWrapper = styled.div<{ $isActive: boolean }>`
+const ModalWrapper = styled.div<{ $isOpen: boolean }>`
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.6);
-  display: ${(props) => (props.$isActive ? 'flex' : 'none')};
+  display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -96,35 +96,19 @@ const Submit = styled.input`
 `;
 
 interface PasswordUpdateModalProps {
-  isActive: boolean;
-  closeModal: () => void;
+  isOpen: boolean;
+  modalRef: React.RefObject<HTMLTableSectionElement>;
 }
 
 export default function PasswordUpdateModal({
-  isActive,
-  closeModal,
+  isOpen,
+  modalRef,
 }: PasswordUpdateModalProps) {
   const modalContentWrap = useRef<HTMLTableSectionElement>(null);
 
-  useEffect(() => {
-    const handleDetectModalContent = (
-      e: React.BaseSyntheticEvent | MouseEvent
-    ) => {
-      if (
-        modalContentWrap.current &&
-        !modalContentWrap.current.contains(e.target)
-      )
-        closeModal();
-    };
-    document.addEventListener('mousedown', handleDetectModalContent);
-    return () => {
-      document.removeEventListener('mousedown', handleDetectModalContent);
-    };
-  }, []);
-
   return (
-    <ModalWrapper $isActive={isActive}>
-      <Container ref={modalContentWrap}>
+    <ModalWrapper $isOpen={isOpen}>
+      <Container ref={modalRef}>
         <ModalHeader>
           <h2>비밀번호 변경</h2>
           <p>특수 문자를 포함한 OO글자 이상 입력해주세요.</p>

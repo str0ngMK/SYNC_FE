@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import DeleteProjectModal from '../modal/delete-project-modal';
 import WithdrawProjectModal from '../modal/withdraw-project-modal';
 import ModifyProjectModal from '../modal/modify-project-modal';
+import useModal from '../../hooks/useModal';
 
 const Wrapper = styled.ul<{ $isActive: boolean }>`
   width: 320px;
@@ -54,17 +55,31 @@ export default function SettingsProject({
   isActive,
   closeDropdown,
 }: SettingsProjectDropdownProps) {
-  const [showsProjectDeleteModal, setShowsProjectDeleteModal] = useState(false);
-  const [showsProjectWithdrawModal, setShowsProjectWithdrawModal] =
-    useState(false);
-  const [showsProjectModifyModal, setShowsProjectModifyModal] = useState(false);
+  const [
+    isOpenProjectDeleteModal,
+    openProjectDeleteModal,
+    closeProjectDeleteModal,
+    projectDeleteModalRef,
+  ] = useModal();
+  const [
+    isOpenProjectWithdrawModal,
+    openProjectWithdrawModal,
+    closeProjectWithdrawModal,
+    projectWithdrawModalRef,
+  ] = useModal();
+  const [
+    isOpenProjectModifyModal,
+    openProjectModifyModal,
+    closeProjectModifyModal,
+    projectModifyModalRef,
+  ] = useModal();
 
   return (
     <>
       <Wrapper $isActive={isActive}>
         <SettingsItem
           onClick={() => {
-            setShowsProjectDeleteModal(true);
+            openProjectDeleteModal();
             closeDropdown();
           }}
         >
@@ -74,7 +89,7 @@ export default function SettingsProject({
 
         <SettingsItem
           onClick={() => {
-            setShowsProjectWithdrawModal(true);
+            openProjectWithdrawModal();
             closeDropdown();
           }}
         >
@@ -84,7 +99,7 @@ export default function SettingsProject({
 
         <SettingsItem
           onClick={() => {
-            setShowsProjectModifyModal(true);
+            openProjectModifyModal();
             closeDropdown();
           }}
         >
@@ -93,16 +108,16 @@ export default function SettingsProject({
         </SettingsItem>
       </Wrapper>
       <DeleteProjectModal
-        isActive={showsProjectDeleteModal}
-        closeModal={() => setShowsProjectDeleteModal(false)}
+        isOpen={isOpenProjectDeleteModal}
+        modalRef={projectDeleteModalRef}
       />
       <WithdrawProjectModal
-        isActive={showsProjectWithdrawModal}
-        closeModal={() => setShowsProjectWithdrawModal(false)}
+        isOpen={isOpenProjectWithdrawModal}
+        modalRef={projectWithdrawModalRef}
       />
       <ModifyProjectModal
-        isActive={showsProjectModifyModal}
-        closeModal={() => setShowsProjectModifyModal(false)}
+        isOpen={isOpenProjectModifyModal}
+        modalRef={projectModifyModalRef}
       />
     </>
   );

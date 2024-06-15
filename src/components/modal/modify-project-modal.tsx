@@ -2,11 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import ProjectOwnerDropdown from '../dropdown/project-owner-dropdown';
 
-const ModalWrapper = styled.div<{ $isActive: boolean }>`
+const ModalWrapper = styled.div<{ $isOpen: boolean }>`
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.6);
-  display: ${(props) => (props.$isActive ? 'flex' : 'none')};
+  display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -150,44 +150,20 @@ const Submit = styled.input`
 `;
 
 interface ModifyProjectModalProps {
-  isActive: boolean;
-  closeModal: () => void;
+  isOpen: boolean;
+  modalRef: React.RefObject<HTMLTableSectionElement>;
 }
 
 export default function ModifyProjectModal({
-  isActive,
-  closeModal,
+  isOpen,
+  modalRef,
 }: ModifyProjectModalProps) {
   const [showsDropdown, setShowsDropdown] = useState(false);
-  const modalContentWrap = useRef<HTMLTableSectionElement>(null);
   const projectOwnerRef = useRef<HTMLDivElement>(null);
 
-  console.log(showsDropdown);
-
-  useEffect(() => {
-    const handleDetectModalContent = (
-      e: React.BaseSyntheticEvent | MouseEvent
-    ) => {
-      if (
-        modalContentWrap.current &&
-        !modalContentWrap.current.contains(e.target)
-      )
-        closeModal();
-      if (
-        projectOwnerRef.current &&
-        !projectOwnerRef.current.contains(e.target)
-      )
-        setShowsDropdown(false);
-    };
-    document.addEventListener('mousedown', handleDetectModalContent);
-    return () => {
-      document.removeEventListener('mousedown', handleDetectModalContent);
-    };
-  }, []);
-
   return (
-    <ModalWrapper $isActive={isActive}>
-      <Container ref={modalContentWrap}>
+    <ModalWrapper $isOpen={isOpen}>
+      <Container ref={modalRef}>
         <ModalHeader>
           <h2>프로젝트 설정</h2>
           <p>프로젝트에 대한 간략한 정보를 나타냅니다.</p>

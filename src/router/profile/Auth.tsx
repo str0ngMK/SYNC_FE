@@ -3,6 +3,7 @@ import EmailUpdateModal from '../../components/modal/EmailUpdateModal';
 import { useState } from 'react';
 import PasswordUpdateModal from '../../components/modal/PasswordUpdateModal';
 import DeleteAccountModal from '../../components/modal/DeleteAccountModal';
+import useModal from '../../hooks/useModal';
 
 const AuthHeader = styled.article`
   margin-bottom: 30px;
@@ -85,10 +86,25 @@ const PrivacyItem = styled.li`
 `;
 
 export default function Auth() {
-  const [showsEmailUpdateModal, setShowsEmailUpdateModal] = useState(false);
-  const [showsPasswordUpdateModal, setShowsPasswordUpdateModal] =
-    useState(false);
-  const [showsAccountDeleteModal, setShowsAccountDeleteModal] = useState(false);
+  const [
+    isOpenEmailUpdateModal,
+    openEmailUpdateModal,
+    closeEmailUpdateModal,
+    emailUpdateModalRef,
+  ] = useModal();
+  const [
+    isOpenPasswordUpdateModal,
+    openPasswordUpdateModal,
+    closePasswordUpdateModal,
+    passwordUpdateModalRef,
+  ] = useModal();
+  const [
+    isOpenAccountDeleteModal,
+    openAccountDeleteModal,
+    closeAccountDeleteModal,
+    accountDeleteModalRef,
+  ] = useModal();
+
   return (
     <>
       <AuthHeader>
@@ -102,37 +118,31 @@ export default function Auth() {
           <section>
             <PrivacyItem>
               <p>아이디 : kimjiyong2523@gmail.com</p>
-              <button onClick={() => setShowsEmailUpdateModal(true)}>
-                이메일 변경
-              </button>
+              <button onClick={openEmailUpdateModal}>이메일 변경</button>
             </PrivacyItem>
             <PrivacyItem>
               <p>비밀번호 : 1234****</p>
-              <button onClick={() => setShowsPasswordUpdateModal(true)}>
-                비밀번호 변경
-              </button>
+              <button onClick={openPasswordUpdateModal}>비밀번호 변경</button>
             </PrivacyItem>
           </section>
 
           <PrivacyItem>
             <p>계정 삭제</p>
-            <button onClick={() => setShowsAccountDeleteModal(true)}>
-              계정 삭제하기
-            </button>
+            <button onClick={openAccountDeleteModal}>계정 삭제하기</button>
           </PrivacyItem>
         </PrivacyList>
       </AuthWrapper>
       <EmailUpdateModal
-        isActive={showsEmailUpdateModal}
-        closeModal={() => setShowsEmailUpdateModal(false)}
+        isOpen={isOpenEmailUpdateModal}
+        modalRef={emailUpdateModalRef}
       />
       <PasswordUpdateModal
-        isActive={showsPasswordUpdateModal}
-        closeModal={() => setShowsPasswordUpdateModal(false)}
+        isOpen={isOpenPasswordUpdateModal}
+        modalRef={passwordUpdateModalRef}
       />
       <DeleteAccountModal
-        isActive={showsAccountDeleteModal}
-        closeModal={() => setShowsAccountDeleteModal(false)}
+        isOpen={isOpenAccountDeleteModal}
+        modalRef={accountDeleteModalRef}
       />
     </>
   );

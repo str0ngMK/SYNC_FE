@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-const ModalWrapper = styled.div<{ $isActive: boolean }>`
+const ModalWrapper = styled.div<{ $isOpen: boolean }>`
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.6);
-  display: ${(props) => (props.$isActive ? 'flex' : 'none')};
+  display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -82,35 +82,17 @@ const Submit = styled.input`
 `;
 
 interface EmailUpdateModalProps {
-  isActive: boolean;
-  closeModal: () => void;
+  isOpen: boolean;
+  modalRef: React.RefObject<HTMLTableSectionElement>;
 }
 
 export default function EmailUpdateModal({
-  isActive,
-  closeModal,
+  isOpen,
+  modalRef,
 }: EmailUpdateModalProps) {
-  const modalContentWrap = useRef<HTMLTableSectionElement>(null);
-
-  useEffect(() => {
-    const handleDetectModalContent = (
-      e: React.BaseSyntheticEvent | MouseEvent
-    ) => {
-      if (
-        modalContentWrap.current &&
-        !modalContentWrap.current.contains(e.target)
-      )
-        closeModal();
-    };
-    document.addEventListener('mousedown', handleDetectModalContent);
-    return () => {
-      document.removeEventListener('mousedown', handleDetectModalContent);
-    };
-  }, []);
-
   return (
-    <ModalWrapper $isActive={isActive}>
-      <Container ref={modalContentWrap}>
+    <ModalWrapper $isOpen={isOpen}>
+      <Container ref={modalRef}>
         <Title>이메일 변경</Title>
         <Form>
           <InputContainer>
