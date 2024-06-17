@@ -1,26 +1,4 @@
-import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-
-const ModalWrapper = styled.div<{ $isOpen: boolean }>`
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
-  display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  left: 0;
-  top: 0;
-`;
-
-const Container = styled.section`
-  padding: 50px;
-  background: #fff;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-`;
 
 const Title = styled.h2`
   color: var(--main-black, #000);
@@ -81,28 +59,18 @@ const Submit = styled.input`
   align-items: center;
 `;
 
-interface EmailUpdateModalProps {
-  isOpen: boolean;
-  modalRef: React.RefObject<HTMLTableSectionElement>;
-}
-
-export default function EmailUpdateModal({
-  isOpen,
-  modalRef,
-}: EmailUpdateModalProps) {
+export default function EmailUpdateModal() {
   return (
-    <ModalWrapper $isOpen={isOpen}>
-      <Container ref={modalRef}>
-        <Title>이메일 변경</Title>
-        <Form>
-          <InputContainer>
-            <Label>현재 이메일</Label>
-            <Input type="text" placeholder="kimjiyong2523@gmail.com" />
-          </InputContainer>
+    <>
+      <Title>이메일 변경</Title>
+      <Form>
+        <InputContainer>
+          <Label>현재 이메일</Label>
+          <Input type="text" placeholder="kimjiyong2523@gmail.com" />
+        </InputContainer>
 
-          <Submit type="submit" value="이메일 코드 전송" />
-        </Form>
-      </Container>
-    </ModalWrapper>
+        <Submit type="submit" value="이메일 코드 전송" />
+      </Form>
+    </>
   );
 }

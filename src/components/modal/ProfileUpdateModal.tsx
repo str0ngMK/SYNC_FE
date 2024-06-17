@@ -1,26 +1,4 @@
-import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-
-const ModalWrapper = styled.div<{ $isOpen: boolean }>`
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
-  display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  left: 0;
-  top: 0;
-`;
-
-const Container = styled.section`
-  padding: 50px;
-  background: #fff;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-`;
 
 const Title = styled.h2`
   color: var(--main-black, #000);
@@ -88,50 +66,40 @@ const Submit = styled.input`
   align-items: center;
 `;
 
-interface ProfileUpdateModalProps {
-  isOpen: boolean;
-  modalRef: React.RefObject<HTMLTableSectionElement>;
-}
-
-export default function ProfileUpdateModel({
-  isOpen,
-  modalRef,
-}: ProfileUpdateModalProps) {
+export default function ProfileUpdateModel() {
   return (
-    <ModalWrapper $isOpen={isOpen}>
-      <Container ref={modalRef}>
-        <Title>프로필 수정</Title>
-        <Form>
-          <InputContainer>
-            <Label>이름</Label>
-            <Input type="text" placeholder="김지용" />
-          </InputContainer>
+    <>
+      <Title>프로필 수정</Title>
+      <Form>
+        <InputContainer>
+          <Label>이름</Label>
+          <Input type="text" placeholder="김지용" />
+        </InputContainer>
 
-          <InputContainer>
-            <Label>직무</Label>
-            <Input type="text" placeholder="UI Designer" />
-          </InputContainer>
+        <InputContainer>
+          <Label>직무</Label>
+          <Input type="text" placeholder="UI Designer" />
+        </InputContainer>
 
-          <InputContainer>
-            <Label>상태메세지</Label>
-            <Input type="text" placeholder="집가고싶다." />
-          </InputContainer>
+        <InputContainer>
+          <Label>상태메세지</Label>
+          <Input type="text" placeholder="집가고싶다." />
+        </InputContainer>
 
-          <InputContainer>
-            <Label>개인 이메일</Label>
-            <Input type="text" placeholder="kimjiyong2523@gmail.com" />
-          </InputContainer>
+        <InputContainer>
+          <Label>개인 이메일</Label>
+          <Input type="text" placeholder="kimjiyong2523@gmail.com" />
+        </InputContainer>
 
-          <InputContainer>
-            <Label>전화번호</Label>
-            <Input type="text" placeholder="010-1234-1234" />
-          </InputContainer>
+        <InputContainer>
+          <Label>전화번호</Label>
+          <Input type="text" placeholder="010-1234-1234" />
+        </InputContainer>
 
-          <SubmitContainer>
-            <Submit type="submit" value="저장하기" />
-          </SubmitContainer>
-        </Form>
-      </Container>
-    </ModalWrapper>
+        <SubmitContainer>
+          <Submit type="submit" value="저장하기" />
+        </SubmitContainer>
+      </Form>
+    </>
   );
 }

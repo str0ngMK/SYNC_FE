@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import ModalPortal from './ModalPortal';
+import { PropsWithChildren } from 'react';
 
 const ModalWrapper = styled.div<{ $isActive: boolean }>`
   width: 100%;
@@ -22,11 +23,17 @@ const Container = styled.section`
   gap: 32px;
 `;
 
-export default function Modal() {
+export interface ModalRef {
+  children: React.ReactNode;
+  isOpen: boolean;
+  modalRef: React.RefObject<HTMLTableSectionElement>;
+}
+
+export default function Modal({ children, isOpen, modalRef }: ModalRef) {
   return (
     <ModalPortal>
-      <ModalWrapper $isActive={true}>
-        <Container></Container>
+      <ModalWrapper $isActive={isOpen}>
+        <Container ref={modalRef}>{children}</Container>
       </ModalWrapper>
     </ModalPortal>
   );

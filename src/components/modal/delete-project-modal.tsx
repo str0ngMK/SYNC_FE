@@ -1,26 +1,4 @@
-import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-
-const ModalWrapper = styled.div<{ $isOpen: boolean }>`
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
-  display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  left: 0;
-  top: 0;
-`;
-
-const Container = styled.section`
-  padding: 50px;
-  background: #fff;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-`;
 
 const ModalHeader = styled.article`
   display: flex;
@@ -101,44 +79,34 @@ const Submit = styled.input`
   align-items: center;
 `;
 
-interface DeleteProjectModalProps {
-  isOpen: boolean;
-  modalRef: React.RefObject<HTMLTableSectionElement>;
-}
-
-export default function DeleteProjectModal({
-  isOpen,
-  modalRef,
-}: DeleteProjectModalProps) {
+export default function DeleteProjectModal() {
   return (
-    <ModalWrapper $isOpen={isOpen}>
-      <Container ref={modalRef}>
-        <ModalHeader>
-          <h2>프로젝트 삭제</h2>
-          <p>
-            프로젝트 삭제시 해당 내용을 복구할 수 없습니다. <br />
-            프로젝트 담당자를 임명하고 탈퇴 시 남은 인원이 해당 데이터를 유지할
-            수 있습니다.
-          </p>
-        </ModalHeader>
+    <>
+      <ModalHeader>
+        <h2>프로젝트 삭제</h2>
+        <p>
+          프로젝트 삭제시 해당 내용을 복구할 수 없습니다. <br />
+          프로젝트 담당자를 임명하고 탈퇴 시 남은 인원이 해당 데이터를 유지할 수
+          있습니다.
+        </p>
+      </ModalHeader>
 
-        <Form>
-          <InputContainer>
-            <p>프로젝트 명</p>
-            <input type="text" placeholder="프로젝트 1" />
-          </InputContainer>
+      <Form>
+        <InputContainer>
+          <p>프로젝트 명</p>
+          <input type="text" placeholder="프로젝트 1" />
+        </InputContainer>
 
-          <InputContainer>
-            <p>삭제 확인</p>
-            <input
-              type="text"
-              placeholder='"프로젝트 명"을 그대로 입력해주세요.'
-            />
-          </InputContainer>
+        <InputContainer>
+          <p>삭제 확인</p>
+          <input
+            type="text"
+            placeholder='"프로젝트 명"을 그대로 입력해주세요.'
+          />
+        </InputContainer>
 
-          <Submit type="submit" value="프로젝트 삭제하기" />
-        </Form>
-      </Container>
-    </ModalWrapper>
+        <Submit type="submit" value="프로젝트 삭제하기" />
+      </Form>
+    </>
   );
 }

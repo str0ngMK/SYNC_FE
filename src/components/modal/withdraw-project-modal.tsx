@@ -1,26 +1,4 @@
-import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-
-const ModalWrapper = styled.div<{ $isOpen: boolean }>`
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
-  display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  left: 0;
-  top: 0;
-`;
-
-const Container = styled.section`
-  padding: 50px;
-  background: #fff;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-`;
 
 const ModalHeader = styled.article`
   display: flex;
@@ -106,38 +84,33 @@ interface WithdrawProjectModalProps {
   modalRef: React.RefObject<HTMLTableSectionElement>;
 }
 
-export default function WithdrawProjectModal({
-  isOpen,
-  modalRef,
-}: WithdrawProjectModalProps) {
+export default function WithdrawProjectModal() {
   return (
-    <ModalWrapper $isOpen={isOpen}>
-      <Container ref={modalRef}>
-        <ModalHeader>
-          <h2>프로젝트 탈퇴</h2>
-          <p>
-            프로젝트 탈퇴 시 프로젝트 멤버가 다시 초대해주지 않으면 돌아올 수
-            없습니다.
-          </p>
-        </ModalHeader>
+    <>
+      <ModalHeader>
+        <h2>프로젝트 탈퇴</h2>
+        <p>
+          프로젝트 탈퇴 시 프로젝트 멤버가 다시 초대해주지 않으면 돌아올 수
+          없습니다.
+        </p>
+      </ModalHeader>
 
-        <Form>
-          <InputContainer>
-            <p>프로젝트 명</p>
-            <input type="text" placeholder="프로젝트 1" />
-          </InputContainer>
+      <Form>
+        <InputContainer>
+          <p>프로젝트 명</p>
+          <input type="text" placeholder="프로젝트 1" />
+        </InputContainer>
 
-          <InputContainer>
-            <p>삭제 확인</p>
-            <input
-              type="text"
-              placeholder='"프로젝트 명"을 그대로 입력해주세요.'
-            />
-          </InputContainer>
+        <InputContainer>
+          <p>삭제 확인</p>
+          <input
+            type="text"
+            placeholder='"프로젝트 명"을 그대로 입력해주세요.'
+          />
+        </InputContainer>
 
-          <Submit type="submit" value="프로젝트 삭제하기" />
-        </Form>
-      </Container>
-    </ModalWrapper>
+        <Submit type="submit" value="프로젝트 삭제하기" />
+      </Form>
+    </>
   );
 }

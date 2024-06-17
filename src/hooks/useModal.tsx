@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
+import Modal, { ModalRef } from '../components/common/Modal';
 
 type useModalType = () => [
   boolean,
   () => void,
-  () => void,
-  React.RefObject<HTMLTableSectionElement>
+  React.RefObject<HTMLTableSectionElement>,
+  ({ children, isOpen, modalRef }: ModalRef) => JSX.Element
 ];
 
 const useModal: useModalType = () => {
@@ -25,7 +26,7 @@ const useModal: useModalType = () => {
       setIsOpen(false);
   };
 
-  return [isOpen, () => setIsOpen(true), () => setIsOpen(false), modalRef];
+  return [isOpen, () => setIsOpen(true), modalRef, Modal];
 };
 
 export default useModal;

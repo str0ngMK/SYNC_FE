@@ -1,26 +1,4 @@
-import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-
-const ModalWrapper = styled.div<{ $isOpen: boolean }>`
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
-  display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  left: 0;
-  top: 0;
-`;
-
-const Container = styled.section`
-  padding: 50px;
-  background: #fff;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-`;
 
 const ModalHeader = styled.article`
   display: flex;
@@ -95,44 +73,32 @@ const Submit = styled.input`
   align-items: center;
 `;
 
-interface PasswordUpdateModalProps {
-  isOpen: boolean;
-  modalRef: React.RefObject<HTMLTableSectionElement>;
-}
-
-export default function PasswordUpdateModal({
-  isOpen,
-  modalRef,
-}: PasswordUpdateModalProps) {
-  const modalContentWrap = useRef<HTMLTableSectionElement>(null);
-
+export default function PasswordUpdateModal() {
   return (
-    <ModalWrapper $isOpen={isOpen}>
-      <Container ref={modalRef}>
-        <ModalHeader>
-          <h2>비밀번호 변경</h2>
-          <p>특수 문자를 포함한 OO글자 이상 입력해주세요.</p>
-        </ModalHeader>
+    <>
+      <ModalHeader>
+        <h2>비밀번호 변경</h2>
+        <p>특수 문자를 포함한 OO글자 이상 입력해주세요.</p>
+      </ModalHeader>
 
-        <Form>
-          <InputContainer>
-            <Label>현재 비밀번호</Label>
-            <Input type="password" placeholder="23412" />
-          </InputContainer>
+      <Form>
+        <InputContainer>
+          <Label>현재 비밀번호</Label>
+          <Input type="password" placeholder="23412" />
+        </InputContainer>
 
-          <InputContainer>
-            <Label>새 비밀번호</Label>
-            <Input type="password" placeholder="12341234" />
-          </InputContainer>
+        <InputContainer>
+          <Label>새 비밀번호</Label>
+          <Input type="password" placeholder="12341234" />
+        </InputContainer>
 
-          <InputContainer>
-            <Label>새 비밀번호 확인</Label>
-            <Input type="password" placeholder="12341234" />
-          </InputContainer>
+        <InputContainer>
+          <Label>새 비밀번호 확인</Label>
+          <Input type="password" placeholder="12341234" />
+        </InputContainer>
 
-          <Submit type="submit" value="비밀번호 변경" />
-        </Form>
-      </Container>
-    </ModalWrapper>
+        <Submit type="submit" value="비밀번호 변경" />
+      </Form>
+    </>
   );
 }

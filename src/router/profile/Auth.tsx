@@ -89,20 +89,20 @@ export default function Auth() {
   const [
     isOpenEmailUpdateModal,
     openEmailUpdateModal,
-    closeEmailUpdateModal,
     emailUpdateModalRef,
+    EamilUpdateModalWrapper,
   ] = useModal();
   const [
     isOpenPasswordUpdateModal,
     openPasswordUpdateModal,
-    closePasswordUpdateModal,
     passwordUpdateModalRef,
+    PasswordUpdateModalWrapper,
   ] = useModal();
   const [
     isOpenAccountDeleteModal,
     openAccountDeleteModal,
-    closeAccountDeleteModal,
     accountDeleteModalRef,
+    AccountDeleteModalWrapper,
   ] = useModal();
 
   return (
@@ -132,18 +132,24 @@ export default function Auth() {
           </PrivacyItem>
         </PrivacyList>
       </AuthWrapper>
-      <EmailUpdateModal
+      <EamilUpdateModalWrapper
         isOpen={isOpenEmailUpdateModal}
         modalRef={emailUpdateModalRef}
-      />
-      <PasswordUpdateModal
+      >
+        <EmailUpdateModal />
+      </EamilUpdateModalWrapper>
+      <PasswordUpdateModalWrapper
         isOpen={isOpenPasswordUpdateModal}
         modalRef={passwordUpdateModalRef}
-      />
-      <DeleteAccountModal
+      >
+        <PasswordUpdateModal />
+      </PasswordUpdateModalWrapper>
+      <AccountDeleteModalWrapper
         isOpen={isOpenAccountDeleteModal}
         modalRef={accountDeleteModalRef}
-      />
+      >
+        <DeleteAccountModal />
+      </AccountDeleteModalWrapper>
     </>
   );
 }

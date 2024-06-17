@@ -1,27 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import ProjectOwnerDropdown from '../dropdown/project-owner-dropdown';
-
-const ModalWrapper = styled.div<{ $isOpen: boolean }>`
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
-  display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  left: 0;
-  top: 0;
-`;
-
-const Container = styled.section`
-  padding: 50px;
-  background: #fff;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-`;
 
 const ModalHeader = styled.article`
   display: flex;
@@ -149,70 +128,54 @@ const Submit = styled.input`
   align-items: center;
 `;
 
-interface ModifyProjectModalProps {
-  isOpen: boolean;
-  modalRef: React.RefObject<HTMLTableSectionElement>;
-}
-
-export default function ModifyProjectModal({
-  isOpen,
-  modalRef,
-}: ModifyProjectModalProps) {
+export default function ModifyProjectModal() {
   const [showsDropdown, setShowsDropdown] = useState(false);
   const projectOwnerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <ModalWrapper $isOpen={isOpen}>
-      <Container ref={modalRef}>
-        <ModalHeader>
-          <h2>프로젝트 설정</h2>
-          <p>프로젝트에 대한 간략한 정보를 나타냅니다.</p>
-        </ModalHeader>
+    <>
+      <ModalHeader>
+        <h2>프로젝트 설정</h2>
+        <p>프로젝트에 대한 간략한 정보를 나타냅니다.</p>
+      </ModalHeader>
 
-        <Form>
-          <InputContainer>
-            <p>프로필과 이름</p>
-            <ProjectProfile>
-              <div></div>
-              <Input type="text" placeholder="프로젝트 1" />
-            </ProjectProfile>
-          </InputContainer>
+      <Form>
+        <InputContainer>
+          <p>프로필과 이름</p>
+          <ProjectProfile>
+            <div></div>
+            <Input type="text" placeholder="프로젝트 1" />
+          </ProjectProfile>
+        </InputContainer>
 
-          <InputContainer>
-            <p>프로젝트 설명</p>
-            <Input
-              type="text"
-              placeholder="프로젝트 명을 그대로 입력해주세요."
+        <InputContainer>
+          <p>프로젝트 설명</p>
+          <Input type="text" placeholder="프로젝트 명을 그대로 입력해주세요." />
+        </InputContainer>
+
+        <InputContainer>
+          <p>프로젝트 소유자</p>
+          <Select ref={projectOwnerRef} onClick={() => setShowsDropdown(true)}>
+            <div></div>
+            <span>김지용</span>
+            <ProjectOwnerDropdown
+              isActive={showsDropdown}
+              closeDropdown={() => setShowsDropdown(false)}
             />
-          </InputContainer>
+          </Select>
+        </InputContainer>
 
-          <InputContainer>
-            <p>프로젝트 소유자</p>
-            <Select
-              ref={projectOwnerRef}
-              onClick={() => setShowsDropdown(true)}
-            >
-              <div></div>
-              <span>김지용</span>
-              <ProjectOwnerDropdown
-                isActive={showsDropdown}
-                closeDropdown={() => setShowsDropdown(false)}
-              />
-            </Select>
-          </InputContainer>
+        <InputContainer>
+          <p>프로젝트 기간</p>
+          <Progress>
+            <Input type="text" placeholder="2024.05.24" />
+            <span>~</span>
+            <Input type="text" placeholder="2024.09.24" />
+          </Progress>
+        </InputContainer>
 
-          <InputContainer>
-            <p>프로젝트 기간</p>
-            <Progress>
-              <Input type="text" placeholder="2024.05.24" />
-              <span>~</span>
-              <Input type="text" placeholder="2024.09.24" />
-            </Progress>
-          </InputContainer>
-
-          <Submit type="submit" value="완료" />
-        </Form>
-      </Container>
-    </ModalWrapper>
+        <Submit type="submit" value="완료" />
+      </Form>
+    </>
   );
 }

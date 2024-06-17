@@ -134,8 +134,7 @@ const StatusMessageWrapper = styled(PrivacyItem)`
 `;
 
 export default function MyProfile() {
-  const [isOpenProfileUpdateModal, openModal, closeModal, modalRef] =
-    useModal();
+  const [isOpenProfileUpdateModal, openModal, modalRef, Modal] = useModal();
 
   return (
     <>
@@ -173,10 +172,9 @@ export default function MyProfile() {
           </PrivacyList>
         </MyProfileWrapper>
       </ProfileHeader>
-      <ProfileUpdateModel
-        isOpen={isOpenProfileUpdateModal}
-        modalRef={modalRef}
-      />
+      <Modal isOpen={isOpenProfileUpdateModal} modalRef={modalRef}>
+        <ProfileUpdateModel />
+      </Modal>
     </>
   );
 }

@@ -1,26 +1,4 @@
-import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-
-const ModalWrapper = styled.div<{ $isOpen: boolean }>`
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
-  display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  left: 0;
-  top: 0;
-`;
-
-const Container = styled.section`
-  padding: 50px;
-  background: #fff;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-`;
 
 const ModalHeader = styled.article`
   display: flex;
@@ -101,43 +79,33 @@ const Submit = styled.input`
   align-items: center;
 `;
 
-interface DeleteAccountModalProps {
-  isOpen: boolean;
-  modalRef: React.RefObject<HTMLTableSectionElement>;
-}
-
-export default function DeleteAccountModal({
-  isOpen,
-  modalRef,
-}: DeleteAccountModalProps) {
+export default function DeleteAccountModal() {
   return (
-    <ModalWrapper $isOpen={isOpen}>
-      <Container ref={modalRef}>
-        <ModalHeader>
-          <h2>계정 삭제</h2>
-          <p>
-            계정을 삭제 시 복구할 수 없습니다. <br />
-            반드시 중요한 프로젝트 관련 정보를 모두 확인해주세요.
-          </p>
-        </ModalHeader>
+    <>
+      <ModalHeader>
+        <h2>계정 삭제</h2>
+        <p>
+          계정을 삭제 시 복구할 수 없습니다. <br />
+          반드시 중요한 프로젝트 관련 정보를 모두 확인해주세요.
+        </p>
+      </ModalHeader>
 
-        <Form>
-          <InputContainer>
-            <p>현재 프로젝트</p>
-            <input type="text" placeholder="프로젝트 1" />
-            <input type="text" placeholder="프로젝트 2" />
-            <input type="text" placeholder="프로젝트 3" />
-            <input type="text" placeholder="프로젝트 4" />
-          </InputContainer>
+      <Form>
+        <InputContainer>
+          <p>현재 프로젝트</p>
+          <input type="text" placeholder="프로젝트 1" />
+          <input type="text" placeholder="프로젝트 2" />
+          <input type="text" placeholder="프로젝트 3" />
+          <input type="text" placeholder="프로젝트 4" />
+        </InputContainer>
 
-          <InputContainer>
-            <p>현재 이메일</p>
-            <input type="text" placeholder="kimjiyong2523@gmail.com" />
-          </InputContainer>
+        <InputContainer>
+          <p>현재 이메일</p>
+          <input type="text" placeholder="kimjiyong2523@gmail.com" />
+        </InputContainer>
 
-          <Submit type="submit" value="이메일 인증 보내기" />
-        </Form>
-      </Container>
-    </ModalWrapper>
+        <Submit type="submit" value="이메일 인증 보내기" />
+      </Form>
+    </>
   );
 }

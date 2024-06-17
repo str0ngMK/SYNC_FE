@@ -58,20 +58,20 @@ export default function SettingsProject({
   const [
     isOpenProjectDeleteModal,
     openProjectDeleteModal,
-    closeProjectDeleteModal,
     projectDeleteModalRef,
+    ProjectDeleteModalWrapper,
   ] = useModal();
   const [
     isOpenProjectWithdrawModal,
     openProjectWithdrawModal,
-    closeProjectWithdrawModal,
     projectWithdrawModalRef,
+    ProjectWithdrawModalWrapper,
   ] = useModal();
   const [
     isOpenProjectModifyModal,
     openProjectModifyModal,
-    closeProjectModifyModal,
     projectModifyModalRef,
+    ProjectModifyModalWrapper,
   ] = useModal();
 
   return (
@@ -107,18 +107,26 @@ export default function SettingsProject({
           <p>프로젝트 관리를 위한 창을 띄웁니다.</p>
         </SettingsItem>
       </Wrapper>
-      <DeleteProjectModal
+      <ProjectDeleteModalWrapper
         isOpen={isOpenProjectDeleteModal}
         modalRef={projectDeleteModalRef}
-      />
-      <WithdrawProjectModal
+      >
+        <DeleteProjectModal />
+      </ProjectDeleteModalWrapper>
+
+      <ProjectWithdrawModalWrapper
         isOpen={isOpenProjectWithdrawModal}
         modalRef={projectWithdrawModalRef}
-      />
-      <ModifyProjectModal
+      >
+        <WithdrawProjectModal />
+      </ProjectWithdrawModalWrapper>
+
+      <ProjectModifyModalWrapper
         isOpen={isOpenProjectModifyModal}
         modalRef={projectModifyModalRef}
-      />
+      >
+        <ModifyProjectModal />
+      </ProjectModifyModalWrapper>
     </>
   );
 }
