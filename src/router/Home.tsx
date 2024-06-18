@@ -5,31 +5,29 @@ import { Cookies } from 'react-cookie';
 function Home() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
 
-  useEffect(() => {
-    const refreshJWTToken = async () => {
-      const response = await axios.get(
-        'https://158.247.197.212:9090/api/user/auth',
+  const handleCreateProject = async (e: React.MouseEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        'https://158.247.197.212:9090/api/user/project/create',
+        {
+          title,
+          description,
+          startDate: new Date(startDate),
+          endDate: new Date(endDate),
+        },
         {
           withCredentials: true,
         }
       );
       console.log(response);
-    };
-    refreshJWTToken();
-  }, []);
-
-  const handleCreateProject = async (e: React.MouseEvent<HTMLInputElement>) => {
-    e.preventDefault();
-
-    const response = await axios.post(
-      'https://158.247.197.212:9090/api/user/project/create',
-      { title, description },
-      {
-        withCredentials: true,
-      }
-    );
-    console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -46,6 +44,19 @@ function Home() {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="설명"
+        />
+        <label>프로젝트 기간</label>
+        <input
+          type="text"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+          placeholder="프로젝트 시작일(2024.xx.xx)"
+        />
+        <input
+          type="text"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+          placeholder="프로젝트 종료일(2024.xx.xx)"
         />
         <input
           type="submit"
