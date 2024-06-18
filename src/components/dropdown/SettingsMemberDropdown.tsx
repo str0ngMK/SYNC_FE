@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-const Wrapper = styled.ul<{ $isActive: boolean }>`
+const Wrapper = styled.ul<{ $isOpen: boolean }>`
   width: 320px;
   background: #fff;
   border: 1px solid #b8b8b8;
   border-radius: 8px;
   box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.3);
-  display: ${(props) => (props.$isActive ? 'flex' : 'none')};
+  display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
   flex-direction: column;
   position: absolute;
   left: -240px;
@@ -28,9 +28,9 @@ const SettingsItem = styled.li`
   flex-direction: column;
 `;
 
-export default function SettingsMember({ isActive }: { isActive: boolean }) {
+export default function SettingsMember({ isOpen }: { isOpen: boolean }) {
   return (
-    <Wrapper $isActive={isActive}>
+    <Wrapper $isOpen={isOpen}>
       <SettingsItem>멤버 내보내기</SettingsItem>
     </Wrapper>
   );

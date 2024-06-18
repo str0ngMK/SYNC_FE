@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import SettingsProject from '../components/dropdown/SettingsProjectDropdown';
 import { useLocation } from 'react-router-dom';
+import useDropdown from '../hooks/useDropdown';
+import Dropdown from '../components/common/Dropdown';
 
 const ProjectItem = styled.li`
   height: 62px;
@@ -62,6 +64,23 @@ export default function SettingsProjectItem({
   role,
   createdAt,
 }: Project) {
+  const [isOpen, toggleDropdown, dropdownRef] = useDropdown();
+  return (
+    <ProjectItem>
+      <h6>{name}</h6>
+      <h6>{owner}</h6>
+      <span>{role}</span>
+      <span>{createdAt}</span>
+
+      <More ref={dropdownRef}>
+        <button onClick={toggleDropdown}>더보기</button>
+        <SettingsProject isOpen={isOpen} toggleDropdown={toggleDropdown} />
+      </More>
+    </ProjectItem>
+  );
+}
+
+/*
   const settingsProjectDropdownRef = useRef<HTMLDivElement>(null);
   const [showsDropdown, setShowsDropdown] = useState(false);
   const location = useLocation();
@@ -84,21 +103,4 @@ export default function SettingsProjectItem({
     setShowsDropdown(false);
   }, [location.pathname]);
 
-  return (
-    <ProjectItem>
-      <h6>{name}</h6>
-      <h6>{owner}</h6>
-      <span>{role}</span>
-      <span>{createdAt}</span>
-      <More ref={settingsProjectDropdownRef}>
-        <button onClick={() => setShowsDropdown((prevState) => !prevState)}>
-          더보기
-        </button>
-        <SettingsProject
-          isActive={showsDropdown}
-          closeDropdown={() => setShowsDropdown(false)}
-        />
-      </More>
-    </ProjectItem>
-  );
-}
+*/

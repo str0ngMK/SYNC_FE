@@ -1,8 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import MenuDropDown from '../dropdown/MenuDropDown';
 import ConfigDropDown from '../dropdown/Config';
+import useDropdown from '../../hooks/useDropdown';
+import Dropdown from '../common/Dropdown';
 
 const HeaderWrap = styled.header`
   width: calc(100% - 242px);
@@ -125,26 +127,13 @@ const More = styled.div`
 `;
 
 export default function Header() {
-  const profileMoreRef = useRef<HTMLDivElement>(null);
-  const configRef = useRef<HTMLDivElement>(null);
-  const [showsMenuDropdown, setShowsMenuDropdown] = useState(false);
-  const [showsConfigDropdown, setShowsConfigDropdown] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState('');
-  const location = useLocation();
+  const [isOpenProfileDropdown, toggleProfileDropdown, profileDropdownRef] =
+    useDropdown();
+  const [isOpenConfigDropdown, toggleConfigDropdown, configDropdownRef] =
+    useDropdown();
 
-  useEffect(() => {
-    const handleDetectDropdown = (e: React.BaseSyntheticEvent | MouseEvent) => {
-      e.preventDefault();
-      if (profileMoreRef.current && !profileMoreRef.current.contains(e.target))
-        setShowsMenuDropdown(false);
-      if (configRef.current && !configRef.current.contains(e.target))
-        setShowsConfigDropdown(false);
-    };
-    document.addEventListener('click', handleDetectDropdown);
-    return () => {
-      document.removeEventListener('click', handleDetectDropdown);
-    };
-  }, []);
+  console.log(isOpenConfigDropdown);
 
   useEffect(() => {
     const storedLogged = localStorage.getItem('loggedIn');
@@ -153,11 +142,6 @@ export default function Header() {
       setLoggedInUser(loggedIn.id);
     }
   }, []);
-
-  useEffect(() => {
-    setShowsMenuDropdown(false);
-    setShowsConfigDropdown(false);
-  }, [location.pathname]);
 
   return (
     <HeaderWrap>
@@ -170,15 +154,13 @@ export default function Header() {
           <ToolContainer>
             <AlarmAndSetting>
               <img src="/assets/bell-02.svg" alt="알림" />
-              <Config ref={configRef}>
+              <Config ref={configDropdownRef}>
                 <img
                   src="/assets/Settings.svg"
                   alt="설정"
-                  onClick={() =>
-                    setShowsConfigDropdown((prevState) => !prevState)
-                  }
+                  onClick={toggleConfigDropdown}
                 />
-                <ConfigDropDown isActive={showsConfigDropdown} />
+                <ConfigDropDown isOpen={isOpenConfigDropdown} />
               </Config>
             </AlarmAndSetting>
             {loggedInUser ? (
@@ -190,15 +172,13 @@ export default function Header() {
                     <UserInfoFooter>UI Designer</UserInfoFooter>
                   </UserInfo>
                 </Profile>
-                <More ref={profileMoreRef}>
+                <More ref={profileDropdownRef}>
                   <img
                     src="/assets/More.svg"
                     alt="프로필 더 보기"
-                    onClick={() =>
-                      setShowsMenuDropdown((prevState) => !prevState)
-                    }
+                    onClick={toggleProfileDropdown}
                   />
-                  <MenuDropDown isActive={showsMenuDropdown} />
+                  <MenuDropDown isOpen={isOpenProfileDropdown} />
                 </More>
               </ProfileWrap>
             ) : (

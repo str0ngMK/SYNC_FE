@@ -5,13 +5,13 @@ import WithdrawProjectModal from '../modal/withdraw-project-modal';
 import ModifyProjectModal from '../modal/modify-project-modal';
 import useModal from '../../hooks/useModal';
 
-const Wrapper = styled.ul<{ $isActive: boolean }>`
+const Wrapper = styled.ul<{ $isOpen: boolean }>`
   width: 320px;
   background: #fff;
   border: 1px solid #b8b8b8;
   border-radius: 8px;
   box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.3);
-  display: ${(props) => (props.$isActive ? 'flex' : 'none')};
+  display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
   flex-direction: column;
   position: absolute;
   left: -240px;
@@ -47,13 +47,13 @@ const SettingsItem = styled.li`
 `;
 
 interface SettingsProjectDropdownProps {
-  isActive: boolean;
-  closeDropdown: () => void;
+  isOpen: boolean;
+  toggleDropdown: () => void;
 }
 
 export default function SettingsProject({
-  isActive,
-  closeDropdown,
+  isOpen,
+  toggleDropdown,
 }: SettingsProjectDropdownProps) {
   const [
     isOpenProjectDeleteModal,
@@ -76,11 +76,11 @@ export default function SettingsProject({
 
   return (
     <>
-      <Wrapper $isActive={isActive}>
+      <Wrapper $isOpen={isOpen}>
         <SettingsItem
           onClick={() => {
             openProjectDeleteModal();
-            closeDropdown();
+            toggleDropdown();
           }}
         >
           <p>프로젝트 삭제</p>
@@ -90,7 +90,7 @@ export default function SettingsProject({
         <SettingsItem
           onClick={() => {
             openProjectWithdrawModal();
-            closeDropdown();
+            toggleDropdown();
           }}
         >
           <p>프로젝트 탈퇴</p>
@@ -100,7 +100,7 @@ export default function SettingsProject({
         <SettingsItem
           onClick={() => {
             openProjectModifyModal();
-            closeDropdown();
+            toggleDropdown();
           }}
         >
           <p>프로젝트 설정</p>

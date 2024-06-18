@@ -1,16 +1,16 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Wrapper = styled.section<{ $isActive: boolean }>`
+const Wrapper = styled.section<{ $isOpen: boolean }>`
   width: 216px;
   background: #fff;
   border: 1px solid #b8b8b8;
   border-radius: 8px;
   box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.3);
-  display: ${(props) => (props.$isActive ? 'flex' : 'none')};
+  display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
   position: absolute;
   left: -200px;
-  bottom: -265px;
+  bottom: -260px;
 `;
 
 const DropdownList = styled.ul`
@@ -84,12 +84,12 @@ const UserInfoFooter = styled.span`
 `;
 
 interface MenuDropDownProps {
-  isActive: boolean;
+  isOpen: boolean;
 }
 
-export default function MenuDropDown({ isActive }: MenuDropDownProps) {
+export default function MenuDropDown({ isOpen }: MenuDropDownProps) {
   return (
-    <Wrapper $isActive={isActive}>
+    <Wrapper $isOpen={isOpen}>
       <DropdownList>
         <DropDownHeader>
           <Temp>

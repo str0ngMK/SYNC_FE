@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import SettingsMember from '../components/dropdown/SettingsMemberDropdown';
 import SettingsRole from '../components/dropdown/settingsRoleDropdown';
+import useDropdown from '../hooks/useDropdown';
 
 const MemberItem = styled.li`
   width: 900px;
@@ -96,35 +97,13 @@ interface Member {
 }
 
 export default function SettingsMemberItem({ name, email, job, role }: Member) {
-  const settingsMemberDropdownRef = useRef<HTMLDivElement>(null);
-  const settingsRoleDropdownRef = useRef<HTMLDivElement>(null);
-  const [showsDropdown, setShowsDropdown] = useState(false);
-  const [showsRoleDropdown, setShowsRoleDropdown] = useState(false);
-  const location = useLocation();
-
-  useEffect(() => {
-    const handleDetect = (e: React.BaseSyntheticEvent | MouseEvent) => {
-      if (
-        settingsMemberDropdownRef.current &&
-        !settingsMemberDropdownRef.current.contains(e.target)
-      )
-        setShowsDropdown(false);
-      if (
-        settingsRoleDropdownRef.current &&
-        !settingsRoleDropdownRef.current.contains(e.target)
-      )
-        setShowsRoleDropdown(false);
-    };
-    document.addEventListener('click', handleDetect);
-    return () => {
-      document.removeEventListener('click', handleDetect);
-    };
-  }, []);
-
-  useEffect(() => {
-    setShowsDropdown(false);
-    setShowsRoleDropdown(false);
-  }, [location.pathname]);
+  const [
+    isOpenSelectRoleDropdown,
+    toggleSelectRoleDropdown,
+    selectRoleDropdownRef,
+  ] = useDropdown();
+  const [isOpenMemberDropdown, toggleMemberDropdown, memberDropdownRef] =
+    useDropdown();
 
   return (
     <MemberItem>
@@ -136,17 +115,13 @@ export default function SettingsMemberItem({ name, email, job, role }: Member) {
         </UserInfo>
       </UserName>
       <p>{job}</p>
-      <Role ref={settingsRoleDropdownRef}>
-        <button onClick={() => setShowsRoleDropdown((prevState) => !prevState)}>
-          {role}
-        </button>
+      <Role ref={selectRoleDropdownRef}>
+        <button onClick={toggleSelectRoleDropdown}>{role}</button>
+        <SettingsRole isOpen={isOpenSelectRoleDropdown} />
       </Role>
-      <More ref={settingsMemberDropdownRef}>
-        <button onClick={() => setShowsDropdown((prevState) => !prevState)}>
-          더보기
-        </button>
-        <SettingsRole isActive={showsRoleDropdown} />
-        <SettingsMember isActive={showsDropdown} />
+      <More ref={memberDropdownRef}>
+        <button onClick={toggleMemberDropdown}>더보기</button>
+        <SettingsMember isOpen={isOpenMemberDropdown} />
       </More>
     </MemberItem>
   );
