@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Cookies } from 'react-cookie';
+import instance from '../lib/axios/axios';
 
 function Home() {
   const [title, setTitle] = useState('');
@@ -8,10 +9,26 @@ function Home() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
+  const getProjects = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const response = await instance.post('/api/user/project/get', {
+      userId: 'abc123123',
+    });
+    console.log(response);
+  };
+
   const handleCreateProject = async (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
 
     try {
+      const response = await instance.post('/api/user/project/create', {
+        title,
+        description,
+        startDate: new Date(startDate),
+        endDate: new Date(endDate),
+      });
+      console.log(response);
+      /*
       const response = await axios.post(
         'https://158.247.197.212:9090/api/user/project/create',
         {
@@ -25,6 +42,7 @@ function Home() {
         }
       );
       console.log(response);
+      */
     } catch (error) {
       console.log(error);
     }
@@ -64,6 +82,7 @@ function Home() {
           onClick={handleCreateProject}
         />
       </form>
+      <button onClick={getProjects}>프로젝트 얻기</button>
     </div>
   );
 }
