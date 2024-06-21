@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import MenuDropDown from '../dropdown/MenuDropDown';
 import ConfigDropDown from '../dropdown/Config';
 import useDropdown from '../../hooks/useDropdown';
-import Dropdown from '../common/Dropdown';
+import { useEffect } from 'react';
+import axios, { AxiosResponse } from 'axios';
+import useLoggedInUserStore from '../../lib/store/store';
 
 const HeaderWrap = styled.header`
   width: calc(100% - 242px);
@@ -127,20 +128,22 @@ const More = styled.div`
 `;
 
 export default function Header() {
-  const [loggedInUser, setLoggedInUser] = useState('');
   const [isOpenProfileDropdown, toggleProfileDropdown, profileDropdownRef] =
     useDropdown();
   const [isOpenConfigDropdown, toggleConfigDropdown, configDropdownRef] =
     useDropdown();
-
-  console.log(isOpenConfigDropdown);
+  const { loggedInUser, setLoggedInUser } = useLoggedInUserStore();
 
   useEffect(() => {
-    const storedLogged = localStorage.getItem('loggedIn');
-    if (storedLogged) {
-      const loggedIn = JSON.parse(storedLogged);
-      setLoggedInUser(loggedIn.id);
-    }
+    const getLoggedUser = async () => {
+      const response = (await axios.get(
+        'https://158.247.197.212:9090/api/user/info',
+        { withCredentials: true }
+      )) as AxiosResponse<{ value: { username: string } }, any>;
+      const { username } = response.data.value;
+      return username ? username : '';
+    };
+    getLoggedUser().then((username) => setLoggedInUser(username));
   }, []);
 
   return (
@@ -168,7 +171,9 @@ export default function Header() {
                 <img src="/assets/man-438081_960_720.svg" alt="프로필 이미지" />
                 <Profile>
                   <UserInfo>
-                    <UserInfoHeader>Name</UserInfoHeader>
+                    <UserInfoHeader>
+                      {loggedInUser ? loggedInUser : 'Name'}
+                    </UserInfoHeader>
                     <UserInfoFooter>UI Designer</UserInfoFooter>
                   </UserInfo>
                 </Profile>

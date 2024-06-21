@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useState } from 'react';
+import { useCookies } from 'react-cookie';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -138,6 +139,7 @@ export default function Login() {
     userId: '',
     password: '',
   });
+  const [cookies, setCookie] = useCookies(['LOGGED_USER']);
   const navigate = useNavigate();
 
   const handleLogin = async (e: React.MouseEvent<HTMLInputElement>) => {
@@ -157,12 +159,8 @@ export default function Login() {
           },
         }
       )) as AxiosResponse<{ name: string; username: string }, any>;
-      console.log(response.data.username);
 
-      localStorage.setItem(
-        'loggedIn',
-        JSON.stringify({ id: response.data.username })
-      );
+      console.log(response);
       window.alert('로그인 성공!');
       navigate('/');
     } catch (error) {

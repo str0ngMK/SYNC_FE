@@ -18,14 +18,11 @@ import Settings from './router/settings';
 import ProjectSettings from './router/settings/Project';
 import MembersSettings from './router/settings/Members';
 import AlarmSettings from './router/settings/Alarm';
-import { useEffect } from 'react';
-
-const isLogin = true;
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={isLogin ? <Home /> : <Navigate to="login" />} />
+      <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />}></Route>
       <Route path="/signup" element={<SignUp />}></Route>
       <Route path="/:userId/modify" element={<ModifyUser />}></Route>
