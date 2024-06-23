@@ -30,5 +30,6 @@ module.exports = {
     'import/resolver': {
       typescript: {}, // 이 부분을 추가
     },
+    react: { version: 'detect' },
   },
 };
