@@ -1,5 +1,3 @@
-import { useEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import SettingsMember from '../components/dropdown/SettingsMemberDropdown';
 import SettingsRole from '../components/dropdown/settingsRoleDropdown';

@@ -14,7 +14,9 @@ const ModalHeader = styled.article`
   }
   p {
     color: #a6b3be;
-    font-feature-settings: 'clig' off, 'liga' off;
+    font-feature-settings:
+      'clig' off,
+      'liga' off;
     font-family: Inter;
     font-size: 12px;
     font-style: normal;
@@ -38,7 +40,9 @@ const InputContainer = styled.div`
   gap: 8px;
   p {
     color: #a6b3be;
-    font-feature-settings: 'clig' off, 'liga' off;
+    font-feature-settings:
+      'clig' off,
+      'liga' off;
     font-family: Inter;
     font-size: 14px;
     font-style: normal;
@@ -53,7 +57,9 @@ const InputContainer = styled.div`
     align-items: center;
     &::placeholder {
       color: #a6b3be;
-      font-feature-settings: 'clig' off, 'liga' off;
+      font-feature-settings:
+        'clig' off,
+        'liga' off;
       font-family: Inter;
       font-size: 14px;
       font-style: normal;
@@ -79,10 +85,10 @@ const Submit = styled.input`
   align-items: center;
 `;
 
-interface WithdrawProjectModalProps {
-  isOpen: boolean;
-  modalRef: React.RefObject<HTMLTableSectionElement>;
-}
+// interface WithdrawProjectModalProps {
+//   isOpen: boolean;
+//   modalRef: React.RefObject<HTMLTableSectionElement>;
+// }
 
 export default function WithdrawProjectModal() {
   return (

@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -138,45 +138,8 @@ export default function Login() {
     userId: '',
     password: '',
   });
+
   const navigate = useNavigate();
-
-  const handleLogin = async (e: React.MouseEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const isValidatePass = validateLoginForm();
-    if (!isValidatePass) return false;
-
-    try {
-      const response = (await axios.post(
-        'https://158.247.197.212:9090/login',
-        {},
-        {
-          withCredentials: true,
-          params: {
-            id: loginForm.userId,
-            password: loginForm.password,
-          },
-        }
-      )) as AxiosResponse<{ name: string; username: string }, any>;
-      console.log(response.data.username);
-
-      localStorage.setItem(
-        'loggedIn',
-        JSON.stringify({ id: response.data.username })
-      );
-      window.alert('로그인 성공!');
-      navigate('/');
-    } catch (error) {
-      if (error instanceof AxiosError && error.response) {
-        console.log(error);
-        if (error.response.data.message === '아이디가 잘못되었습니다.')
-          return setErrorMessage({
-            ...errorMessage,
-            userId: '아이디 또는 비밀번호가 옳지 않습니다.',
-          });
-      }
-      console.error(error);
-    }
-  };
 
   const validateLoginForm = () => {
     const passwordRegExp = /(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\W)(?=\S+$).{8,16}/;
@@ -209,6 +172,47 @@ export default function Login() {
     }
     setErrorMessage({ ...DEFAULT_ERROR_MESSAGE });
     return true;
+  };
+
+  // todo return 값이 통일 되야아함
+  // eslint-disable-next-line consistent-return
+  const handleLogin = async (e: React.MouseEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const isValidatePass = validateLoginForm();
+    if (!isValidatePass) return false;
+
+    try {
+      const response = (await axios.post(
+        'https://158.247.197.212:9090/login',
+        {},
+        {
+          withCredentials: true,
+          params: {
+            id: loginForm.userId,
+            password: loginForm.password,
+          },
+        },
+      )) as AxiosResponse<{ name: string; username: string }, any>;
+      console.log(response.data.username);
+
+      localStorage.setItem(
+        'loggedIn',
+        JSON.stringify({ id: response.data.username }),
+      );
+      window.alert('로그인 성공!');
+      navigate('/');
+    } catch (error) {
+      if (error instanceof AxiosError && error.response) {
+        console.log(error);
+        if (error.response.data.message === '아이디가 잘못되었습니다.')
+          return setErrorMessage({
+            ...errorMessage,
+            userId: '아이디 또는 비밀번호가 옳지 않습니다.',
+          });
+      }
+      console.error(error);
+      return false;
+    }
   };
 
   return (

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import DeleteProjectModal from '../modal/delete-project-modal';
 import WithdrawProjectModal from '../modal/withdraw-project-modal';

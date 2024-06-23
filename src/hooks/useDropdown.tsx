@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 type useDropdownType = () => [
   boolean,
   () => void,
-  React.RefObject<HTMLTableSectionElement>
+  React.RefObject<HTMLTableSectionElement>,
 ];
 
 const useDropdown: useDropdownType = () => {
@@ -13,6 +13,12 @@ const useDropdown: useDropdownType = () => {
   const location = useLocation();
 
   useEffect(() => {
+    const handleDetectDropdownContent = (
+      e: React.BaseSyntheticEvent | MouseEvent,
+    ) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target))
+        setIsOpen(false);
+    };
     document.addEventListener('click', handleDetectDropdownContent);
     return () => {
       document.removeEventListener('click', handleDetectDropdownContent);
@@ -22,13 +28,6 @@ const useDropdown: useDropdownType = () => {
   useEffect(() => {
     setIsOpen(false);
   }, [location.pathname]);
-
-  const handleDetectDropdownContent = (
-    e: React.BaseSyntheticEvent | MouseEvent
-  ) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(e.target))
-      setIsOpen(false);
-  };
 
   return [isOpen, () => setIsOpen((prevState) => !prevState), dropdownRef];
 };

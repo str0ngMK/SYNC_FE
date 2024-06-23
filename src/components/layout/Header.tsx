@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import MenuDropDown from '../dropdown/MenuDropDown';
 import ConfigDropDown from '../dropdown/Config';
 import useDropdown from '../../hooks/useDropdown';
-import Dropdown from '../common/Dropdown';
 
 const HeaderWrap = styled.header`
   width: calc(100% - 242px);
