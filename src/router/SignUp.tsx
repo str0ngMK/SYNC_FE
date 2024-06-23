@@ -1,8 +1,8 @@
-import axios, { AxiosError } from 'axios';
-import { User, signupAPI } from '../api';
-import { useState } from 'react';
+import { AxiosError } from 'axios';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { User } from '../api';
 
 const Main = styled.main`
   width: 100%;
@@ -44,7 +44,9 @@ const Label = styled.label`
   width: 100%;
   margin-bottom: 8px;
   color: #a6b3be;
-  font-feature-settings: 'clig' off, 'liga' off;
+  font-feature-settings:
+    'clig' off,
+    'liga' off;
   font-family: Inter;
   font-size: 14px;
   font-style: normal;
@@ -115,30 +117,6 @@ export default function SignUp() {
 
   const navigate = useNavigate();
 
-  const handleSignUp = async (e: React.MouseEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const isValidatePass = validateSignUpForm();
-    if (!isValidatePass) return false;
-
-    try {
-      const response = await axios.post('https://158.247.197.212:9090/signup', {
-        email: 'example2@gmail.com',
-        ...signupForm,
-      });
-      window.alert('회원가입이 완료되었습니다.');
-      navigate('/login');
-    } catch (error) {
-      if (error instanceof AxiosError && error.response) {
-        if (error.response.data.message === 'UserId is duplicated')
-          return setErrorMessage({
-            ...errorMessage,
-            userId: '입력된 이메일은 이미 가입된 상태입니다.',
-          });
-      }
-      console.error(error);
-    }
-  };
-
   const validateSignUpForm = () => {
     const passwordRegExp = /(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\W)(?=\S+$).{8,16}/;
     const emailRegExp = /[a-z0-9]+@[a-z0-9]+.[a-z]{3,4}/;
@@ -176,6 +154,32 @@ export default function SignUp() {
     }
     setErrorMessage({ ...DEFAULT_ERROR_MESSAGE });
     return true;
+  };
+
+  // todo return 값이 통일 되야아함
+  // eslint-disable-next-line consistent-return
+  const handleSignUp = async (e: React.MouseEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const isValidatePass = validateSignUpForm();
+    if (!isValidatePass) return false;
+
+    try {
+      // const response = await axios.post('https://158.247.197.212:9090/signup', {
+      //   email: 'example2@gmail.com',
+      //   ...signupForm,
+      // });
+      window.alert('회원가입이 완료되었습니다.');
+      navigate('/login');
+    } catch (error) {
+      if (error instanceof AxiosError && error.response) {
+        if (error.response.data.message === 'UserId is duplicated')
+          return setErrorMessage({
+            ...errorMessage,
+            userId: '입력된 이메일은 이미 가입된 상태입니다.',
+          });
+      }
+      console.error(error);
+    }
   };
 
   return (

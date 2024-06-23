@@ -39,7 +39,7 @@ function Home() {
         },
         {
           withCredentials: true,
-        }
+        },
       );
       console.log(response);
       */

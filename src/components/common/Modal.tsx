@@ -1,6 +1,6 @@
+import React from 'react';
 import styled from 'styled-components';
 import ModalPortal from './ModalPortal';
-import { PropsWithChildren } from 'react';
 
 const ModalWrapper = styled.div<{ $isActive: boolean }>`
   width: 100%;

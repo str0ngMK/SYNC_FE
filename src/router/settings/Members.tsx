@@ -40,7 +40,9 @@ const SelectProjects = styled.ul`
   gap: 10px;
   span {
     color: #a6b3be;
-    font-feature-settings: 'clig' off, 'liga' off;
+    font-feature-settings:
+      'clig' off,
+      'liga' off;
     font-family: Inter;
     font-size: 16px;
     font-style: normal;

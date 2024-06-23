@@ -1,9 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import SettingsProject from '../components/dropdown/SettingsProjectDropdown';
-import { useLocation } from 'react-router-dom';
 import useDropdown from '../hooks/useDropdown';
-import Dropdown from '../components/common/Dropdown';
 
 const ProjectItem = styled.li`
   height: 62px;

@@ -36,7 +36,9 @@ const MemberItem = styled.li`
   }
   span {
     color: #a6b3be;
-    font-feature-settings: 'clig' off, 'liga' off;
+    font-feature-settings:
+      'clig' off,
+      'liga' off;
     font-family: Inter;
     font-size: 14px;
     font-style: normal;
@@ -52,7 +54,7 @@ interface ProjectOwnerDropdownProps {
 
 export default function ProjectOwnerDropdown({
   isActive,
-  closeDropdown,
+  // closeDropdown,
 }: ProjectOwnerDropdownProps) {
   return (
     <Wrapper $isActive={isActive}>
