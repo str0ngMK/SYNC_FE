@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { Cookies } from 'react-cookie';
+import React, { useEffect, useState } from 'react';
 
 function Home() {
   const [title, setTitle] = useState('');
@@ -12,7 +11,7 @@ function Home() {
         'https://158.247.197.212:9090/api/user/auth',
         {
           withCredentials: true,
-        }
+        },
       );
       console.log(response);
     };
@@ -27,7 +26,7 @@ function Home() {
       { title, description },
       {
         withCredentials: true,
-      }
+      },
     );
     console.log(response);
   };

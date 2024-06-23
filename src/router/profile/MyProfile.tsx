@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import ProfileUpdateModel from '../../components/modal/ProfileUpdateModal';
 import useModal from '../../hooks/useModal';

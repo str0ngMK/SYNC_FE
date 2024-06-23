@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import EmailUpdateModal from '../../components/modal/EmailUpdateModal';
-import { useState } from 'react';
 import PasswordUpdateModal from '../../components/modal/PasswordUpdateModal';
 import DeleteAccountModal from '../../components/modal/DeleteAccountModal';
 import useModal from '../../hooks/useModal';

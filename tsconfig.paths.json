@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["./components/*"],
+      "@utils/*": ["./utils/*"],
+      "@router/*": ["./router/*"]
+    }
+  },
+  "include": ["src"],
+  "extends": "./tsconfig.paths.json"
+}
