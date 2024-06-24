@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import MenuDropDown from '../dropdown/MenuDropDown';
 import ConfigDropDown from '../dropdown/Config';
 import useDropdown from '../../hooks/useDropdown';
-import { useEffect } from 'react';
-import axios, { AxiosResponse } from 'axios';
 import useLoggedInUserStore from '../../lib/store/store';
 
 const HeaderWrap = styled.header`
@@ -132,19 +130,7 @@ export default function Header() {
     useDropdown();
   const [isOpenConfigDropdown, toggleConfigDropdown, configDropdownRef] =
     useDropdown();
-  const { loggedInUser, setLoggedInUser } = useLoggedInUserStore();
-
-  useEffect(() => {
-    const getLoggedUser = async () => {
-      const response = (await axios.get(
-        'https://158.247.197.212:9090/api/user/info',
-        { withCredentials: true }
-      )) as AxiosResponse<{ value: { username: string } }, any>;
-      const { username } = response.data.value;
-      return username ? username : '';
-    };
-    getLoggedUser().then((username) => setLoggedInUser(username));
-  }, []);
+  const { loggedInUser } = useLoggedInUserStore();
 
   return (
     <HeaderWrap>
@@ -171,9 +157,7 @@ export default function Header() {
                 <img src="/assets/man-438081_960_720.svg" alt="프로필 이미지" />
                 <Profile>
                   <UserInfo>
-                    <UserInfoHeader>
-                      {loggedInUser ? loggedInUser : 'Name'}
-                    </UserInfoHeader>
+                    <UserInfoHeader>{loggedInUser || 'Name'}</UserInfoHeader>
                     <UserInfoFooter>UI Designer</UserInfoFooter>
                   </UserInfo>
                 </Profile>

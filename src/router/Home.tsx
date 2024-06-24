@@ -1,6 +1,4 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { Cookies } from 'react-cookie';
+import React, { useState } from 'react';
 import instance from '../lib/axios/axios';
 
 function Home() {

@@ -1,6 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { useState } from 'react';
-import { useCookies } from 'react-cookie';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 

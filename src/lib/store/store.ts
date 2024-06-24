@@ -6,8 +6,8 @@ interface LoggedInUserState {
 }
 
 const useLoggedInUserStore = create<LoggedInUserState>((set) => ({
-  loggedInUser: '',
-  setLoggedInUser: (username) => set((state) => ({ loggedInUser: username })),
+  loggedInUser: localStorage.getItem('loggedInUser') || '',
+  setLoggedInUser: (username) => set(() => ({ loggedInUser: username })),
 }));
 
 export default useLoggedInUserStore;
