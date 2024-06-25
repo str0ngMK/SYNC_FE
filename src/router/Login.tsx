@@ -138,7 +138,6 @@ export default function Login() {
     userId: '',
     password: '',
   });
-
   const navigate = useNavigate();
 
   const validateLoginForm = () => {
@@ -193,12 +192,8 @@ export default function Login() {
           },
         },
       )) as AxiosResponse<{ name: string; username: string }, any>;
-      console.log(response.data.username);
 
-      localStorage.setItem(
-        'loggedIn',
-        JSON.stringify({ id: response.data.username }),
-      );
+      console.log(response);
       window.alert('로그인 성공!');
       navigate('/');
     } catch (error) {

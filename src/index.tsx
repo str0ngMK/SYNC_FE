@@ -4,7 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 import { CookiesProvider } from 'react-cookie';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Layout from './components/layout/Layout';
 import MainRoutes from './routes/MainRoute';

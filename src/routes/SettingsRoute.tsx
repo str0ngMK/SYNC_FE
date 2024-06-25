@@ -2,11 +2,11 @@
  * src/routes/SettingsRoute.tsx
  */
 
-import { Routes, Route } from "react-router-dom";
-import Settings from "../router/settings";
-import ProjectSettings from "../router/settings/Project";
-import MembersSettings from "../router/settings/Members";
-import AlarmSettings from "../router/settings/Alarm";
+import { Routes, Route } from 'react-router-dom';
+import Settings from '../router/settings';
+import ProjectSettings from '../router/settings/Project';
+import MembersSettings from '../router/settings/Members';
+import AlarmSettings from '../router/settings/Alarm';
 
 const SettingsRoute = () => (
   <Routes>

@@ -2,10 +2,10 @@
  * src/routes/ProfileRoute.tsx
  */
 
-import { Routes, Route } from "react-router-dom";
-import Profile from "../router/profile/Profile";
-import MyProfile from "../router/profile/MyProfile";
-import Auth from "../router/profile/Auth";
+import { Routes, Route } from 'react-router-dom';
+import Profile from '../router/profile/Profile';
+import MyProfile from '../router/profile/MyProfile';
+import Auth from '../router/profile/Auth';
 
 const ProfileRoute = () => (
   <Routes>
