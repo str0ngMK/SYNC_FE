@@ -1,19 +1,19 @@
 /**
  * src/routes/MainRoute.tsx
  */
+import { Route, Routes } from 'react-router-dom';
 
-import { Routes, Route } from 'react-router-dom';
-import NotFound from '../router/NotFound';
-import Login from '../router/Login';
-import SignUp from '../router/SignUp';
 import Home from '../router/Home';
-import ProfileRoute from './ProfileRoute';
-import SettingsRoute from './SettingsRoute';
-import ModifyUser from '../router/user/Modify';
+import Login from '../router/Login';
+import NotFound from '../router/NotFound';
+import SignUp from '../router/SignUp';
 import FindId from '../router/user/FindId';
 import FindPassword from '../router/user/FindPassword';
+import ModifyUser from '../router/user/Modify';
 import PrivateRoutes from './PrivateRoutes';
+import ProfileRoute from './ProfileRoute';
 import PublicRoutes from './PublicRoutes';
+import SettingsRoute from './SettingsRoute';
 
 const MainRoutes = () => (
   /*
