@@ -3,12 +3,16 @@
     "baseUrl": "src",
     "paths": {
       "@components/*": ["components/*"],
+      "@components": ["components"],
       "@utils/*": ["utils/*"],
+      "@utils": ["utils"],
       "@styles/*": ["styles/*"],
+      "@styles": ["styles"],
       "@routes/*": ["routes/*"],
-      "@router/*": ["router/*"]
+      "@routes": ["routes"],
+      "@router/*": ["router/*"],
+      "@router": ["router"]
     }
   },
-  "include": ["src"],
-  "extends": "./tsconfig.paths.json"
+  "include": ["src"]
 }
