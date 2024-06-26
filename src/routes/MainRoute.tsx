@@ -3,7 +3,8 @@
  */
 import { Route, Routes } from 'react-router-dom';
 
-import Home from '../router/Home';
+import Home from '@router/Home';
+
 import Login from '../router/Login';
 import NotFound from '../router/NotFound';
 import SignUp from '../router/SignUp';
