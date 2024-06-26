@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import SettingsProjectItem from '../../containers/settings-project-item';
+import SettingsProjectItem from '../../components/settings/SettingsProjectItem';
+
+import search from '../../assets/search.svg';
 
 const Header = styled.article`
   width: 302px;
@@ -138,7 +140,7 @@ export default function ProjectSettings() {
       <Content>
         <SearchContainer>
           <SearchForm>
-            <SearchIcon src="/assets/search.svg" />
+            <SearchIcon src={search} />
             <SearchBar type="text" placeholder="Search" />
             <input type="submit" hidden />
           </SearchForm>

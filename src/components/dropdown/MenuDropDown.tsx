@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import profileDefault from '../../assets/man-438081_960_720.svg';
+
 const Wrapper = styled.section<{ $isOpen: boolean }>`
   width: 216px;
   background: #fff;
@@ -93,7 +95,7 @@ export default function MenuDropDown({ isOpen }: MenuDropDownProps) {
       <DropdownList>
         <DropDownHeader>
           <Temp>
-            <img src="/assets/man-438081_960_720.svg" alt="프로필 이미지" />
+            <img src={profileDefault} alt="프로필 이미지" />
             <UserInfo>
               <UserInfoHeader>Name</UserInfoHeader>
               <UserInfoFooter>UI Designer</UserInfoFooter>

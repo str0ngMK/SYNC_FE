@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
-import { User, signupAPI } from '../api';
+import { User, signupAPI } from '../services/api';
 import axios from 'axios';
 import react, { useState } from 'react';
 
@@ -25,7 +25,7 @@ test.skip.each([
   render(
     <MemoryRouter initialEntries={['/signup']}>
       <App />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 
   // Assert
@@ -37,7 +37,7 @@ test.skip('회원가입 컴포넌트의 생년월일 입력 란이 작성되었�
   render(
     <MemoryRouter initialEntries={['/signup']}>
       <App />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 
   // Assert
@@ -52,13 +52,13 @@ test.skip.each([{ gender: 'MAN' }, { gender: 'WOMAN' }, { gender: '기타' }])(
     render(
       <MemoryRouter initialEntries={['/signup']}>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     // Assert
     const genderValue = screen.getByDisplayValue(gender);
     expect(genderValue).toBeInTheDocument();
-  }
+  },
 );
 
 describe.skip('회원 Form Validation 테스트', () => {
@@ -162,7 +162,7 @@ describe('<SignUp /> 상태 변화', () => {
     render(
       <MemoryRouter initialEntries={['/signup']}>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     const userIdInput = screen.getByPlaceholderText('아이디');
@@ -204,7 +204,7 @@ test.skip('signup API 통신이 성공했을 때 OK 메세지를 응답한다.',
   render(
     <MemoryRouter initialEntries={['/signup']}>
       <App />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 
   // Act
@@ -231,12 +231,12 @@ test.skip('signup API 통신이 실패했을 때 undefined를 응답한다.', as
   render(
     <MemoryRouter initialEntries={['/signup']}>
       <App />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 
   // Act
   mockedAxios.post.mockImplementation(() =>
-    Promise.reject('아이디는 필수 입력 값입니다.')
+    Promise.reject('아이디는 필수 입력 값입니다.'),
   );
 
   const response = await signupAPI({

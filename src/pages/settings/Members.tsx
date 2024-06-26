@@ -1,5 +1,8 @@
 import styled from 'styled-components';
-import SettingsMemberItem from '../../containers/settings-member.item';
+import SettingsMemberItem from '../../components/settings/SettingsMemberItem';
+
+import search from '../../assets/search.svg';
+import fakeAvatar from '../../assets/rectangle-50.png';
 
 const Header = styled.article`
   margin-bottom: 60px;
@@ -273,7 +276,7 @@ export default function MembersSettings() {
       </Header>
       <Content>
         <SelectProjects>
-          <img src="/assets/rectangle-50.png" alt="프로젝트 이미지" />
+          <img src={fakeAvatar} alt="프로젝트 이미지" />
           <span>프로젝트 1</span>
         </SelectProjects>
 
@@ -313,7 +316,7 @@ export default function MembersSettings() {
             <HeaderTail>
               <SearchForm>
                 <SearchBar type="text" placeholder="Search" />
-                <SearchIcon src="/assets/search.svg" />
+                <SearchIcon src={search} />
                 <input type="submit" hidden />
               </SearchForm>
 

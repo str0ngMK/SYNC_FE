@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
+import mail from '../assets/mail-01.svg';
+import passwordIcon from '../assets/lock-01.svg';
+
 const Main = styled.main`
   width: 100%;
   height: 100vh;
@@ -216,7 +219,7 @@ export default function Login() {
         <Title>로그인</Title>
         <Form>
           <InputWrapper>
-            <InputIcon src="./assets/mail-01.svg" />
+            <InputIcon src={mail} />
             <Input
               type="text"
               value={loginForm.userId}
@@ -228,7 +231,7 @@ export default function Login() {
           </InputWrapper>
 
           <InputWrapper>
-            <InputIcon src="./assets/lock-01.svg" />
+            <InputIcon src={passwordIcon} />
             <Input
               type="password"
               value={loginForm.password}

@@ -3,10 +3,10 @@
  */
 
 import { Routes, Route } from 'react-router-dom';
-import Settings from '../router/settings';
-import ProjectSettings from '../router/settings/Project';
-import MembersSettings from '../router/settings/Members';
-import AlarmSettings from '../router/settings/Alarm';
+import Settings from '../pages/settings';
+import ProjectSettings from '../pages/settings/Project';
+import MembersSettings from '../pages/settings/Members';
+import AlarmSettings from '../pages/settings/Alarm';
 
 const SettingsRoute = () => (
   <Routes>

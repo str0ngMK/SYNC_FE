@@ -1,7 +1,7 @@
 /**
  * src/App.ts
  */
-import Home from './router/Home';
+import Home from './pages/Home';
 
 function App() {
   return <Home />;

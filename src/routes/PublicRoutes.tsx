@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import axios, { AxiosResponse } from 'axios';
-import useLoggedInUserStore from '../lib/store/store';
+import useLoggedInUserStore from '../libs/store/store';
 
 const PublicRoutes = () => {
   const [failedAuth, setFailedAuth] = useState(false);

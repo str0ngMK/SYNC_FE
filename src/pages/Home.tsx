@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import instance from '../lib/axios/axios';
+import instance from '../libs/axios/axios';
 
 function Home() {
   const [title, setTitle] = useState('');

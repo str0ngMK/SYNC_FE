@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import MenuDropDown from '../dropdown/MenuDropDown';
-import ConfigDropDown from '../dropdown/Config';
+import ConfigDropDown from '../dropdown/ConfigDropdown';
 import useDropdown from '../../hooks/useDropdown';
-import useLoggedInUserStore from '../../lib/store/store';
+import useLoggedInUserStore from '../../libs/store/store';
+
+import alrams from '../../assets/bell-02.svg';
+import settings from '../../assets/Settings.svg';
+import profileDefault from '../../assets/man-438081_960_720.svg';
+import more from '../../assets/More.svg';
 
 const HeaderWrap = styled.header`
   width: calc(100% - 242px);
@@ -142,19 +147,15 @@ export default function Header() {
           </SearchContainer>
           <ToolContainer>
             <AlarmAndSetting>
-              <img src="/assets/bell-02.svg" alt="알림" />
+              <img src={alrams} alt="알림" />
               <Config ref={configDropdownRef}>
-                <img
-                  src="/assets/Settings.svg"
-                  alt="설정"
-                  onClick={toggleConfigDropdown}
-                />
+                <img src={settings} alt="설정" onClick={toggleConfigDropdown} />
                 <ConfigDropDown isOpen={isOpenConfigDropdown} />
               </Config>
             </AlarmAndSetting>
             {loggedInUser ? (
               <ProfileWrap>
-                <img src="/assets/man-438081_960_720.svg" alt="프로필 이미지" />
+                <img src={profileDefault} alt="프로필 이미지" />
                 <Profile>
                   <UserInfo>
                     <UserInfoHeader>{loggedInUser || 'Name'}</UserInfoHeader>
@@ -163,7 +164,7 @@ export default function Header() {
                 </Profile>
                 <More ref={profileDropdownRef}>
                   <img
-                    src="/assets/More.svg"
+                    src={more}
                     alt="프로필 더 보기"
                     onClick={toggleProfileDropdown}
                   />
