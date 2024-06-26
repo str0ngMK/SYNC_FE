@@ -4,9 +4,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 import { CookiesProvider } from 'react-cookie';
+import MainRoutes from '@routes/MainRoute';
 import reportWebVitals from './reportWebVitals';
 import Layout from './components/layout/Layout';
-import MainRoutes from './routes/MainRoute';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
