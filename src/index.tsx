@@ -5,7 +5,6 @@ import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 import { CookiesProvider } from 'react-cookie';
 import reportWebVitals from './reportWebVitals';
-import Layout from './components/layout/Layout';
 import MainRoutes from './routes/MainRoute';
 
 const root = ReactDOM.createRoot(
@@ -31,9 +30,7 @@ root.render(
     <GlobalStyle />
     <CookiesProvider>
       <BrowserRouter>
-        <Layout>
-          <MainRoutes />
-        </Layout>
+        <MainRoutes />
       </BrowserRouter>
     </CookiesProvider>
   </React.StrictMode>,

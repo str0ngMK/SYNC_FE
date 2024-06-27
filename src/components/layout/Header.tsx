@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import MenuDropDown from '../dropdown/MenuDropDown';
 import ConfigDropDown from '../dropdown/ConfigDropdown';
@@ -153,29 +152,23 @@ export default function Header() {
                 <ConfigDropDown isOpen={isOpenConfigDropdown} />
               </Config>
             </AlarmAndSetting>
-            {loggedInUser ? (
-              <ProfileWrap>
-                <img src={profileDefault} alt="프로필 이미지" />
-                <Profile>
-                  <UserInfo>
-                    <UserInfoHeader>{loggedInUser || 'Name'}</UserInfoHeader>
-                    <UserInfoFooter>UI Designer</UserInfoFooter>
-                  </UserInfo>
-                </Profile>
-                <More ref={profileDropdownRef}>
-                  <img
-                    src={more}
-                    alt="프로필 더 보기"
-                    onClick={toggleProfileDropdown}
-                  />
-                  <MenuDropDown isOpen={isOpenProfileDropdown} />
-                </More>
-              </ProfileWrap>
-            ) : (
-              <>
-                <Link to="/login">로그인</Link>
-              </>
-            )}
+            <ProfileWrap>
+              <img src={profileDefault} alt="프로필 이미지" />
+              <Profile>
+                <UserInfo>
+                  <UserInfoHeader>{loggedInUser || 'Name'}</UserInfoHeader>
+                  <UserInfoFooter>UI Designer</UserInfoFooter>
+                </UserInfo>
+              </Profile>
+              <More ref={profileDropdownRef}>
+                <img
+                  src={more}
+                  alt="프로필 더 보기"
+                  onClick={toggleProfileDropdown}
+                />
+                <MenuDropDown isOpen={isOpenProfileDropdown} />
+              </More>
+            </ProfileWrap>
           </ToolContainer>
         </HeaderList>
       </Navigation>
