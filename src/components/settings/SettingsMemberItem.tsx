@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import SettingsMember from '../components/dropdown/SettingsMemberDropdown';
-import SettingsRole from '../components/dropdown/settingsRoleDropdown';
-import useDropdown from '../hooks/useDropdown';
+import SettingsMember from '../dropdown/SettingsMemberDropdown';
+import SettingsRole from '../dropdown/settingsRoleDropdown';
+import useDropdown from '../../hooks/useDropdown';
 
 const MemberItem = styled.li`
   width: 900px;

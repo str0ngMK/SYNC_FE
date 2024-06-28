@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import styled from 'styled-components';
-import ProjectOwnerDropdown from '../dropdown/project-owner-dropdown';
+import ProjectOwnerDropdown from '../dropdown/ProjectOwnerDropdown';
 
 const ModalHeader = styled.article`
   display: flex;
@@ -16,7 +16,9 @@ const ModalHeader = styled.article`
   }
   p {
     color: #a6b3be;
-    font-feature-settings: 'clig' off, 'liga' off;
+    font-feature-settings:
+      'clig' off,
+      'liga' off;
     font-family: Inter;
     font-size: 12px;
     font-style: normal;
@@ -39,7 +41,9 @@ const InputContainer = styled.div`
   gap: 8px;
   p {
     color: #a6b3be;
-    font-feature-settings: 'clig' off, 'liga' off;
+    font-feature-settings:
+      'clig' off,
+      'liga' off;
     font-family: Inter;
     font-size: 14px;
     font-style: normal;
@@ -85,7 +89,9 @@ const Select = styled.div`
   }
   span {
     color: #a6b3be;
-    font-feature-settings: 'clig' off, 'liga' off;
+    font-feature-settings:
+      'clig' off,
+      'liga' off;
     font-family: Inter;
     font-size: 14px;
     font-style: normal;
@@ -103,7 +109,9 @@ const Progress = styled.div`
   span {
     width: auto;
     color: #a6b3be;
-    font-feature-settings: 'clig' off, 'liga' off;
+    font-feature-settings:
+      'clig' off,
+      'liga' off;
     font-family: Inter;
     font-size: 14px;
     font-style: normal;

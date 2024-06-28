@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import useLoggedInUserStore from '../lib/store/store';
+import useLoggedInUserStore from '../libs/store/store';
 
 const PrivateRoutes = () => {
   const { loggedInUser } = useLoggedInUserStore();

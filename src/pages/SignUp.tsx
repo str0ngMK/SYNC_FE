@@ -2,7 +2,10 @@ import { AxiosError } from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { User } from '../api';
+import { User } from '../services/api';
+
+import mail from '../assets/mail-01.svg';
+import passwordIcon from '../assets/lock-01.svg';
 
 const Main = styled.main`
   width: 100%;
@@ -189,7 +192,7 @@ export default function SignUp() {
         <Form>
           <Label>{`이메일[필수]`}</Label>
           <InputWrapper>
-            <InputIcon src="./assets/mail-01.svg" />
+            <InputIcon src={mail} />
             <Input
               type="text"
               value={signupForm.userId}
@@ -202,7 +205,7 @@ export default function SignUp() {
 
           <Label>{`비밀번호[필수]`}</Label>
           <InputWrapper>
-            <InputIcon src="./assets/lock-01.svg" />
+            <InputIcon src={passwordIcon} />
             <Input
               type="password"
               value={signupForm.password}

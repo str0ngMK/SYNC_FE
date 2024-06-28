@@ -3,9 +3,9 @@
  */
 
 import { Routes, Route } from 'react-router-dom';
-import Profile from '../router/profile/Profile';
-import MyProfile from '../router/profile/MyProfile';
-import Auth from '../router/profile/Auth';
+import Profile from '../pages/profile/Profile';
+import MyProfile from '../pages/profile/MyProfile';
+import Auth from '../pages/profile/Auth';
 
 const ProfileRoute = () => (
   <Routes>

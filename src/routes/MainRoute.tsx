@@ -3,36 +3,19 @@
  */
 
 import { Routes, Route } from 'react-router-dom';
-import NotFound from '../router/NotFound';
-import Login from '../router/Login';
-import SignUp from '../router/SignUp';
-import Home from '../router/Home';
+import NotFound from '../pages/NotFound';
+import Login from '../pages/Login';
+import SignUp from '../pages/SignUp';
+import Home from '../pages/Home';
 import ProfileRoute from './ProfileRoute';
 import SettingsRoute from './SettingsRoute';
-import ModifyUser from '../router/user/Modify';
-import FindId from '../router/user/FindId';
-import FindPassword from '../router/user/FindPassword';
 import PrivateRoutes from './PrivateRoutes';
 import PublicRoutes from './PublicRoutes';
+import ModifyUser from '../pages/user/Modify';
+import FindId from '../pages/user/FindId';
+import FindPassword from '../pages/user/FindPassword';
 
 const MainRoutes = () => (
-  /*
-    const { loggedInUser, setLoggedInUser } = useLoggedInUserStore();
-  console.log(loggedInUser);
-
-  useEffect(() => {
-    const getLoggedUser = async () => {
-      const response = (await axios.get(
-        'https://158.247.197.212:9090/api/user/info',
-        { withCredentials: true },
-      )) as AxiosResponse<{ value: { username: string } }, any>;
-      const { username } = response.data.value;
-      return username || '';
-    };
-    getLoggedUser().then((username) => setLoggedInUser(username));
-  }, []);
-  */
-
   <Routes>
     {/* routes not auth only */}
     <Route element={<PrivateRoutes />}>
