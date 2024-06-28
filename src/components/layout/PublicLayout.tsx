@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import axios, { AxiosResponse } from 'axios';
-import useLoggedInUserStore from '../libs/store/store';
 
-const PublicRoutes = () => {
+import useLoggedInUserStore from '../../libs/store/store';
+
+const PublicLayout = () => {
   const [failedAuth, setFailedAuth] = useState(false);
   const { loggedInUser, setLoggedInUser } = useLoggedInUserStore();
 
@@ -25,8 +26,8 @@ const PublicRoutes = () => {
     getLoggedUser().then((username) => setLoggedInUser(username));
   }, []);
 
-  if (loggedInUser || !failedAuth) return <Outlet />;
-  return <Navigate to={'/login'} />;
+  if (!loggedInUser || failedAuth) return <Navigate to="/login" />;
+  return <Outlet />;
 };
 
-export default PublicRoutes;
+export default PublicLayout;

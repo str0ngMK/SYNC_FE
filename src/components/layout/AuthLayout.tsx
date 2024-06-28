@@ -1,10 +1,10 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import useLoggedInUserStore from '../libs/store/store';
+import useLoggedInUserStore from '../../libs/store/store';
 
-const PrivateRoutes = () => {
+const AuthLayout = () => {
   const { loggedInUser } = useLoggedInUserStore();
   if (loggedInUser) return <Navigate to="/" />;
   return <Outlet />;
 };
 
-export default PrivateRoutes;
+export default AuthLayout;
