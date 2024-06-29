@@ -1,6 +1,9 @@
 /**
  * src/routes/MainRoute.tsx
  */
+import { Route, Routes } from 'react-router-dom';
+
+import Home from '@router/Home';
 
 import { Routes, Route } from 'react-router-dom';
 import NotFound from '../pages/NotFound';
