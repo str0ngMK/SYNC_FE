@@ -3,21 +3,18 @@
  */
 import { Route, Routes } from 'react-router-dom';
 
-import Home from '@router/Home';
-
-import { Routes, Route } from 'react-router-dom';
-import NotFound from '../pages/NotFound';
-import Login from '../pages/Login';
-import SignUp from '../pages/SignUp';
+import AuthLayout from '../components/layout/AuthLayout';
+import Layout from '../components/layout/Layout';
+import PublicLayout from '../components/layout/PublicLayout';
 import Home from '../pages/Home';
-import ProfileRoute from './ProfileRoute';
-import SettingsRoute from './SettingsRoute';
-import ModifyUser from '../pages/user/Modify';
+import Login from '../pages/Login';
+import NotFound from '../pages/NotFound';
+import SignUp from '../pages/SignUp';
 import FindId from '../pages/user/FindId';
 import FindPassword from '../pages/user/FindPassword';
-import Layout from '../components/layout/Layout';
-import AuthLayout from '../components/layout/AuthLayout';
-import PublicLayout from '../components/layout/PublicLayout';
+import ModifyUser from '../pages/user/Modify';
+import ProfileRoute from './ProfileRoute';
+import SettingsRoute from './SettingsRoute';
 
 const MainRoutes = () => (
   <Routes>
