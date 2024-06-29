@@ -6,8 +6,6 @@ import reset from 'styled-reset';
 import { CookiesProvider } from 'react-cookie';
 import MainRoutes from '@routes/MainRoute';
 import reportWebVitals from './reportWebVitals';
-import MainRoutes from './routes/MainRoute';
-import Layout from './components/layout/Layout';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
