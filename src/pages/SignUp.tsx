@@ -1,11 +1,11 @@
-import { AxiosError } from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import { User } from '../services/api';
 
-import mail from '../assets/mail-01.svg';
-import passwordIcon from '../assets/lock-01.svg';
+import passwordIcon from '@assets/lock-01.svg';
+import mail from '@assets/mail-01.svg';
+import { User } from '@services/api';
+import { AxiosError } from 'axios';
+import styled from 'styled-components';
 
 const Main = styled.main`
   width: 100%;

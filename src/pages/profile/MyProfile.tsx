@@ -1,6 +1,6 @@
+import ProfileUpdateModel from '@components/modal/ProfileUpdateModal';
+import useModal from '@hooks/useModal';
 import styled from 'styled-components';
-import ProfileUpdateModel from '../../components/modal/ProfileUpdateModal';
-import useModal from '../../hooks/useModal';
 
 const ProfileHeader = styled.article`
   display: flex;

@@ -10,8 +10,16 @@
       "@styles": ["styles"],
       "@routes/*": ["routes/*"],
       "@routes": ["routes"],
-      "@router/*": ["router/*"],
-      "@router": ["router"]
+      "@pages/*": ["pages/*"],
+      "@pages": ["pages"],
+      "@libs/*": ["libs/*"],
+      "@libs": ["libs"],
+      "@services/*": ["services/*"],
+      "@services": ["services"],
+      "@assets/*": ["assets/*"],
+      "@assets": ["assets"],
+      "@hooks/*": ["hooks/*"],
+      "@hooks": ["hooks"]
     }
   },
   "include": ["src"]
