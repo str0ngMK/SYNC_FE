@@ -1,5 +1,5 @@
 import search from '@assets/search.svg';
-import SettingsProjectItem from '@components/settings/SettingsProjectItem';
+import { SettingsProjectItem } from '@components/settings';
 import styled from 'styled-components';
 
 const Header = styled.article`

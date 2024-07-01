@@ -1,5 +1,5 @@
-import ProfileUpdateModel from '@components/modal/ProfileUpdateModal';
-import useModal from '@hooks/useModal';
+import { ProfileUpdateModel } from '@components/modal';
+import { useModal } from '@hooks';
 import styled from 'styled-components';
 
 const ProfileHeader = styled.article`
