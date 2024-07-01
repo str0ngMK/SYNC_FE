@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 
-import profileDefault from '../../assets/man-438081_960_720.svg';
+import profileDefault from '@assets/man-438081_960_720.svg';
+import styled from 'styled-components';
 
 const Wrapper = styled.section<{ $isOpen: boolean }>`
   width: 216px;

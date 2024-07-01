@@ -1,6 +1,7 @@
+import useDropdown from '@hooks/useDropdown';
 import styled from 'styled-components';
+
 import SettingsProject from '../dropdown/SettingsProjectDropdown';
-import useDropdown from '../../hooks/useDropdown';
 
 const ProjectItem = styled.li`
   height: 62px;

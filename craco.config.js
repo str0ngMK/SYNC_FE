@@ -8,6 +8,11 @@ module.exports = {
       '@utils': path.resolve(__dirname, 'src/utils'),
       '@styles': path.resolve(__dirname, 'src/styles'),
       '@routes': path.resolve(__dirname, 'src/routes'),
+      '@pages': path.resolve(__dirname, 'src/pages'),
+      '@libs': path.resolve(__dirname, 'src/libs'),
+      '@services': path.resolve(__dirname, 'src/services'),
+      '@assets': path.resolve(__dirname, 'src/assets'),
+      '@hooks': path.resolve(__dirname, 'src/hooks'),
     },
   },
   plugins: [

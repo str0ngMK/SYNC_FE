@@ -1,8 +1,10 @@
+import {
+  DeleteAccountModal,
+  EmailUpdateModal,
+  PasswordUpdateModal,
+} from '@components/modal';
+import { useModal } from '@hooks';
 import styled from 'styled-components';
-import EmailUpdateModal from '../../components/modal/EmailUpdateModal';
-import PasswordUpdateModal from '../../components/modal/PasswordUpdateModal';
-import DeleteAccountModal from '../../components/modal/DeleteAccountModal';
-import useModal from '../../hooks/useModal';
 
 const AuthHeader = styled.article`
   margin-bottom: 30px;

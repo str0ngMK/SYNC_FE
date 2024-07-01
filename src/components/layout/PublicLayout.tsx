@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import axios, { AxiosResponse } from 'axios';
 
-import useLoggedInUserStore from '../../libs/store/store';
+import useLoggedInUserStore from '@libs/store/store';
+import axios, { AxiosResponse } from 'axios';
 
 const PublicLayout = () => {
   const [failedAuth, setFailedAuth] = useState(false);

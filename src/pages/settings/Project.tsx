@@ -1,7 +1,6 @@
+import search from '@assets/search.svg';
+import { SettingsProjectItem } from '@components/settings';
 import styled from 'styled-components';
-import SettingsProjectItem from '../../components/settings/SettingsProjectItem';
-
-import search from '../../assets/search.svg';
 
 const Header = styled.article`
   width: 302px;
