@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import passwordIcon from '@assets/lock-01.svg';
 import mail from '@assets/mail-01.svg';
 import axios, { AxiosError, AxiosResponse } from 'axios';
+import config from 'config/config';
 import styled from 'styled-components';
 
 const Main = styled.main`
@@ -185,7 +186,7 @@ export default function Login() {
 
     try {
       const response = (await axios.post(
-        'https://158.247.197.212:9090/login',
+        `${config.backendUrl}/login`,
         {},
         {
           withCredentials: true,
