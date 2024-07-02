@@ -1,13 +1,13 @@
+import more from '@assets/More.svg';
+import settings from '@assets/Settings.svg';
+import alrams from '@assets/bell-02.svg';
+import profileDefault from '@assets/man-438081_960_720.svg';
+import useDropdown from '@hooks/useDropdown';
+import useLoggedInUserStore from '@libs/store/store';
 import styled from 'styled-components';
-import MenuDropDown from '../dropdown/MenuDropDown';
-import ConfigDropDown from '../dropdown/ConfigDropdown';
-import useDropdown from '../../hooks/useDropdown';
-import useLoggedInUserStore from '../../libs/store/store';
 
-import alrams from '../../assets/bell-02.svg';
-import settings from '../../assets/Settings.svg';
-import profileDefault from '../../assets/man-438081_960_720.svg';
-import more from '../../assets/More.svg';
+import ConfigDropDown from '../dropdown/ConfigDropdown';
+import MenuDropDown from '../dropdown/MenuDropDown';
 
 const HeaderWrap = styled.header`
   width: calc(100% - 242px);

@@ -1,10 +1,12 @@
 import React from 'react';
+import { CookiesProvider } from 'react-cookie';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+
+import { MainRoutes } from '@routes';
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
-import { CookiesProvider } from 'react-cookie';
-import MainRoutes from '@routes/MainRoute';
+
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(

@@ -1,8 +1,7 @@
+import fakeAvatar from '@assets/rectangle-50.png';
+import search from '@assets/search.svg';
+import { SettingsMemberItem } from '@components/settings';
 import styled from 'styled-components';
-import SettingsMemberItem from '../../components/settings/SettingsMemberItem';
-
-import search from '../../assets/search.svg';
-import fakeAvatar from '../../assets/rectangle-50.png';
 
 const Header = styled.article`
   margin-bottom: 60px;

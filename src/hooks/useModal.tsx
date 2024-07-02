@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Modal, { ModalRef } from '../components/common/Modal';
+
+import Modal, { ModalRef } from '@components/common/Modal';
 
 type useModalType = () => [
   boolean,

@@ -1,7 +1,7 @@
 /**
- * src/App.ts
+ * src/App.tsx
  */
-import Home from './pages/Home';
+import { Home } from '@pages';
 
 function App() {
   return <Home />;
