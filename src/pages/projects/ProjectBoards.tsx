@@ -1,8 +1,19 @@
+import { useEffect, useState } from 'react';
+
 import CreateProjectModal from '@components/modal/CreateProjectModal';
 import useModal from '@hooks/useModal';
-import { AxiosResponse } from 'axios';
 import instance from '@libs/axios/axios';
-import { useEffect, useState } from 'react';
+import generateNormalDate from '@utils/generateNormalDate';
+import { AxiosResponse } from 'axios';
+import styled from 'styled-components';
+
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  article {
+    margin-bottom: 20px;
+  }
+`;
 
 interface AxiosRes<ResponseType> {
   message: string;
@@ -11,15 +22,26 @@ interface AxiosRes<ResponseType> {
 }
 
 interface Project {
+  projectId: number;
   title: string;
   description: string;
-  startDate: string;
-  endDate: string;
+  startDate: Date;
+  endDate: Date;
 }
+
+const ProjectItem = ({ project }: { project: Project }) => (
+  <li key={project.projectId}>
+    <h2>{project.title}</h2>
+    <p>설명</p>
+    <p>{project.description}</p>
+    <p>{generateNormalDate(project.startDate, project.endDate)}</p>
+  </li>
+);
 
 const ProjectBoards = () => {
   const [projectList, setProjectList] = useState<Project[] | null>(null);
-  const [isOpen, openModal, modalRef, CreateProjectModalWrapper, closeModal] = useModal();
+  const [isOpen, openModal, modalRef, CreateProjectModalWrapper, closeModal] =
+    useModal();
 
   useEffect(() => {
     const getProjectList = async () => {
@@ -34,17 +56,21 @@ const ProjectBoards = () => {
     });
   }, []);
 
-  console.log(projectList);
-
   return (
-    <section>
-      <h1>프로젝트 보드</h1>
-      <button onClick={openModal}>프로젝트 추가</button>
+    <Section>
+      <article>
+        <h1>프로젝트 보드</h1>
+        <button onClick={openModal}>프로젝트 추가</button>
+      </article>
+      <ul>
+        {projectList?.map((project) => (
+          <ProjectItem key={project.projectId} project={project} />
+        ))}
+      </ul>
       <CreateProjectModalWrapper isOpen={isOpen} modalRef={modalRef}>
         <CreateProjectModal closeModal={closeModal} />
       </CreateProjectModalWrapper>
-    </section>
-    
+    </Section>
   );
 };
 
