@@ -3,7 +3,7 @@ import { CookiesProvider } from 'react-cookie';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
-import { MainRoutes } from '@routes';
+import {MainRoutes} from '@routes';
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
