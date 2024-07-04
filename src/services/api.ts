@@ -1,7 +1,8 @@
 import { rejects } from 'assert';
 import axios, { AxiosError } from 'axios';
+import config from 'config/config';
 
-export const BASE_URL = 'https://158.247.197.212:9090';
+export const BASE_URL = config.backendUrl;
 
 export interface User {
   userId: string;
