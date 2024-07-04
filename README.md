@@ -1,46 +1,46 @@
-# Getting Started with Create React App
+# SYNC_FE
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+SYNC_FE 프로젝트는 협업 툴을 개발하기 위해 시작되었습니다.
 
-## Available Scripts
+## 프로젝트 목적
 
-In the project directory, you can run:
+SYNC_FE의 주된 목적은 Slack, Confluence와 같은 강력한 협업 툴을 제공하여 팀원 간의 원활한 커뮤니케이션과 협업을 가능하게 하는 것입니다.
 
-### `npm start`
+## 기술 스택
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **React 18**: 사용자 인터페이스를 구축하기 위해 사용
+- **TypeScript**: 정적 타입 체킹을 통해 코드의 안정성과 가독성을 향상
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 백엔드 URL
 
-### `npm test`
+백엔드 서버는 아래 방식으로 접근할 수 있습니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```javascript
+import config from 'config/config';
 
-### `npm run build`
+const userInfoUrl = `${config.backendUrl}/api/user/info`;
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[https://158.247.197.212:9090]
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 실행 방법
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+프로젝트를 실행하기 위해서는 다음 명령어들을 순서대로 실행합니다.
 
-### `npm run eject`
+1. 의존성 설치:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+   ```sh
+   yarn install
+   ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. 개발 서버 실행:
+   ```sh
+   yarn craco-start:dev
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 개발 컨벤션
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Alias 활용**: 프로젝트 내에서 모듈을 쉽게 참조할 수 있도록 alias를 사용합니다.
+- **Index 파일에 export 추가**: 신규 파일을 추가할 때마다 반드시 해당 파일을 index에 export합니다.
+- **배럴 파일 패턴**: 모듈을 쉽게 가져올 수 있도록 배럴 파일 패턴을 사용합니다.
+- **Razy를 통한 트리 쉐이킹**: 오래 걸리는 작업은 Razy를 통해 트리 쉐이킹을 사용하여 최적화합니다.
