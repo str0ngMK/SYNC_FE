@@ -3,8 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import passwordIcon from '@assets/lock-01.svg';
 import mail from '@assets/mail-01.svg';
-import axios, { AxiosError, AxiosResponse } from 'axios';
-import config from 'config/config';
+import  { AxiosError, AxiosResponse } from 'axios';
+import { publicInstance } from '@libs/axios/axios';
 import styled from 'styled-components';
 
 const Main = styled.main`
@@ -185,8 +185,8 @@ export default function Login() {
     if (!isValidatePass) return false;
 
     try {
-      const response = (await axios.post(
-        `${config.backendUrl}/login`,
+      const response = (await publicInstance.post(
+        `/login`,
         {},
         {
           withCredentials: true,

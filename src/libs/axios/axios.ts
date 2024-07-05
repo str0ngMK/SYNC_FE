@@ -1,12 +1,16 @@
 import axios, { AxiosError, isAxiosError } from 'axios';
 import config from 'config/config';
 
-const instance = axios.create({
+export const publicInstance  = axios.create({
+  baseURL: config.backendUrl,
+})
+
+export const requiredJwtTokeninstance = axios.create({
   baseURL: config.backendUrl,
   withCredentials: true,
 });
 
-instance.interceptors.response.use(
+requiredJwtTokeninstance.interceptors.response.use(
   (response) => response,
   async (axiosError: AxiosError) => {
     const originalRequest = axiosError.config;
@@ -37,5 +41,3 @@ instance.interceptors.response.use(
     return null;
   },
 );
-
-export default instance;

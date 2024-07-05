@@ -6,6 +6,7 @@ import mail from '@assets/mail-01.svg';
 import { User } from '@services/api';
 import { AxiosError } from 'axios';
 import styled from 'styled-components';
+import { publicInstance } from '@libs/axios/axios';
 
 const Main = styled.main`
   width: 100%;
@@ -167,10 +168,10 @@ export default function SignUp() {
     if (!isValidatePass) return false;
 
     try {
-      // const response = await axios.post('https://158.247.197.212:9090/signup', {
-      //   email: 'example2@gmail.com',
-      //   ...signupForm,
-      // });
+      await publicInstance.post('/signup', {
+        email: 'example2@gmail.com',
+        ...signupForm,
+      });
       window.alert('회원가입이 완료되었습니다.');
       navigate('/login');
     } catch (error) {

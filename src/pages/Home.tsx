@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import instance from '@libs/axios/axios';
+import {requiredJwtTokeninstance} from '@libs/axios/axios';
 
 function Home() {
   const [title, setTitle] = useState('');
@@ -10,7 +10,7 @@ function Home() {
 
   const getProjects = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const response = await instance.post('/api/user/project/get', {
+    const response = await requiredJwtTokeninstance.post('/api/user/project/get', {
       userId: 'abc123123',
     });
     console.log(response);
@@ -20,28 +20,13 @@ function Home() {
     e.preventDefault();
 
     try {
-      const response = await instance.post('/api/user/project/create', {
+      const response = await requiredJwtTokeninstance.post('/api/user/project/create', {
         title,
         description,
         startDate: new Date(startDate),
         endDate: new Date(endDate),
       });
       console.log(response);
-      /*
-      const response = await axios.post(
-        'https://158.247.197.212:9090/api/user/project/create',
-        {
-          title,
-          description,
-          startDate: new Date(startDate),
-          endDate: new Date(endDate),
-        },
-        {
-          withCredentials: true,
-        },
-      );
-      console.log(response);
-      */
     } catch (error) {
       console.log(error);
     }
