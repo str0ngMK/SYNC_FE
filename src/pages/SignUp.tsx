@@ -5,6 +5,7 @@ import passwordIcon from '@assets/lock-01.svg';
 import mail from '@assets/mail-01.svg';
 import { signupAPI, User } from '@services/api';
 import styled from 'styled-components';
+import { publicInstance } from '@libs/axios/axios';
 
 const Main = styled.main`
   width: 100%;

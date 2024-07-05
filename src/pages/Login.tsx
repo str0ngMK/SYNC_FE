@@ -3,7 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import passwordIcon from '@assets/lock-01.svg';
 import mail from '@assets/mail-01.svg';
+
 import  { AxiosError } from 'axios';
+
 import styled from 'styled-components';
 import { loginAPI } from '@services/api';
 
@@ -190,6 +192,7 @@ export default function Login() {
         window.alert('로그인 성공!');
         navigate('/');
       }
+
     } catch (error) {
       if (error instanceof AxiosError && error.response) {
         console.log(error);
