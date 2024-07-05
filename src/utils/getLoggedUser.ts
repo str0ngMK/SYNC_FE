@@ -1,12 +1,5 @@
-import axios, { AxiosResponse } from 'axios';
-import config from 'config/config';
+import { getLoggedUserAPI } from '@services/api';
 
-const getLoggedUser = async () => {
-  const response = (await axios.get(`${config.backendUrl}/api/user/info`, {
-    withCredentials: true,
-  })) as AxiosResponse<{ value: { username: string } }, any>;
-  const { username } = response.data.value;
-  return username ? username : '';
-};
+const getLoggedUser = async () => (await getLoggedUserAPI()).result;
 
 export default getLoggedUser;

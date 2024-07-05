@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import passwordIcon from '@assets/lock-01.svg';
 import mail from '@assets/mail-01.svg';
-import { User } from '@services/api';
-import { AxiosError } from 'axios';
+import { signupAPI, User } from '@services/api';
 import styled from 'styled-components';
 
 const Main = styled.main`
@@ -166,22 +165,13 @@ export default function SignUp() {
     const isValidatePass = validateSignUpForm();
     if (!isValidatePass) return false;
 
-    try {
-      // const response = await axios.post('https://158.247.197.212:9090/signup', {
-      //   email: 'example2@gmail.com',
-      //   ...signupForm,
-      // });
+    const signupResponse = await signupAPI({...signupForm});
+    if(signupResponse.result === 'OK') {
       window.alert('회원가입이 완료되었습니다.');
       navigate('/login');
-    } catch (error) {
-      if (error instanceof AxiosError && error.response) {
-        if (error.response.data.message === 'UserId is duplicated')
-          return setErrorMessage({
-            ...errorMessage,
-            userId: '입력된 이메일은 이미 가입된 상태입니다.',
-          });
-      }
-      console.error(error);
+    }
+    else {
+      console.log(errorMessage);
     }
   };
 
