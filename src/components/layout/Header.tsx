@@ -1,11 +1,13 @@
-import { Link } from 'react-router-dom';
+import more from '@assets/More.svg';
+import settings from '@assets/Settings.svg';
+import alrams from '@assets/bell-02.svg';
+import profileDefault from '@assets/man-438081_960_720.svg';
+import useDropdown from '@hooks/useDropdown';
+import useLoggedInUserStore from '@libs/store/store';
 import styled from 'styled-components';
+
+import ConfigDropDown from '../dropdown/ConfigDropdown';
 import MenuDropDown from '../dropdown/MenuDropDown';
-import ConfigDropDown from '../dropdown/Config';
-import useDropdown from '../../hooks/useDropdown';
-import { useEffect } from 'react';
-import axios, { AxiosResponse } from 'axios';
-import useLoggedInUserStore from '../../lib/store/store';
 
 const HeaderWrap = styled.header`
   width: calc(100% - 242px);
@@ -132,19 +134,7 @@ export default function Header() {
     useDropdown();
   const [isOpenConfigDropdown, toggleConfigDropdown, configDropdownRef] =
     useDropdown();
-  const { loggedInUser, setLoggedInUser } = useLoggedInUserStore();
-
-  useEffect(() => {
-    const getLoggedUser = async () => {
-      const response = (await axios.get(
-        'https://158.247.197.212:9090/api/user/info',
-        { withCredentials: true }
-      )) as AxiosResponse<{ value: { username: string } }, any>;
-      const { username } = response.data.value;
-      return username ? username : '';
-    };
-    getLoggedUser().then((username) => setLoggedInUser(username));
-  }, []);
+  const { loggedInUser } = useLoggedInUserStore();
 
   return (
     <HeaderWrap>
@@ -156,41 +146,29 @@ export default function Header() {
           </SearchContainer>
           <ToolContainer>
             <AlarmAndSetting>
-              <img src="/assets/bell-02.svg" alt="알림" />
+              <img src={alrams} alt="알림" />
               <Config ref={configDropdownRef}>
-                <img
-                  src="/assets/Settings.svg"
-                  alt="설정"
-                  onClick={toggleConfigDropdown}
-                />
+                <img src={settings} alt="설정" onClick={toggleConfigDropdown} />
                 <ConfigDropDown isOpen={isOpenConfigDropdown} />
               </Config>
             </AlarmAndSetting>
-            {loggedInUser ? (
-              <ProfileWrap>
-                <img src="/assets/man-438081_960_720.svg" alt="프로필 이미지" />
-                <Profile>
-                  <UserInfo>
-                    <UserInfoHeader>
-                      {loggedInUser ? loggedInUser : 'Name'}
-                    </UserInfoHeader>
-                    <UserInfoFooter>UI Designer</UserInfoFooter>
-                  </UserInfo>
-                </Profile>
-                <More ref={profileDropdownRef}>
-                  <img
-                    src="/assets/More.svg"
-                    alt="프로필 더 보기"
-                    onClick={toggleProfileDropdown}
-                  />
-                  <MenuDropDown isOpen={isOpenProfileDropdown} />
-                </More>
-              </ProfileWrap>
-            ) : (
-              <>
-                <Link to="/login">로그인</Link>
-              </>
-            )}
+            <ProfileWrap>
+              <img src={profileDefault} alt="프로필 이미지" />
+              <Profile>
+                <UserInfo>
+                  <UserInfoHeader>{loggedInUser || 'Name'}</UserInfoHeader>
+                  <UserInfoFooter>UI Designer</UserInfoFooter>
+                </UserInfo>
+              </Profile>
+              <More ref={profileDropdownRef}>
+                <img
+                  src={more}
+                  alt="프로필 더 보기"
+                  onClick={toggleProfileDropdown}
+                />
+                <MenuDropDown isOpen={isOpenProfileDropdown} />
+              </More>
+            </ProfileWrap>
           </ToolContainer>
         </HeaderList>
       </Navigation>

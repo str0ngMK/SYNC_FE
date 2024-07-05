@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import Login from '../router/Login';
+import Login from '../pages/Login';
 import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
 
@@ -10,12 +10,12 @@ test.each([{ input: '아이디' }, { input: '비밀번호' }])(
     render(
       <MemoryRouter initialEntries={['/login']}>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     // Assert
     expect(screen.getByPlaceholderText(input)).toBeInTheDocument();
-  }
+  },
 );
 
 test('회원가입 링크를 클릭하면 회원가입 페이지로 경로가 변경된다.', () => {
@@ -23,7 +23,7 @@ test('회원가입 링크를 클릭하면 회원가입 페이지로 경로가 �
   render(
     <MemoryRouter initialEntries={['/login']}>
       <App />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 
   // Assert

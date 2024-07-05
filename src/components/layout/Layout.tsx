@@ -1,4 +1,7 @@
+import React from 'react';
 import styled from 'styled-components';
+import { Outlet } from 'react-router-dom';
+
 import Header from './Header';
 import SideBar from './SideBar';
 
@@ -11,13 +14,15 @@ const Main = styled.main`
   padding-bottom: 30px;
 `;
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout() {
   return (
     <>
       <Header />
       <>
         <SideBar />
-        <Main>{children}</Main>
+        <Main>
+          <Outlet />
+        </Main>
       </>
     </>
   );
