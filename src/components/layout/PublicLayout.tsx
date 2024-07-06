@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 import useLoggedInUserStore from '@libs/store/store';
-import { AxiosResponse } from 'axios';
-import { publicInstance } from '@libs/axios/axios';
+
+import { getLoggedUserAPI } from '@services/api';
+
 
 const PublicLayout = () => {
   const [failedAuth, setFailedAuth] = useState(false);
@@ -12,11 +13,9 @@ const PublicLayout = () => {
   useEffect(() => {
     const getLoggedUser = async () => {
       try {
-        const response = (await publicInstance.get(
-          `/api/user/my/info`,
-          { withCredentials: true },
-        )) as AxiosResponse<{ value: { username: string } }, any>;
-        const { username } = response.data.value;
+        const response = await getLoggedUserAPI();
+        const username  = response.result;
+
         localStorage.setItem('loggedInUser', username);
         return username || '';
       } catch (error) {

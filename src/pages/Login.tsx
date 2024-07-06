@@ -3,9 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import passwordIcon from '@assets/lock-01.svg';
 import mail from '@assets/mail-01.svg';
-import  { AxiosError, AxiosResponse } from 'axios';
-import { publicInstance } from '@libs/axios/axios';
+
+import  { AxiosError } from 'axios';
+
 import styled from 'styled-components';
+import { loginAPI } from '@services/api';
 
 const Main = styled.main`
   width: 100%;
@@ -185,21 +187,12 @@ export default function Login() {
     if (!isValidatePass) return false;
 
     try {
-      const response = (await publicInstance.post(
-        `/login`,
-        {},
-        {
-          withCredentials: true,
-          params: {
-            id: loginForm.userId,
-            password: loginForm.password,
-          },
-        },
-      )) as AxiosResponse<{ name: string; username: string }, any>;
+      const loginResponse = await loginAPI({...loginForm});
+      if(loginResponse.result === 'OK') {
+        window.alert('로그인 성공!');
+        navigate('/');
+      }
 
-      console.log(response);
-      window.alert('로그인 성공!');
-      navigate('/');
     } catch (error) {
       if (error instanceof AxiosError && error.response) {
         console.log(error);
