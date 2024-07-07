@@ -3,9 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 import passwordIcon from '@assets/lock-01.svg';
 import mail from '@assets/mail-01.svg';
-import { signupAPI, User } from '@services/api';
+import { User, signupAPI } from '@services/api';
 import styled from 'styled-components';
-import { publicInstance } from '@libs/axios/axios';
 
 const Main = styled.main`
   width: 100%;
@@ -166,12 +165,11 @@ export default function SignUp() {
     const isValidatePass = validateSignUpForm();
     if (!isValidatePass) return false;
 
-    const signupResponse = await signupAPI({...signupForm});
-    if(signupResponse.result === 'OK') {
+    const signupResponse = await signupAPI({ ...signupForm });
+    if (signupResponse.result === 'OK') {
       window.alert('회원가입이 완료되었습니다.');
       navigate('/login');
-    }
-    else {
+    } else {
       console.log(errorMessage);
     }
   };
