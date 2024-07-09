@@ -12,7 +12,7 @@ const PublicLayout = () => {
     const getLoggedUser = async () => {
       try {
         const response = (await axios.get(
-          'https://158.247.197.212:9090/api/user/info',
+          'https://158.247.197.212:9090/api/user/my/info',
           { withCredentials: true },
         )) as AxiosResponse<{ value: { username: string } }, any>;
         const { username } = response.data.value;

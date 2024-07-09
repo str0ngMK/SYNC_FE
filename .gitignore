@@ -19,8 +19,7 @@
 .env.production.local
 
 # localhost https
-localhost.pem
-localhost-key.pem
+*.pem
 cert/
 
 npm-debug.log*
