@@ -2,6 +2,7 @@ import more from '@assets/More.svg';
 import settings from '@assets/Settings.svg';
 import alrams from '@assets/bell-02.svg';
 import profileDefault from '@assets/man-438081_960_720.svg';
+import search from '@assets/search.svg';
 import useDropdown from '@hooks/useDropdown';
 import useLoggedInUserStore from '@libs/store/store';
 import styled from 'styled-components';
@@ -142,7 +143,7 @@ export default function Header() {
         <HeaderList>
           <SearchContainer>
             <SearchBar type="text" placeholder="Search" />
-            <SearchSvg src="/assets/search.svg" />
+            <SearchSvg src={search} />
           </SearchContainer>
           <ToolContainer>
             <AlarmAndSetting>

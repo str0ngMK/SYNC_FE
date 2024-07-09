@@ -1,11 +1,16 @@
 import axios, { AxiosError, isAxiosError } from 'axios';
+import config from 'config/config';
 
-const instance = axios.create({
-  baseURL: 'https://158.247.197.212:9090',
+export const publicInstance  = axios.create({
+  baseURL: config.backendUrl,
+})
+
+export const requiredJwtTokeninstance = axios.create({
+  baseURL: config.backendUrl,
   withCredentials: true,
 });
 
-instance.interceptors.response.use(
+requiredJwtTokeninstance.interceptors.response.use(
   (response) => response,
   async (axiosError: AxiosError) => {
     const originalRequest = axiosError.config;
@@ -18,7 +23,7 @@ instance.interceptors.response.use(
       const { data } = axiosError.response;
       if (data.code === 'U003') {
         try {
-          await axios.get('https://158.247.197.212:9090/api/user/auth', {
+          await axios.get(`${config.backendUrl}/api/user/auth`, {
             withCredentials: true,
           });
           return axios(originalRequest);
@@ -36,5 +41,3 @@ instance.interceptors.response.use(
     return null;
   },
 );
-
-export default instance;
