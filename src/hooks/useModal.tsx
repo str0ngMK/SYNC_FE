@@ -2,19 +2,20 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import Modal, { ModalRef } from '@components/common/Modal';
 
+export type setIsModalOpen = () => void;
+
 type useModalType = () => [
   boolean,
-  () => void,
+  setIsModalOpen,
   React.RefObject<HTMLTableSectionElement>,
   ({
-    // eslint-disable-next-line no-unused-vars
+
     children,
-    // eslint-disable-next-line no-unused-vars
     isOpen,
-    // eslint-disable-next-line no-unused-vars
     modalRef,
   }: ModalRef) => // eslint-disable-next-line no-undef
   JSX.Element,
+  setIsModalOpen?,
 ];
 
 const useModal: useModalType = () => {
@@ -34,7 +35,7 @@ const useModal: useModalType = () => {
     };
   }, []);
 
-  return [isOpen, () => setIsOpen(true), modalRef, Modal];
+  return [isOpen, () => setIsOpen(true), modalRef, Modal, () => setIsOpen(false)];
 };
 
 export default useModal;
