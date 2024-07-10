@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import CreateProjectModal from '@components/modal/CreateProjectModal';
 import useModal from '@hooks/useModal';
-import instance from '@libs/axios/axios';
+import { requiredJwtTokeninstance } from '@libs/axios/axios';
 import { AxiosResponse } from 'axios';
 import styled from 'styled-components';
 
@@ -48,7 +48,7 @@ const ProjectBoards = () => {
       const response: AxiosResponse<
         AxiosRes<Project[]>,
         any
-      > = await instance.get('/api/user/project/get');
+      > = await requiredJwtTokeninstance.get('/api/user/project/get');
       return response.data.value;
     };
     getProjectList().then((data) => {

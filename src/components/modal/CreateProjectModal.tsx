@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { setIsModalOpen } from '@hooks/useModal';
-import instance from '@libs/axios/axios';
+import { requiredJwtTokeninstance } from '@libs/axios/axios';
 
 function CreateProjectModal({ closeModal }: { closeModal?: setIsModalOpen }) {
   const [title, setTitle] = useState('');
@@ -14,7 +14,7 @@ function CreateProjectModal({ closeModal }: { closeModal?: setIsModalOpen }) {
     e.preventDefault();
 
     try {
-      await instance.post('/api/user/project/create', {
+      await requiredJwtTokeninstance.post('/api/user/project/create', {
         title,
         description,
         startDate: new Date(startDate),

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import instance from '@libs/axios/axios';
+import { requiredJwtTokeninstance } from '@libs/axios/axios';
 import generateNormalDate from '@utils/generateNormalDate';
 import { AxiosResponse } from 'axios';
 
@@ -19,14 +19,12 @@ interface APIResponse {
 const MemberProfile = ({ memberId }: { memberId: number }) => {
   const [member, setMember] = useState<Member | null>(null);
   const fetchMemberDetail = async (userId: number) => {
-    const response: AxiosResponse<APIResponse, any> = await instance.get(
-      `/api/user/info`,
-      {
+    const response: AxiosResponse<APIResponse, any> =
+      await requiredJwtTokeninstance.get(`/api/user/info`, {
         params: {
           userId,
         },
-      },
-    );
+      });
     return response;
   };
 
