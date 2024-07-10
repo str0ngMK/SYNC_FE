@@ -108,7 +108,7 @@ export default function SideBar() {
         </SideBarItemWrap>
 
         <SideBarItemWrap>
-          <Link to='/projects'>
+          <Link to='/projects/board'>
           <SideBarItemHeader>
             <span>프로젝트</span>
           </SideBarItemHeader>

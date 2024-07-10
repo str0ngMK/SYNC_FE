@@ -3,7 +3,6 @@
  */
 import { Route, Routes } from 'react-router-dom';
 
-import ProjectBoards from '@pages/projects/ProjectBoards';
 import AuthLayout from '../components/layout/AuthLayout';
 import Layout from '../components/layout/Layout';
 import PublicLayout from '../components/layout/PublicLayout';
@@ -15,8 +14,8 @@ import FindId from '../pages/user/FindId';
 import FindPassword from '../pages/user/FindPassword';
 import ModifyUser from '../pages/user/Modify';
 import ProfileRoute from './ProfileRoute';
+import ProjectRoute from './ProjectRoute';
 import SettingsRoute from './SettingsRoute';
-
 
 const MainRoutes = () => (
   <Routes>
@@ -31,7 +30,7 @@ const MainRoutes = () => (
         <Route path="/user/find/userId" element={<FindId />}></Route>
         <Route path="/user/find/password" element={<FindPassword />}></Route>
 
-        <Route path='/projects' element={<ProjectBoards />} />
+        <Route path="/projects/*" element={<ProjectRoute />}></Route>
       </Route>
     </Route>
 
