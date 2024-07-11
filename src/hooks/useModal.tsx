@@ -9,7 +9,6 @@ type useModalType = () => [
   setIsModalOpen,
   React.RefObject<HTMLTableSectionElement>,
   ({
-
     children,
     isOpen,
     modalRef,
@@ -26,8 +25,7 @@ const useModal: useModalType = () => {
     const handleDetectModalContent = (
       e: React.BaseSyntheticEvent | MouseEvent,
     ) => {
-      if (modalRef.current && !modalRef.current.contains(e.target))
-        setIsOpen(false);
+      if (!e.target.closest('.modal-content')) setIsOpen(false);
     };
     document.addEventListener('mousedown', handleDetectModalContent);
     return () => {
@@ -35,7 +33,13 @@ const useModal: useModalType = () => {
     };
   }, []);
 
-  return [isOpen, () => setIsOpen(true), modalRef, Modal, () => setIsOpen(false)];
+  return [
+    isOpen,
+    () => setIsOpen(true),
+    modalRef,
+    Modal,
+    () => setIsOpen(false),
+  ];
 };
 
 export default useModal;

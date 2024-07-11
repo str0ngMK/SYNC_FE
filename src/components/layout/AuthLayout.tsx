@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
-import useLoggedInUserStore from '@libs/store/store';
+import { useLoggedInUserStore } from '@libs/store';
 
 const AuthLayout = () => {
   const { loggedInUser } = useLoggedInUserStore();

@@ -4,7 +4,7 @@ import alrams from '@assets/bell-02.svg';
 import profileDefault from '@assets/man-438081_960_720.svg';
 import search from '@assets/search.svg';
 import useDropdown from '@hooks/useDropdown';
-import useLoggedInUserStore from '@libs/store/store';
+import { useLoggedInUserStore } from '@libs/store';
 import styled from 'styled-components';
 
 import ConfigDropDown from '../dropdown/ConfigDropdown';
