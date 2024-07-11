@@ -1,26 +1,26 @@
-import { ReactNode } from 'react';
+import { ElementType } from 'react';
 
 import { create } from 'zustand';
 
 interface ModalState {
   isModalOpen: boolean;
-  modalComponent: ReactNode;
-  openModal: (component: ReactNode) => void;
+  ModalComponent: ElementType | null; // 수정된 부분
+  openModal: (component: ElementType) => void; // 수정된 부분
   closeModal: () => void;
 }
 
 const modalStore = create<ModalState>((set) => ({
   isModalOpen: false,
-  modalComponent: null,
+  ModalComponent: null,
   openModal: (component) =>
     set(() => ({
       isModalOpen: true,
-      modalComponent: component,
+      ModalComponent: component,
     })),
   closeModal: () =>
     set(() => ({
       isModalOpen: false,
-      modalComponent: null,
+      ModalComponent: null,
     })),
 }));
 

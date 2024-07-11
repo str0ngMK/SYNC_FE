@@ -1,10 +1,16 @@
+import { useState } from 'react';
+
 import more from '@assets/More.svg';
 import settings from '@assets/Settings.svg';
 import alrams from '@assets/bell-02.svg';
 import profileDefault from '@assets/man-438081_960_720.svg';
 import search from '@assets/search.svg';
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import CreateProjectModal from '@components/modal/CreateProjectModal';
 import useDropdown from '@hooks/useDropdown';
-import { useLoggedInUserStore } from '@libs/store';
+import useModal from '@hooks/useModal2';
+import { modalStore, useLoggedInUserStore } from '@libs/store';
 import styled from 'styled-components';
 
 import ConfigDropDown from '../dropdown/ConfigDropdown';
@@ -137,11 +143,27 @@ export default function Header() {
     useDropdown();
   const { loggedInUser } = useLoggedInUserStore();
 
+  const [openModal, closeModal] = useModal();
+  const [cnt, setCnt] = useState(true);
+
   return (
     <HeaderWrap>
       <Navigation>
         <HeaderList>
           <SearchContainer>
+            <button
+              onClick={() => {
+                if (cnt) {
+                  openModal(CreateProjectModal);
+                  setCnt(false);
+                } else {
+                  closeModal();
+                  setCnt(true);
+                }
+              }}
+            >
+              모달 테스트
+            </button>
             <SearchBar type="text" placeholder="Search" />
             <SearchSvg src={search} />
           </SearchContainer>
