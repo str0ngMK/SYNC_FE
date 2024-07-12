@@ -32,6 +32,7 @@ const ProjectAddButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 12px;
+  cursor: pointer;
   span {
     color: var(--Black-White-Black-100, #202020);
     /* Heading 5 */
