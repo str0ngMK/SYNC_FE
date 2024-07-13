@@ -3,7 +3,7 @@ import {
   EmailUpdateModal,
   PasswordUpdateModal,
 } from '@components/modal';
-import { useModalBack } from '@hooks';
+import { useModal } from '@hooks';
 import styled from 'styled-components';
 
 const AuthHeader = styled.article`
@@ -87,24 +87,7 @@ const PrivacyItem = styled.li`
 `;
 
 export default function Auth() {
-  const [
-    isOpenEmailUpdateModal,
-    openEmailUpdateModal,
-    emailUpdateModalRef,
-    EamilUpdateModalWrapper,
-  ] = useModalBack();
-  const [
-    isOpenPasswordUpdateModal,
-    openPasswordUpdateModal,
-    passwordUpdateModalRef,
-    PasswordUpdateModalWrapper,
-  ] = useModalBack();
-  const [
-    isOpenAccountDeleteModal,
-    openAccountDeleteModal,
-    accountDeleteModalRef,
-    AccountDeleteModalWrapper,
-  ] = useModalBack();
+  const [openModal] = useModal();
 
   return (
     <>
@@ -119,38 +102,38 @@ export default function Auth() {
           <section>
             <PrivacyItem>
               <p>아이디 : kimjiyong2523@gmail.com</p>
-              <button onClick={openEmailUpdateModal}>이메일 변경</button>
+              <button
+                onClick={() => {
+                  openModal(EmailUpdateModal);
+                }}
+              >
+                이메일 변경
+              </button>
             </PrivacyItem>
             <PrivacyItem>
               <p>비밀번호 : 1234****</p>
-              <button onClick={openPasswordUpdateModal}>비밀번호 변경</button>
+              <button
+                onClick={() => {
+                  openModal(PasswordUpdateModal);
+                }}
+              >
+                비밀번호 변경
+              </button>
             </PrivacyItem>
           </section>
 
           <PrivacyItem>
             <p>계정 삭제</p>
-            <button onClick={openAccountDeleteModal}>계정 삭제하기</button>
+            <button
+              onClick={() => {
+                openModal(DeleteAccountModal);
+              }}
+            >
+              계정 삭제하기
+            </button>
           </PrivacyItem>
         </PrivacyList>
       </AuthWrapper>
-      <EamilUpdateModalWrapper
-        isOpen={isOpenEmailUpdateModal}
-        modalRef={emailUpdateModalRef}
-      >
-        <EmailUpdateModal />
-      </EamilUpdateModalWrapper>
-      <PasswordUpdateModalWrapper
-        isOpen={isOpenPasswordUpdateModal}
-        modalRef={passwordUpdateModalRef}
-      >
-        <PasswordUpdateModal />
-      </PasswordUpdateModalWrapper>
-      <AccountDeleteModalWrapper
-        isOpen={isOpenAccountDeleteModal}
-        modalRef={accountDeleteModalRef}
-      >
-        <DeleteAccountModal />
-      </AccountDeleteModalWrapper>
     </>
   );
 }
