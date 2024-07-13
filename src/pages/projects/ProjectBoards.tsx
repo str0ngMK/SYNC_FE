@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import CreateProjectModal from '@components/modal/CreateProjectModal';
-import useModal from '@hooks/useModal2';
+import { useModal } from '@hooks';
 // import useModal from '@hooks/useModal';
 import { requiredJwtTokeninstance } from '@libs/axios/axios';
 import { AxiosResponse } from 'axios';

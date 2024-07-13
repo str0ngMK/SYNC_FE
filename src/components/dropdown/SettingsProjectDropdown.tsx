@@ -1,4 +1,4 @@
-import useModal from '@hooks/useModal';
+import { useModalBack } from '@hooks';
 import styled from 'styled-components';
 
 import DeleteProjectModal from '../modal/DeleteProjectModal';
@@ -60,19 +60,19 @@ export default function SettingsProject({
     openProjectDeleteModal,
     projectDeleteModalRef,
     ProjectDeleteModalWrapper,
-  ] = useModal();
+  ] = useModalBack();
   const [
     isOpenProjectWithdrawModal,
     openProjectWithdrawModal,
     projectWithdrawModalRef,
     ProjectWithdrawModalWrapper,
-  ] = useModal();
+  ] = useModalBack();
   const [
     isOpenProjectModifyModal,
     openProjectModifyModal,
     projectModifyModalRef,
     ProjectModifyModalWrapper,
-  ] = useModal();
+  ] = useModalBack();
 
   return (
     <>
