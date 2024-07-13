@@ -1,9 +1,10 @@
+import {
+  DeleteProjectModal,
+  ModifyProjectModal,
+  WithdrawProjectModal,
+} from '@components/modal';
 import useModal from '@hooks/useModal';
 import styled from 'styled-components';
-
-import DeleteProjectModal from '../modal/DeleteProjectModal';
-import ModifyProjectModal from '../modal/ModifyProjectModal';
-import WithdrawProjectModal from '../modal/WithdrawProjectModal';
 
 const Wrapper = styled.ul<{ $isOpen: boolean }>`
   width: 320px;

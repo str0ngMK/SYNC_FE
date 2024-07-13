@@ -3,12 +3,10 @@ import settings from '@assets/Settings.svg';
 import alrams from '@assets/bell-02.svg';
 import profileDefault from '@assets/man-438081_960_720.svg';
 import search from '@assets/search.svg';
+import { ConfigDropDown, MenuDropDown } from '@components/dropdown';
 import useDropdown from '@hooks/useDropdown';
 import useLoggedInUserStore from '@libs/store/store';
 import styled from 'styled-components';
-
-import ConfigDropDown from '../dropdown/ConfigDropdown';
-import MenuDropDown from '../dropdown/MenuDropDown';
 
 const HeaderWrap = styled.header`
   width: calc(100% - 242px);
