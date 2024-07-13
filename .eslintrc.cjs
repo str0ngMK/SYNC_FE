@@ -27,6 +27,8 @@ module.exports = {
     ],
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
+    'import/no-relative-parent-imports': 'error',
+    'import/no-useless-path-segments': ['error', { noUselessIndex: true }],
   },
   settings: {
     'import/resolver': {
