@@ -4,7 +4,11 @@ import { modalStore } from '@libs/store';
 
 export type setIsModalOpen = () => void;
 
-type useModalType = () => [(component: ElementType) => void, () => void];
+type useModalType = () => [
+  (component: ElementType) => void,
+  () => void,
+  boolean,
+];
 
 /**
  *
@@ -14,7 +18,7 @@ type useModalType = () => [(component: ElementType) => void, () => void];
  */
 
 const useModal: useModalType = () => {
-  const { openModal, closeModal } = modalStore();
+  const { openModal, closeModal, isModalOpen } = modalStore();
 
   useEffect(() => {
     const handleDetectModalContent = (
@@ -28,7 +32,7 @@ const useModal: useModalType = () => {
     };
   }, []);
 
-  return [openModal, closeModal];
+  return [openModal, closeModal, isModalOpen];
 };
 
 export default useModal;
