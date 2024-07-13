@@ -1,5 +1,5 @@
 import useDropdown from './useDropdown';
 import useModal from './useModal';
-import useModalBack from './useModalBack';
+import useModalOld from './useModalOld';
 
-export { useDropdown, useModalBack, useModal };
+export { useDropdown, useModal, useModalOld };

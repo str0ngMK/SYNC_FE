@@ -17,7 +17,7 @@ type useModalType = () => [
   setIsModalOpen?,
 ];
 
-const useModalBack: useModalType = () => {
+const useModalOld: useModalType = () => {
   const [isOpen, setIsOpen] = useState(false);
   const modalRef = useRef<HTMLTableSectionElement>(null);
 
@@ -42,4 +42,4 @@ const useModalBack: useModalType = () => {
   ];
 };
 
-export default useModalBack;
+export default useModalOld;
