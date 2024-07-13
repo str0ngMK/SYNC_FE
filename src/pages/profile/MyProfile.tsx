@@ -1,5 +1,5 @@
 import { ProfileUpdateModel } from '@components/modal';
-import { useModal } from '@hooks';
+import { useModalBack } from '@hooks';
 import styled from 'styled-components';
 
 const ProfileHeader = styled.article`
@@ -133,7 +133,7 @@ const StatusMessageWrapper = styled(PrivacyItem)`
 `;
 
 export default function MyProfile() {
-  const [isOpenProfileUpdateModal, openModal, modalRef, Modal] = useModal();
+  const [isOpenProfileUpdateModal, openModal, modalRef, Modal] = useModalBack();
 
   return (
     <>

@@ -8,8 +8,8 @@ import search from '@assets/search.svg';
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import CreateProjectModal from '@components/modal/CreateProjectModal';
+import { useModal } from '@hooks';
 import useDropdown from '@hooks/useDropdown';
-import useModal from '@hooks/useModal2';
 import { modalStore, useLoggedInUserStore } from '@libs/store';
 import styled from 'styled-components';
 

@@ -3,7 +3,7 @@ import {
   EmailUpdateModal,
   PasswordUpdateModal,
 } from '@components/modal';
-import { useModal } from '@hooks';
+import { useModalBack } from '@hooks';
 import styled from 'styled-components';
 
 const AuthHeader = styled.article`
@@ -92,19 +92,19 @@ export default function Auth() {
     openEmailUpdateModal,
     emailUpdateModalRef,
     EamilUpdateModalWrapper,
-  ] = useModal();
+  ] = useModalBack();
   const [
     isOpenPasswordUpdateModal,
     openPasswordUpdateModal,
     passwordUpdateModalRef,
     PasswordUpdateModalWrapper,
-  ] = useModal();
+  ] = useModalBack();
   const [
     isOpenAccountDeleteModal,
     openAccountDeleteModal,
     accountDeleteModalRef,
     AccountDeleteModalWrapper,
-  ] = useModal();
+  ] = useModalBack();
 
   return (
     <>
