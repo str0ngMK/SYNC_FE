@@ -96,7 +96,7 @@ const ProjectBoardMemberList = styled.ul`
   }
 `;
 
-const ProjectBoardPeriod = styled.p`
+const ProjectBoardPeriod = styled.div`
   padding: 4px 8px;
   background-color: var(--Black-White-Black-10, #f4f4f4);
   border-radius: 4px;

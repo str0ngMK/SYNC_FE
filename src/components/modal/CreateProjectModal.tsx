@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 
+import CalendarIcon from '@assets/calendar.svg';
 import CancelButton from '@assets/cancel-x.svg';
 import ProjectProfile from '@assets/project-profile.png';
+import CalendarDropdown from '@components/dropdown/CalendarDropdown';
+import useDropdown from '@hooks/useDropdown';
 import { setIsModalOpen } from '@hooks/useModal';
 import { requiredJwtTokeninstance } from '@libs/axios/axios';
 import styled from 'styled-components';
@@ -89,13 +92,34 @@ const InputWithProjectPeriod = styled.div`
   align-items: center;
   gap: 15px;
   align-self: stretch;
-  div {
-    width: 16px;
-    height: 2px;
-    background-color: #bfbfbf;
-  }
-  input {
+  label {
     flex-grow: 1;
+  }
+`;
+
+const InputCalendar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  input {
+    width: 100%;
+    padding-right: 42px;
+  }
+`;
+
+const CalendarImgDiv = styled.div`
+  position: absolute;
+  right: 21px;
+`;
+
+const CalendarDropdownActiveButton = styled.div`
+  width: 18px;
+  height: 18px;
+  position: relative;
+  img {
+    width: 18px;
+    height: 18px;
   }
 `;
 
@@ -136,6 +160,8 @@ function CreateProjectModal({ closeModal }: { closeModal?: setIsModalOpen }) {
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [isOpenCalendarDropdown, toggleCaeldnarDropdown, calendarDropdownRef] =
+    useDropdown();
 
   const handleCreateProject = async (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -206,19 +232,35 @@ function CreateProjectModal({ closeModal }: { closeModal?: setIsModalOpen }) {
           </LabelWithToggle>
 
           <InputWithProjectPeriod>
-            <input
-              type="date"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
-              placeholder="프로젝트 시작일"
-            />
+            <InputCalendar>
+              <input
+                type="text"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+                placeholder="프로젝트 시작일"
+              ></input>
+              <CalendarImgDiv>
+                <CalendarDropdownActiveButton ref={calendarDropdownRef}>
+                  <img
+                    src={CalendarIcon}
+                    alt="달력 아이콘"
+                    onClick={toggleCaeldnarDropdown}
+                  />
+                  <CalendarDropdown isOpen={isOpenCalendarDropdown} />
+                </CalendarDropdownActiveButton>
+              </CalendarImgDiv>
+            </InputCalendar>
+
             <div></div>
-            <input
-              type="text"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
-              placeholder="프로젝트 종료일"
-            />
+            <InputCalendar>
+              <input
+                type="text"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+                placeholder="프로젝트 종료일"
+              />
+              <img src={CalendarIcon} alt="달력 아이콘" />
+            </InputCalendar>
           </InputWithProjectPeriod>
         </InputContainer>
 
