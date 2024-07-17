@@ -21,7 +21,10 @@
       "@hooks/*": ["hooks/*"],
       "@hooks": ["hooks"],
       "@dropdown/*": ["dropdown/*"],
-      "@dropdown": ["dropdown"]
+      "@dropdown": ["dropdown"],
+      "@hooks": ["hooks"],
+      "@customTypes/*": ["customTypes/*"],
+      "@customTypes": ["customTypes"]
     }
   },
   "include": ["src"]
