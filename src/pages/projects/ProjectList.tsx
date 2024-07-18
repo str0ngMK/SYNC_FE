@@ -1,15 +1,27 @@
 import { useEffect, useState } from 'react';
 
-import type { Project } from '@customTypes/project';
-import { requiredJwtTokeninstance } from '@libs/axios/axios';
+import { ProjectListItem } from '@components/project';
+import { Project } from '@customTypes/project';
 import { getProjectList } from '@services/project';
-import { AxiosResponse } from 'axios';
+import styled from 'styled-components';
 
-interface AxiosRes<ResponseType> {
-  message: string;
-  result: boolean;
-  value: ResponseType;
-}
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f5f5f5;
+`;
+
+const LeftSection = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const RightSection = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 const ProjectList = () => {
   const [projectList, setProjectList] = useState<Project[] | null>(null);
@@ -20,10 +32,24 @@ const ProjectList = () => {
     });
   }, []);
 
-  useEffect(() => {
-    console.log('projectList : ', projectList);
-  }, [projectList]);
-  return <section>프로젝트 리스트 페이지</section>;
+  return (
+    <>
+      <Header>
+        <LeftSection>
+          <input type="checkbox" />
+          <input placeholder="Search projects..." />
+          <button type="submit">검색</button>
+        </LeftSection>
+        <RightSection>
+          <button>프로젝트추가</button>
+          <button>필터</button>
+        </RightSection>
+      </Header>
+      {projectList?.map((project) => (
+        <ProjectListItem key={project.projectId} project={project} />
+      ))}
+    </>
+  );
 };
 
 export default ProjectList;
