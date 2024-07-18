@@ -1,16 +1,19 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { getDaysInMonth } from 'date-fns';
+import { addMonths, getDaysInMonth, subMonths } from 'date-fns';
 
 interface CalendarDate {
   id: number;
   value: number;
+  dateType: Date;
   isCurrentMonth: boolean;
 }
 
 interface useCalendarReturnType {
   currentDate: Date;
   monthlyCalendar: CalendarDate[] | null;
+  moveMonth: (e: React.MouseEvent<HTMLButtonElement>, isAdd: boolean) => void;
+  setCalendarDate: (date: number) => void;
 }
 
 type useCalendarType = () => useCalendarReturnType;
@@ -54,6 +57,11 @@ const useCalendar: useCalendarType = () => {
         return {
           id: calnedarDate,
           value: calnedarDate + totalDateLastMonth,
+          dateType: new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth() - 1,
+            calnedarDate + totalDateLastMonth,
+          ),
           isCurrentMonth: false,
         };
       }
@@ -61,12 +69,22 @@ const useCalendar: useCalendarType = () => {
         return {
           id: calnedarDate,
           value: calnedarDate - totalDateCurrentMonth,
+          dateType: new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth() + 1,
+            calnedarDate - totalDateCurrentMonth,
+          ),
           isCurrentMonth: false,
         };
       }
       return {
         id: calnedarDate,
         value: calnedarDate,
+        dateType: new Date(
+          currentDate.getFullYear(),
+          currentDate.getMonth(),
+          calnedarDate,
+        ),
         isCurrentMonth: true,
       };
     });
@@ -76,9 +94,24 @@ const useCalendar: useCalendarType = () => {
   useEffect(() => {
     if (Date.now() === 23) setCurrentDate(new Date());
     createMonthCalendar();
-  }, []);
+  }, [currentDate]);
 
-  return { currentDate, monthlyCalendar };
+  const moveMonth = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    isAdd: boolean,
+  ) => {
+    e.preventDefault();
+    setCurrentDate((prevDate) =>
+      isAdd ? addMonths(prevDate, 1) : subMonths(prevDate, 1),
+    );
+  };
+
+  const setCalendarDate = (date: number) =>
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth(), date),
+    );
+
+  return { currentDate, monthlyCalendar, moveMonth, setCalendarDate };
 };
 
 export default useCalendar;

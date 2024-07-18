@@ -7,6 +7,7 @@ import CalendarDropdown from '@components/dropdown/CalendarDropdown';
 import useDropdown from '@hooks/useDropdown';
 import { setIsModalOpen } from '@hooks/useModal';
 import { requiredJwtTokeninstance } from '@libs/axios/axios';
+import { format } from 'date-fns';
 import styled from 'styled-components';
 
 const CreateProjectModalHeader = styled.section`
@@ -158,25 +159,33 @@ function CreateProjectModal({ closeModal }: { closeModal?: setIsModalOpen }) {
   const [title, setTitle] = useState('');
   const [subTitle, setSubTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [isOpenCalendarDropdown, toggleCaeldnarDropdown, calendarDropdownRef] =
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
+  const [isOpenCalendarDropdown, toggleCalendarDropdown, calendarDropdownRef] =
     useDropdown();
+  const [
+    isOpenCalendarDropdown2,
+    toggleCalendarDropdown2,
+    calendarDropdownRef2,
+  ] = useDropdown();
+
+  console.log(startDate?.toISOString(), endDate?.toISOString());
 
   const handleCreateProject = async (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
 
-    try {
-      await requiredJwtTokeninstance.post('/api/user/project/create', {
+    const response = await requiredJwtTokeninstance.post(
+      '/api/user/project/create',
+      {
         title,
+        subTitle,
         description,
-        startDate: new Date(startDate),
-        endDate: new Date(endDate),
-      });
-      window.confirm('프로젝트가 추가되었습니다.');
-    } catch (error) {
-      console.log(error);
-    }
+        startDate: startDate?.toString(),
+        endDate: endDate?.toString(),
+      },
+    );
+    console.log(response);
+    window.confirm('프로젝트가 추가되었습니다.');
   };
 
   return (
@@ -235,18 +244,21 @@ function CreateProjectModal({ closeModal }: { closeModal?: setIsModalOpen }) {
             <InputCalendar>
               <input
                 type="text"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
+                value={startDate ? format(startDate, 'yyyy-MM-dd') : ''}
                 placeholder="프로젝트 시작일"
+                readOnly
               ></input>
               <CalendarImgDiv>
                 <CalendarDropdownActiveButton ref={calendarDropdownRef}>
                   <img
                     src={CalendarIcon}
                     alt="달력 아이콘"
-                    onClick={toggleCaeldnarDropdown}
+                    onClick={toggleCalendarDropdown}
                   />
-                  <CalendarDropdown isOpen={isOpenCalendarDropdown} />
+                  <CalendarDropdown
+                    isOpen={isOpenCalendarDropdown}
+                    setDate={setStartDate}
+                  />
                 </CalendarDropdownActiveButton>
               </CalendarImgDiv>
             </InputCalendar>
@@ -255,11 +267,23 @@ function CreateProjectModal({ closeModal }: { closeModal?: setIsModalOpen }) {
             <InputCalendar>
               <input
                 type="text"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
+                value={endDate ? format(endDate, 'yyyy-MM-dd') : ''}
                 placeholder="프로젝트 종료일"
-              />
-              <img src={CalendarIcon} alt="달력 아이콘" />
+                readOnly
+              ></input>
+              <CalendarImgDiv>
+                <CalendarDropdownActiveButton ref={calendarDropdownRef2}>
+                  <img
+                    src={CalendarIcon}
+                    alt="달력 아이콘"
+                    onClick={toggleCalendarDropdown2}
+                  />
+                  <CalendarDropdown
+                    isOpen={isOpenCalendarDropdown2}
+                    setDate={setEndDate}
+                  />
+                </CalendarDropdownActiveButton>
+              </CalendarImgDiv>
             </InputCalendar>
           </InputWithProjectPeriod>
         </InputContainer>
