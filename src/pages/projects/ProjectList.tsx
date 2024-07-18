@@ -23,6 +23,37 @@ const RightSection = styled.div`
   align-items: center;
 `;
 
+const Card = styled.header`
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border: 0.1rem solid black;
+  box-sizing: border-box;
+  margin-bottom: -0.1rem;
+  height: 3rem;
+`;
+
+const Title = styled.div`
+  flex-grow: 2;
+  font-size: 0.8rem;
+  color: grey;
+  font-weight: bold;
+  min-width: 10rem;
+`;
+
+const Content = styled.div`
+  flex-grow: 10;
+  font-size: 0.8rem;
+  color: grey;
+`;
+
+const Checkbox = styled.input`
+  margin-right: 1.5rem;
+`;
+
 const ProjectList = () => {
   const [projectList, setProjectList] = useState<Project[] | null>(null);
 
@@ -45,9 +76,16 @@ const ProjectList = () => {
           <button>필터</button>
         </RightSection>
       </Header>
-      {projectList?.map((project) => (
-        <ProjectListItem key={project.projectId} project={project} />
-      ))}
+      <Card>
+        <Checkbox type="checkbox" />
+        <Title>프로젝트명</Title>
+        <Content>설명</Content>
+      </Card>
+      <main>
+        {projectList?.map((project) => (
+          <ProjectListItem key={project.projectId} project={project} />
+        ))}
+      </main>
     </>
   );
 };
