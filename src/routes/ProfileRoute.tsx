@@ -1,11 +1,11 @@
 /**
  * src/routes/ProfileRoute.tsx
  */
+import { Route, Routes } from 'react-router-dom';
 
-import { Routes, Route } from 'react-router-dom';
-import Profile from '../pages/profile/Profile';
-import MyProfile from '../pages/profile/MyProfile';
-import Auth from '../pages/profile/Auth';
+import Auth from '@pages/profile/Auth';
+import MyProfile from '@pages/profile/MyProfile';
+import Profile from '@pages/profile/Profile';
 
 const ProfileRoute = () => (
   <Routes>
