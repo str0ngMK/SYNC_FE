@@ -1,6 +1,6 @@
+import React from 'react';
+
 import styled from 'styled-components';
-import DropdownPortal from './DropdownPortal';
-import { ReactElement } from 'react';
 
 const ClickEventContainer = styled.div`
   display: flex;
