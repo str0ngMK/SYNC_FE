@@ -27,6 +27,20 @@ module.exports = {
     ],
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
+    'import/no-unresolved': [
+      'error',
+      {
+        // import resolver를 사용하여 alias를 설정합니다.
+        ignore: ['^@'], // '@' alias를 사용할 때 오류가 발생하지 않도록 설정합니다.
+      },
+    ],
+    // `no-restricted-imports` 규칙을 사용하여 alias를 사용하지 않는 import에 대해 오류를 발생시킵니다.
+    'no-restricted-imports': [
+      'error',
+      {
+        patterns: ['../*', '../../*', '../../../*'], // 상대 경로 사용 시 오류 발생
+      },
+    ],
   },
   settings: {
     'import/resolver': {
