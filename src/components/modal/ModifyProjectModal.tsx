@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
+
+import { ProjectOwnerDropdown } from '@components/dropdown';
 import styled from 'styled-components';
-import ProjectOwnerDropdown from '../dropdown/ProjectOwnerDropdown';
 
 const ModalHeader = styled.article`
   display: flex;
