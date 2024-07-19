@@ -49,39 +49,19 @@ const SettingsItem = styled.li`
 
 interface SettingsProjectDropdownProps {
   isOpen: boolean;
-  toggleDropdown: () => void;
 }
 
 export default function SettingsProject({
   isOpen,
-  toggleDropdown,
 }: SettingsProjectDropdownProps) {
-  const [
-    isOpenProjectDeleteModal,
-    openProjectDeleteModal,
-    projectDeleteModalRef,
-    ProjectDeleteModalWrapper,
-  ] = useModal();
-  const [
-    isOpenProjectWithdrawModal,
-    openProjectWithdrawModal,
-    projectWithdrawModalRef,
-    ProjectWithdrawModalWrapper,
-  ] = useModal();
-  const [
-    isOpenProjectModifyModal,
-    openProjectModifyModal,
-    projectModifyModalRef,
-    ProjectModifyModalWrapper,
-  ] = useModal();
+  const [openModal] = useModal();
 
   return (
     <>
       <Wrapper $isOpen={isOpen}>
         <SettingsItem
           onClick={() => {
-            openProjectDeleteModal();
-            toggleDropdown();
+            openModal(DeleteProjectModal);
           }}
         >
           <p>프로젝트 삭제</p>
@@ -90,8 +70,7 @@ export default function SettingsProject({
 
         <SettingsItem
           onClick={() => {
-            openProjectWithdrawModal();
-            toggleDropdown();
+            openModal(WithdrawProjectModal);
           }}
         >
           <p>프로젝트 탈퇴</p>
@@ -100,34 +79,13 @@ export default function SettingsProject({
 
         <SettingsItem
           onClick={() => {
-            openProjectModifyModal();
-            toggleDropdown();
+            openModal(ModifyProjectModal);
           }}
         >
           <p>프로젝트 설정</p>
           <p>프로젝트 관리를 위한 창을 띄웁니다.</p>
         </SettingsItem>
       </Wrapper>
-      <ProjectDeleteModalWrapper
-        isOpen={isOpenProjectDeleteModal}
-        modalRef={projectDeleteModalRef}
-      >
-        <DeleteProjectModal />
-      </ProjectDeleteModalWrapper>
-
-      <ProjectWithdrawModalWrapper
-        isOpen={isOpenProjectWithdrawModal}
-        modalRef={projectWithdrawModalRef}
-      >
-        <WithdrawProjectModal />
-      </ProjectWithdrawModalWrapper>
-
-      <ProjectModifyModalWrapper
-        isOpen={isOpenProjectModifyModal}
-        modalRef={projectModifyModalRef}
-      >
-        <ModifyProjectModal />
-      </ProjectModifyModalWrapper>
     </>
   );
 }

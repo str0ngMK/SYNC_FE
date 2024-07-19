@@ -44,3 +44,17 @@ const userInfoUrl = `${config.backendUrl}/api/user/info`;
 - **Index 파일에 export 추가**: 신규 파일을 추가할 때마다 반드시 해당 파일을 index에 export합니다.
 - **배럴 파일 패턴**: 모듈을 쉽게 가져올 수 있도록 배럴 파일 패턴을 사용합니다.
 - **Razy를 통한 트리 쉐이킹**: 오래 걸리는 작업은 Razy를 통해 트리 쉐이킹을 사용하여 최적화합니다.
+
+## 팝업 모달 사용법
+
+```
+
+import useModal from '@hooks/useModal';
+
+const [openModal, closeModal, isModalOpen] = useModal();
+
+// openModal // 파라미터로 전달받은 컴포넌트를 모달로 여는 function
+// closeModal // 현재 열려있는 모달을 닫는 function
+// isModalOpen // 현재 열려있는 모달의 boolean
+
+```

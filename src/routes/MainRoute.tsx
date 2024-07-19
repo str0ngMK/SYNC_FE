@@ -3,7 +3,6 @@
  */
 import { Route, Routes } from 'react-router-dom';
 
-import AuthLayout from '../components/layout/AuthLayout';
 import Layout from '../components/layout/Layout';
 import PublicLayout from '../components/layout/PublicLayout';
 import Home from '../pages/Home';
@@ -34,10 +33,8 @@ const MainRoutes = () => (
       </Route>
     </Route>
 
-    <Route element={<AuthLayout />}>
-      <Route path="/login" element={<Login />}></Route>
-      <Route path="/signup" element={<SignUp />}></Route>
-    </Route>
+    <Route path="/login" element={<Login />}></Route>
+    <Route path="/signup" element={<SignUp />}></Route>
 
     {/* routes auth only */}
 
