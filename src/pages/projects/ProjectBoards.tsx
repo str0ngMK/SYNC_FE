@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import CreateProjectModal from '@components/modal/CreateProjectModal';
-import useModal from '@hooks/useModal';
+import { useModal } from '@hooks';
+// import useModal from '@hooks/useModal';
 import { requiredJwtTokeninstance } from '@libs/axios/axios';
 import { AxiosResponse } from 'axios';
 import styled from 'styled-components';
@@ -40,8 +41,10 @@ export interface Project {
 
 const ProjectBoards = () => {
   const [projectList, setProjectList] = useState<Project[] | null>(null);
-  const [isOpen, openModal, modalRef, CreateProjectModalWrapper, closeModal] =
-    useModal();
+  // const [isOpen, openModal, modalRef, CreateProjectModalWrapper, closeModal] =
+  //   useModal();
+
+  const [openModal, closeModal, isModalOpen] = useModal();
 
   useEffect(() => {
     const getProjectList = async () => {
@@ -60,16 +63,23 @@ const ProjectBoards = () => {
     <Section>
       <article>
         <h1>프로젝트 보드</h1>
-        <button onClick={openModal}>프로젝트 추가</button>
+        <button
+          onClick={() => {
+            if (isModalOpen) closeModal();
+            else openModal(CreateProjectModal);
+          }}
+        >
+          프로젝트 추가
+        </button>
       </article>
       <ProjectList>
         {projectList?.map((project) => (
           <ProjectBoardItem key={project.projectId} project={project} />
         ))}
       </ProjectList>
-      <CreateProjectModalWrapper isOpen={isOpen} modalRef={modalRef}>
+      {/* <CreateProjectModalWrapper isOpen={isOpen} modalRef={modalRef}>
         <CreateProjectModal closeModal={closeModal} />
-      </CreateProjectModalWrapper>
+      </CreateProjectModalWrapper> */}
     </Section>
   );
 };
