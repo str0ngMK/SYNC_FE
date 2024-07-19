@@ -133,7 +133,7 @@ const StatusMessageWrapper = styled(PrivacyItem)`
 `;
 
 export default function MyProfile() {
-  const [isOpenProfileUpdateModal, openModal, modalRef, Modal] = useModal();
+  const [openModal] = useModal();
 
   return (
     <>
@@ -146,7 +146,13 @@ export default function MyProfile() {
         <MyProfileWrapper>
           <ProfileMiddle>
             <h5>프로필 사진</h5>
-            <UpdateButton onClick={openModal}>수정하기</UpdateButton>
+            <UpdateButton
+              onClick={() => {
+                openModal(ProfileUpdateModel);
+              }}
+            >
+              수정하기
+            </UpdateButton>
           </ProfileMiddle>
           <MyProfileImage>
             <UpdateProfileImage>변경</UpdateProfileImage>
@@ -171,9 +177,6 @@ export default function MyProfile() {
           </PrivacyList>
         </MyProfileWrapper>
       </ProfileHeader>
-      <Modal isOpen={isOpenProfileUpdateModal} modalRef={modalRef}>
-        <ProfileUpdateModel />
-      </Modal>
     </>
   );
 }

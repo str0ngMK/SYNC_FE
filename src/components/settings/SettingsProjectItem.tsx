@@ -72,7 +72,7 @@ export default function SettingsProjectItem({
 
       <More ref={dropdownRef}>
         <button onClick={toggleDropdown}>더보기</button>
-        <SettingsProject isOpen={isOpen} toggleDropdown={toggleDropdown} />
+        <SettingsProject isOpen={isOpen} />
       </More>
     </ProjectItem>
   );

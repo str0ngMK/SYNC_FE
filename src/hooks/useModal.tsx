@@ -1,33 +1,30 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { ElementType, useEffect } from 'react';
 
-import Modal, { ModalRef } from '@components/common/Modal';
+import { modalStore } from '@libs/store';
 
 export type setIsModalOpen = () => void;
 
 type useModalType = () => [
+  (component: ElementType) => void,
+  () => void,
   boolean,
-  setIsModalOpen,
-  React.RefObject<HTMLTableSectionElement>,
-  ({
-
-    children,
-    isOpen,
-    modalRef,
-  }: ModalRef) => // eslint-disable-next-line no-undef
-  JSX.Element,
-  setIsModalOpen?,
 ];
 
+/**
+ *
+ * const [openModal, closeModal] = useModal();
+ * openModal(컴포넌트); => 모달팝업 열림
+ * closeModal(); => 모달팝업 닫힘
+ */
+
 const useModal: useModalType = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const modalRef = useRef<HTMLTableSectionElement>(null);
+  const { openModal, closeModal, isModalOpen } = modalStore();
 
   useEffect(() => {
     const handleDetectModalContent = (
       e: React.BaseSyntheticEvent | MouseEvent,
     ) => {
-      if (modalRef.current && !modalRef.current.contains(e.target))
-        setIsOpen(false);
+      if (!e.target.closest('.modal-content')) closeModal();
     };
     document.addEventListener('mousedown', handleDetectModalContent);
     return () => {
@@ -35,7 +32,7 @@ const useModal: useModalType = () => {
     };
   }, []);
 
-  return [isOpen, () => setIsOpen(true), modalRef, Modal, () => setIsOpen(false)];
+  return [openModal, closeModal, isModalOpen];
 };
 
 export default useModal;
