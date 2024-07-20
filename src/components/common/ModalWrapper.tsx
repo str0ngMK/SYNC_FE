@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
+import { modalStore } from '@libs/store';
 import styled from 'styled-components';
 
 import ModalPortal from './ModalPortal';
@@ -31,10 +32,29 @@ export interface ModalRef {
 }
 
 export default function ModalWrapper({ children, isOpen }: ModalRef) {
+  const { closeModal } = modalStore();
+
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
+        closeModal();
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen, closeModal]);
+
   return (
     <ModalPortal>
       <ModalWrapperContainer $isActive={isOpen}>
-        <Container>{children}</Container>
+        <Container ref={modalRef}>{children}</Container>
       </ModalWrapperContainer>
     </ModalPortal>
   );
