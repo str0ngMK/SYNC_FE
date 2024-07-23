@@ -1,74 +1,35 @@
 import styled from 'styled-components';
 
-export const Header = styled.header`
+export const ProjectListFrame = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background-color: #f5f5f5;
+  height: 734px;
+  padding: 20px;
+  align-items: flex-start;
+  align-self: stretch;
+  border-radius: 12px;
+  border: 1px solid var(--Black-White-Black-10, #f4f4f4);
+  background: var(--Black-White-White, #fff);
+  flex-direction: column;
+  overflow-x: auto;
 `;
 
-export const LeftSection = styled.div`
+export const ProjectListHeader = styled.header`
   display: flex;
+  height: 40px;
+  padding: 12px 16px;
   align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--Black-White-Black-10, #f4f4f4);
+  background: #fff;
 `;
 
-export const RightSection = styled.div`
-  display: flex;
-  align-items: center;
-`;
+export const ProjectListHeaderText = styled.div`
+  color: var(--Black-White-Black-20, #bfbfbf);
 
-export const Card = styled.header`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 1rem;
-  border: 0.1rem solid black;
-  box-sizing: border-box;
-  margin-bottom: -0.1rem;
-  height: 3rem;
-  font-size: 0.8rem;
-  overflow: hidden;
-`;
-
-export const Checkbox = styled.input`
-  margin-right: 1.5rem;
-`;
-
-export const Title = styled.div`
-  font-weight: bold;
-  flex: 3 1 30rem;
-  overflow: hidden;
-  // text-overflow: ellipsis;
-  // white-space: nowrap;
-`;
-
-export const Content = styled.div`
-  flex: 3 1 30rem;
-  overflow: hidden;
-  margin-right: 1rem;
-  // text-overflow: ellipsis;
-  // white-space: nowrap;
-`;
-
-export const Progress = styled.div`
-  color: grey;
-  flex: 3 1 30rem;
-  margin-right: 1rem;
-`;
-
-export const Manager = styled.div`
-  color: grey;
-  flex: 1 1 10rem;
-  margin-right: 1rem;
-`;
-
-export const ProjectTimeline = styled.div`
-  color: grey;
-  flex: 2 1 20rem;
-  margin-right: 1rem;
-`;
-
-export const SettingsButton = styled.div`
-  color: grey;
+  /* Heading 5 */
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 17px; /* 121.429% */
 `;
