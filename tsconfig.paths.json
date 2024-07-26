@@ -19,7 +19,9 @@
       "@assets/*": ["assets/*"],
       "@assets": ["assets"],
       "@hooks/*": ["hooks/*"],
-      "@hooks": ["hooks"]
+      "@hooks": ["hooks"],
+      "@customTypes/*": ["customTypes/*"],
+      "@customTypes": ["customTypes"]
     }
   },
   "include": ["src"]
