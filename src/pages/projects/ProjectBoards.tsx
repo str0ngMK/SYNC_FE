@@ -73,11 +73,18 @@ const ProjectBoards = () => {
 
   useEffect(() => {
     const getProjectList = async () => {
-      const response: AxiosResponse<
-        AxiosRes<Project[]>,
-        any
-      > = await requiredJwtTokeninstance.get('/api/user/project/get');
-      return response.data.value;
+      try {
+        const response: AxiosResponse<
+          AxiosRes<Project[]>,
+          any
+        > = await requiredJwtTokeninstance.get(
+          'http://129.213.161.199:31585/project/api/v1?projectIds=1&projectIds=2&projectIds=3',
+        );
+        console.log(response);
+        return response.data.value;
+      } catch (error) {
+        console.log(error);
+      }
     };
     getProjectList().then((data) => {
       if (data) setProjectList(data);

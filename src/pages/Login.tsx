@@ -3,11 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import passwordIcon from '@assets/lock-01.svg';
 import mail from '@assets/mail-01.svg';
-
-import  { AxiosError } from 'axios';
-
-import styled from 'styled-components';
 import { loginAPI } from '@services/api';
+import axios, { AxiosError } from 'axios';
+import styled from 'styled-components';
 
 const Main = styled.main`
   width: 100%;
@@ -187,12 +185,13 @@ export default function Login() {
     if (!isValidatePass) return false;
 
     try {
-      const loginResponse = await loginAPI({...loginForm});
-      if(loginResponse.result === 'OK') {
+      const loginResponse = await loginAPI({ ...loginForm });
+      if (loginResponse.result === 'OK') {
+        console.log(loginResponse);
+
         window.alert('로그인 성공!');
         navigate('/');
       }
-
     } catch (error) {
       if (error instanceof AxiosError && error.response) {
         console.log(error);
@@ -207,9 +206,21 @@ export default function Login() {
     }
   };
 
+  const naverLogin = async () => {
+    const res = await axios.post(
+      'http://150.230.190.128:8090/oauth2/authorization/naver',
+      {},
+      {
+        withCredentials: true,
+      },
+    );
+    console.log(res);
+  };
+
   return (
     <Main>
       <Wrapper>
+        <button onClick={naverLogin}>네이버 로그인</button>
         <Title>로그인</Title>
         <Form>
           <InputWrapper>

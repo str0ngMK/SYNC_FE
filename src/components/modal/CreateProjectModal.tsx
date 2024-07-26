@@ -169,23 +169,25 @@ function CreateProjectModal({ closeModal }: { closeModal?: setIsModalOpen }) {
     calendarDropdownRef2,
   ] = useDropdown();
 
-  console.log(startDate?.toISOString(), endDate?.toISOString());
-
   const handleCreateProject = async (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
 
-    const response = await requiredJwtTokeninstance.post(
-      '/api/user/project/create',
-      {
-        title,
-        subTitle,
-        description,
-        startDate: startDate?.toString(),
-        endDate: endDate?.toString(),
-      },
-    );
-    console.log(response);
-    window.confirm('프로젝트가 추가되었습니다.');
+    try {
+      const response = await requiredJwtTokeninstance.post(
+        '/user/api/project',
+        {
+          title,
+          subTitle,
+          description,
+          startDate,
+          endDate,
+        },
+      );
+      console.log(response);
+      window.confirm('프로젝트가 추가되었습니다.');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

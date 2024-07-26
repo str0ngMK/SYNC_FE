@@ -156,9 +156,9 @@ const ProjectBoardItem = ({ project }: { project: Project }) => (
 
     <ProjectBoardFooter>
       <ProjectBoardMemberList>
-        {project.memberIds.map((memberId) => (
+        {/*project.memberIds.map((memberId) => (
           <MemberProfile key={project.projectId} memberId={memberId} />
-        ))}
+        ))*/}
       </ProjectBoardMemberList>
       <ProjectBoardPeriod>
         <img src={projectCalendar} alt="프로젝트 기간" />
