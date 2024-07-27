@@ -16,16 +16,44 @@ const TabMenu = styled.ul`
   }
 `;
 
+const ProejctFrame = styled.div`
+  display: flex;
+  // width: 1360px;
+  height: 963px;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  flex-shrink: 0;
+`;
+
+const ProjectUpperFrame = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  align-self: stretch;
+`;
+
+const ProjectLowerFrame = styled.section`
+  height: 632px;
+  flex-shrink: 0;
+  align-self: stretch;
+`;
+
 const Project = () => {
   const navigate = useNavigate();
   return (
-    <section>
-      <TabMenu>
-        <li onClick={() => navigate('/projects/board')}>보드</li>
-        <li onClick={() => navigate('/projects/list')}>리스트</li>
-      </TabMenu>
-      <Outlet />
-    </section>
+    <ProejctFrame>
+      <ProjectUpperFrame>
+        <TabMenu>
+          <li onClick={() => navigate('/projects/board')}>보드</li>
+          <li onClick={() => navigate('/projects/list')}>리스트</li>
+        </TabMenu>
+      </ProjectUpperFrame>
+      <ProjectLowerFrame>
+        <Outlet />
+      </ProjectLowerFrame>
+    </ProejctFrame>
   );
 };
 
