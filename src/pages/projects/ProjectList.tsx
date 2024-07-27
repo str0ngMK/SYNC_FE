@@ -54,7 +54,7 @@ const ProjectListEmptyTextFrame = styled.div`
   width: 360px;
 `;
 
-const ProjectListEmptyText1 = styled.div`
+const ProjectListEmptyText1 = styled.text`
   align-self: stretch;
 
   color: var(--Black-White-Black-100, #202020);
@@ -68,7 +68,7 @@ const ProjectListEmptyText1 = styled.div`
   line-height: 31px; /* 140.909% */
 `;
 
-const ProjectListEmptyText2 = styled.div`
+const ProjectListEmptyText2 = styled.text`
   align-self: stretch;
 
   color: var(--Black-White-Black-70, #636363);
@@ -286,6 +286,25 @@ const ProjectAddButtonComponent = () => (
   </ProjectAddButton>
 );
 
+const ProjectEmpty = () => (
+  <ProjectListEmptyFrame>
+    <ProjectListEmptyInnerFrame>
+      <ProjectListEmptyImageFrame>
+        <EmptyIconSvg />
+      </ProjectListEmptyImageFrame>
+      <ProjectListEmptyInfoFrame>
+        <ProjectListEmptyTextFrame>
+          <ProjectListEmptyText1>프로젝트가 없습니다</ProjectListEmptyText1>
+          <ProjectListEmptyText2>
+            새로운 프로젝트를 만들어 팀과 함께 프로젝트를 관리해보세요
+          </ProjectListEmptyText2>
+        </ProjectListEmptyTextFrame>
+        <ProjectAddButtonComponent />
+      </ProjectListEmptyInfoFrame>
+    </ProjectListEmptyInnerFrame>
+  </ProjectListEmptyFrame>
+);
+
 const ProjectList = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [projectList, setProjectList] = useState<Project[] | null>(null);
@@ -300,24 +319,7 @@ const ProjectList = () => {
   return (
     <>
       {projectList === null ? (
-        <ProjectListEmptyFrame>
-          <ProjectListEmptyInnerFrame>
-            <ProjectListEmptyImageFrame>
-              <EmptyIconSvg />
-            </ProjectListEmptyImageFrame>
-            <ProjectListEmptyInfoFrame>
-              <ProjectListEmptyTextFrame>
-                <ProjectListEmptyText1>
-                  프로젝트가 없습니다
-                </ProjectListEmptyText1>
-                <ProjectListEmptyText2>
-                  새로운 프로젝트를 만들어 팀과 함께 프로젝트를 관리해보세요
-                </ProjectListEmptyText2>
-              </ProjectListEmptyTextFrame>
-              <ProjectAddButtonComponent />
-            </ProjectListEmptyInfoFrame>
-          </ProjectListEmptyInnerFrame>
-        </ProjectListEmptyFrame>
+        <ProjectEmpty />
       ) : (
         <ProjectListFrame>
           <ProjectListHeaderFrame>

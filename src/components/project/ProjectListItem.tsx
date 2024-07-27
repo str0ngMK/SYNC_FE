@@ -28,7 +28,7 @@ const TitleComponent = (props: { title: string; subTitle: string }) => {
     height: 37px;
   `;
 
-  const ProjectTitleText = styled.div`
+  const ProjectTitleText = styled.text`
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
@@ -44,7 +44,7 @@ const TitleComponent = (props: { title: string; subTitle: string }) => {
     line-height: 21px; /* 131.25% */
   `;
 
-  const ProjectSubTitleText = styled.div`
+  const ProjectSubTitleText = styled.text`
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
@@ -72,7 +72,7 @@ const TitleComponent = (props: { title: string; subTitle: string }) => {
 };
 
 const DescriptionComponent = (props: { description: string }) => {
-  const DescriptionText = styled.div`
+  const DescriptionText = styled.text`
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
@@ -145,7 +145,7 @@ const ProgressComponent = () => {
     </CheckIcon>
   );
 
-  const CheckText = styled.div`
+  const CheckText = styled.text`
     color: var(--Black-White-Black-20, #bfbfbf);
     text-align: center;
 
@@ -157,7 +157,7 @@ const ProgressComponent = () => {
     line-height: 14px; /* 116.667% */
   `;
 
-  const PercentText = styled.div`
+  const PercentText = styled.text`
     color: var(--Black-White-Black-100, #202020);
     text-align: center;
 
@@ -327,7 +327,7 @@ const TimelineComponent = (props: { startDate: string; endDate: string }) => {
     </CalendarIcon>
   );
 
-  const CalendarText = styled.div`
+  const CalendarText = styled.text`
     color: var(--Black-White-Black-35, #8f8f8f);
     font-family: Inter;
     font-size: 12px;
