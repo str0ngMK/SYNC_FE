@@ -20,6 +20,7 @@ const Main = styled.div`
   display: flex;
   flex: 1;
   overflow-x: auto;
+  overflow-y: auto;
 `;
 
 export default function Layout() {

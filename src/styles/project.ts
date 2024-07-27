@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ProjectListFrame = styled.div`
   display: flex;
-  height: 734px;
+  height: calc(100% - 40px);
   padding: 20px;
   align-items: flex-start;
   align-self: stretch;
@@ -12,6 +12,7 @@ export const ProjectListFrame = styled.div`
   background: var(--Black-White-White, #fff);
   flex-direction: column;
   overflow-x: auto;
+  overflow-y: auto;
   margin-left: 40px;
   margin-right: 40px;
 `;

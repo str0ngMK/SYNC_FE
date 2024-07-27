@@ -200,6 +200,8 @@ const SubHeaderComponent = () => {
     line-height: 20px; /* 142.857% */
 
     opacity: 0.5;
+
+    white-space: nowrap;
   `;
 
   const SearchButtonIcon = styled.svg`
@@ -276,6 +278,8 @@ const SubHeaderComponent = () => {
     font-style: normal;
     font-weight: 700;
     line-height: 17px; /* 121.429% */
+
+    white-space: nowrap;
   `;
 
   const FilterButton = styled.div`
@@ -318,6 +322,8 @@ const SubHeaderComponent = () => {
     font-style: normal;
     font-weight: 700;
     line-height: 17px; /* 121.429% */
+
+    white-space: nowrap;
   `;
 
   // TODO 버튼으로 쓸지 실제 input으로 쓸지 확인 필요
