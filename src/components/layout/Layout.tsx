@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
@@ -9,20 +10,14 @@ import Header from './Header';
 import SideBar from './SideBar';
 
 const MainFrame = styled.main`
-  width: 1440px;
-  height: 1024px;
   flex-shrink: 0;
 
   background: var(--Primary-Orange-Light-Yellow-Orange, #fffdf3);
 `;
 
-const Main = styled.main`
-  width: 100%;
-  height: 100vh;
-  padding-left: 272px;
-  padding-right: 30px;
-  padding-top: 98px;
-  padding-bottom: 30px;
+const Main = styled.div`
+  margin-left: 80px; /* SideBar의 너비만큼 공간을 띄워야 함 */
+  margin-top: 60px; /* Header의 높이만큼 공간을 띄워야 함 */
 `;
 
 export default function Layout() {

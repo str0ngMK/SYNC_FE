@@ -4,13 +4,17 @@ import styled from 'styled-components';
 
 const SideBarWrap = styled.aside`
   width: 80px;
-  height: 1023px;
+  height: 100vh;
   flex-shrink: 0;
 
   border-right: 1px solid var(--Black-White-Black-10, #f4f4f4);
   background: var(--Black-White-White, #fff);
 
   position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  z-index: 1000;
 `;
 
 const LogoButton = () => {
