@@ -25,34 +25,31 @@ const ProjectList = () => {
   }, []);
 
   return (
-    <>
-      <div>검색, 프로젝트추가, 필터 들어가야함</div>
-      <ProjectListFrame>
-        <ProjectListHeaderFrame>
-          <ProjectListHeader style={{ width: '300px' }}>
-            <ProjectListHeaderText>프로젝트명</ProjectListHeaderText>
-          </ProjectListHeader>
-          <ProjectListHeader style={{ width: '380px' }}>
-            <ProjectListHeaderText>설명</ProjectListHeaderText>
-          </ProjectListHeader>
-          <ProjectListHeader style={{ width: '311px' }}>
-            <ProjectListHeaderText>진행률</ProjectListHeaderText>
-          </ProjectListHeader>
-          <ProjectListHeader style={{ width: '170px' }}>
-            <ProjectListHeaderText>담당자</ProjectListHeaderText>
-          </ProjectListHeader>
-          <ProjectListHeader style={{ width: '212px' }}>
-            <ProjectListHeaderText>남은 기간</ProjectListHeaderText>
-          </ProjectListHeader>
-          <ProjectListHeader style={{ width: '56px' }} />
-        </ProjectListHeaderFrame>
-        <main>
-          {projectList?.map((project) => (
-            <ProjectListItem key={project.projectId} project={project} />
-          ))}
-        </main>
-      </ProjectListFrame>
-    </>
+    <ProjectListFrame>
+      <ProjectListHeaderFrame>
+        <ProjectListHeader style={{ width: '300px' }}>
+          <ProjectListHeaderText>프로젝트명</ProjectListHeaderText>
+        </ProjectListHeader>
+        <ProjectListHeader style={{ width: '380px' }}>
+          <ProjectListHeaderText>설명</ProjectListHeaderText>
+        </ProjectListHeader>
+        <ProjectListHeader style={{ width: '311px' }}>
+          <ProjectListHeaderText>진행률</ProjectListHeaderText>
+        </ProjectListHeader>
+        <ProjectListHeader style={{ width: '170px' }}>
+          <ProjectListHeaderText>담당자</ProjectListHeaderText>
+        </ProjectListHeader>
+        <ProjectListHeader style={{ width: '212px' }}>
+          <ProjectListHeaderText>남은 기간</ProjectListHeaderText>
+        </ProjectListHeader>
+        <ProjectListHeader style={{ width: '56px' }} />
+      </ProjectListHeaderFrame>
+      <main>
+        {projectList?.map((project) => (
+          <ProjectListItem key={project.projectId} project={project} />
+        ))}
+      </main>
+    </ProjectListFrame>
   );
 };
 
