@@ -78,12 +78,16 @@ const ProjectBoards = () => {
           AxiosRes<Project[]>,
           any
         > = await requiredJwtTokeninstance.get(
-          'http://129.213.161.199:31585/project/api/v1?projectIds=1&projectIds=2&projectIds=3',
+          `/project/api/v2?userId=abc123@gmail.com`,
         );
-        console.log(response);
+        const test = await requiredJwtTokeninstance.get(
+          `http://129.213.161.199:31585/project/api/v1?projectIds=${response.data.value.join(',')}`,
+        );
+        console.log(test);
         return response.data.value;
       } catch (error) {
         console.log(error);
+        return undefined;
       }
     };
     getProjectList().then((data) => {

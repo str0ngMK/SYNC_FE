@@ -1,11 +1,7 @@
-import { useEffect, useState } from 'react';
-
 import projectCalendar from '@assets/calendar.svg';
 import meatballs from '@assets/meatballs.svg';
 import projectIcon from '@assets/project-icon.png';
-import { requiredJwtTokeninstance } from '@libs/axios/axios';
 import generateNormalDate from '@utils/generateNormalDate';
-import { AxiosResponse } from 'axios';
 import styled from 'styled-components';
 
 import { Project } from './ProjectBoards';
@@ -113,17 +109,43 @@ const ProjectBoardPeriod = styled.div`
   }
 `;
 
-interface Member {
-  profileImg: string;
-  userId: string;
-  username: string;
-}
+const ProjectBoardItem = ({ project }: { project: Project }) => (
+  <ProjectBoard key={project.projectId}>
+    <ProjectBoardHeader>
+      <img src={projectIcon} alt="프로젝트 대표 아이콘" />
+      <ProjectBoardTitle>
+        <h5>{project.subTitle}</h5>
+        <h2>{project.title}</h2>
+      </ProjectBoardTitle>
+      <img src={meatballs} alt="보드 더보기" />
+    </ProjectBoardHeader>
+    <ProjectBoardDescription>{project.description}</ProjectBoardDescription>
 
-interface APIResponse {
-  value: Member;
-}
+    <ProjectBoardFooter>
+      <ProjectBoardMemberList></ProjectBoardMemberList>
+      <ProjectBoardPeriod>
+        <img src={projectCalendar} alt="프로젝트 기간" />
+        <p>{generateNormalDate(project.startDate, project.endDate)}</p>
+      </ProjectBoardPeriod>
+    </ProjectBoardFooter>
+  </ProjectBoard>
+);
 
-const MemberProfile = ({ memberId }: { memberId: number }) => {
+export default ProjectBoardItem;
+
+/*
+  
+  interface Member {
+    profileImg: string;
+    userId: string;
+    username: string;
+  }
+
+  interface APIResponse {
+    value: Member;
+  }
+
+  const MemberProfile = ({ memberId }: { memberId: number }) => {
   const [member, setMember] = useState<Member | null>(null);
   const fetchMemberDetail = async (userId: number) => {
     const response: AxiosResponse<APIResponse, any> =
@@ -142,30 +164,8 @@ const MemberProfile = ({ memberId }: { memberId: number }) => {
   return <li>{member?.username.slice(-2)}</li>;
 };
 
-const ProjectBoardItem = ({ project }: { project: Project }) => (
-  <ProjectBoard key={project.projectId}>
-    <ProjectBoardHeader>
-      <img src={projectIcon} alt="프로젝트 대표 아이콘" />
-      <ProjectBoardTitle>
-        <h5>{project.subTitle}</h5>
-        <h2>{project.title}</h2>
-      </ProjectBoardTitle>
-      <img src={meatballs} alt="보드 더보기" />
-    </ProjectBoardHeader>
-    <ProjectBoardDescription>{project.description}</ProjectBoardDescription>
 
-    <ProjectBoardFooter>
-      <ProjectBoardMemberList>
-        {/*project.memberIds.map((memberId) => (
-          <MemberProfile key={project.projectId} memberId={memberId} />
-        ))*/}
-      </ProjectBoardMemberList>
-      <ProjectBoardPeriod>
-        <img src={projectCalendar} alt="프로젝트 기간" />
-        <p>{generateNormalDate(project.startDate, project.endDate)}</p>
-      </ProjectBoardPeriod>
-    </ProjectBoardFooter>
-  </ProjectBoard>
-);
-
-export default ProjectBoardItem;
+  project.memberIds.map((memberId) => (
+    <MemberProfile key={project.projectId} memberId={memberId} />
+  ))
+*/

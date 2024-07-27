@@ -19,7 +19,7 @@ const MainRoutes = () => (
   <Routes>
     {/* routes not auth only */}
     <Route element={<Layout />}>
-      {/*<Route element={<PublicLayout />}> */}
+      {/* PublicLayout */}
       <Route path="/" element={<Home />} />
       <Route path="/profile/*" element={<ProfileRoute />} />
       <Route path="/settings/*" element={<SettingsRoute />} />
@@ -29,7 +29,6 @@ const MainRoutes = () => (
       <Route path="/user/find/password" element={<FindPassword />}></Route>
 
       <Route path="/projects/*" element={<ProjectRoute />}></Route>
-      {/* </Route> */}
     </Route>
 
     <Route path="/login" element={<Login />}></Route>

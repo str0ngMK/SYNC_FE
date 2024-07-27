@@ -1,6 +1,4 @@
 import { requiredJwtTokeninstance } from '@libs/axios/axios';
-import axios from 'axios';
-import config from 'config/config';
 
 function Home() {
   const getUser = async () => {
