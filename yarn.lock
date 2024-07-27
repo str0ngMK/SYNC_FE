@@ -2189,6 +2189,18 @@
     "@swagger-api/apidom-parser-adapter-workflows-yaml-1" "^0.98.0"
     "@swagger-api/apidom-parser-adapter-yaml-1-2" "^0.98.0"
 
+"@tanstack/query-core@5.51.15":
+  version "5.51.15"
+  resolved "https://registry.npmjs.org/@tanstack/query-core/-/query-core-5.51.15.tgz"
+  integrity sha512-xyobHDJ0yhPE3+UkSQ2/4X1fLSg7ICJI5J1JyU9yf7F3deQfEwSImCDrB1WSRrauJkMtXW7YIEcC0oA6ZZWt5A==
+
+"@tanstack/react-query@^5.51.15":
+  version "5.51.15"
+  resolved "https://registry.npmjs.org/@tanstack/react-query/-/react-query-5.51.15.tgz"
+  integrity sha512-UgFg23SrdIYrmfTSxAUn9g+J64VQy11pb9/EefoY/u2+zWuNMeqEOnvpJhf52XQy0yztQoyM9p6x8PFyTNaxXg==
+  dependencies:
+    "@tanstack/query-core" "5.51.15"
+
 "@testing-library/dom@^8.5.0":
   version "8.20.1"
   resolved "https://registry.npmjs.org/@testing-library/dom/-/dom-8.20.1.tgz"

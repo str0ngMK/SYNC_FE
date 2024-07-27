@@ -8,6 +8,7 @@ import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
 import reportWebVitals from './reportWebVitals';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -27,14 +28,18 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const queryClient = new QueryClient();
+
 root.render(
   <React.StrictMode>
     <GlobalStyle />
+    <QueryClientProvider client={queryClient}>
     <CookiesProvider>
       <BrowserRouter>
         <MainRoutes />
       </BrowserRouter>
     </CookiesProvider>
+    </QueryClientProvider>
   </React.StrictMode>,
 );
 
