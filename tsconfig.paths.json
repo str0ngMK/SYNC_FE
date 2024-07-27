@@ -20,8 +20,8 @@
       "@assets": ["assets"],
       "@hooks/*": ["hooks/*"],
       "@hooks": ["hooks"],
-      "@dropdown/*": ["dropdown/*"],
-      "@dropdown": ["dropdown"]
+      "@customTypes/*": ["customTypes/*"],
+      "@customTypes": ["customTypes"]
     }
   },
   "include": ["src"]

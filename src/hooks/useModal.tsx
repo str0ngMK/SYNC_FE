@@ -1,4 +1,4 @@
-import React, { ElementType, useEffect } from 'react';
+import { ElementType } from 'react';
 
 import { modalStore } from '@libs/store';
 
@@ -19,18 +19,6 @@ type useModalType = () => [
 
 const useModal: useModalType = () => {
   const { openModal, closeModal, isModalOpen } = modalStore();
-
-  useEffect(() => {
-    const handleDetectModalContent = (
-      e: React.BaseSyntheticEvent | MouseEvent,
-    ) => {
-      if (!e.target.closest('.modal-content')) closeModal();
-    };
-    document.addEventListener('mousedown', handleDetectModalContent);
-    return () => {
-      document.removeEventListener('mousedown', handleDetectModalContent);
-    };
-  }, []);
 
   return [openModal, closeModal, isModalOpen];
 };
