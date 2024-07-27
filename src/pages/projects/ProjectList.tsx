@@ -10,34 +10,6 @@ import {
 } from '@styles/project';
 import styled from 'styled-components';
 
-const TitleHeader = styled(ProjectListHeader)`
-  width: 300px;
-  align-self: stretch;
-`;
-
-const DescriptionHeader = styled(ProjectListHeader)`
-  width: 380px;
-  align-self: stretch;
-`;
-
-const ProgressHeader = styled(ProjectListHeader)`
-  width: 311px;
-  align-self: stretch;
-`;
-
-const ManagerHeader = styled(ProjectListHeader)`
-  width: 170px;
-  align-self: stretch;
-`;
-
-const RemainTimeHeader = styled(ProjectListHeader)`
-  width: 212px;
-`;
-
-const EtcHeader = styled(ProjectListHeader)`
-  width: 56px;
-`;
-
 const ProjectListHeaderFrame = styled.div`
   display: flex;
 `;
@@ -57,22 +29,22 @@ const ProjectList = () => {
       <div>검색, 프로젝트추가, 필터 들어가야함</div>
       <ProjectListFrame>
         <ProjectListHeaderFrame>
-          <TitleHeader>
+          <ProjectListHeader style={{ width: '300px' }}>
             <ProjectListHeaderText>프로젝트명</ProjectListHeaderText>
-          </TitleHeader>
-          <DescriptionHeader>
+          </ProjectListHeader>
+          <ProjectListHeader style={{ width: '380px' }}>
             <ProjectListHeaderText>설명</ProjectListHeaderText>
-          </DescriptionHeader>
-          <ProgressHeader>
+          </ProjectListHeader>
+          <ProjectListHeader style={{ width: '311px' }}>
             <ProjectListHeaderText>진행률</ProjectListHeaderText>
-          </ProgressHeader>
-          <ManagerHeader>
+          </ProjectListHeader>
+          <ProjectListHeader style={{ width: '170px' }}>
             <ProjectListHeaderText>담당자</ProjectListHeaderText>
-          </ManagerHeader>
-          <RemainTimeHeader>
+          </ProjectListHeader>
+          <ProjectListHeader style={{ width: '212px' }}>
             <ProjectListHeaderText>남은 기간</ProjectListHeaderText>
-          </RemainTimeHeader>
-          <EtcHeader />
+          </ProjectListHeader>
+          <ProjectListHeader style={{ width: '56px' }} />
         </ProjectListHeaderFrame>
         <main>
           {projectList?.map((project) => (
