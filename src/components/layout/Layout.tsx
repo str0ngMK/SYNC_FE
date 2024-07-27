@@ -17,6 +17,8 @@ const MainFrame = styled.main`
 const Main = styled.div`
   margin-left: 80px; /* SideBar의 너비만큼 공간을 띄워야 함 */
   margin-top: 60px; /* Header의 높이만큼 공간을 띄워야 함 */
+
+  height: calc(100vh - 60px);
   display: flex;
   flex: 1;
   overflow-x: auto;

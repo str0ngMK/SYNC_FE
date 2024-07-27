@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const ProjectListFrame = styled.div`
   display: flex;
-  height: calc(100% - 40px);
   padding: 20px;
   align-items: flex-start;
   align-self: stretch;
