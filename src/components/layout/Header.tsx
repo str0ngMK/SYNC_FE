@@ -309,6 +309,7 @@ const More = styled.div`
 `;
 
 export default function Header() {
+  // TODO 피그마 디자인만 입혀놓음. 기능 추가 필요
   const [isOpenProfileDropdown, toggleProfileDropdown, profileDropdownRef] =
     useDropdown();
   const [isOpenConfigDropdown, toggleConfigDropdown, configDropdownRef] =
