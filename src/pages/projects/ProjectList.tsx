@@ -38,7 +38,7 @@ const ProjectListEmptyImageFrame = styled.div`
 
 const ProjectListEmptyInfoFrame = styled.div`
   display: flex;
-  width: 334px;
+  width: 340px;
   flex-direction: column;
   align-items: center;
   gap: 24px;
@@ -50,8 +50,6 @@ const ProjectListEmptyTextFrame = styled.div`
   align-items: center;
   gap: 8px;
   align-self: stretch;
-
-  width: 360px;
 `;
 
 const ProjectListEmptyText1 = styled.text`

@@ -1,138 +1,279 @@
 import { Link } from 'react-router-dom';
+
 import styled from 'styled-components';
 
 const SideBarWrap = styled.aside`
-  display: flex;
-  width: 242px;
-  height: 100vh;
-  border-right: 2px solid black;
-  flex-direction: column;
-  align-items: flex-start;
+  width: 80px;
+  height: 1023px;
   flex-shrink: 0;
+
+  border-right: 1px solid var(--Black-White-Black-10, #f4f4f4);
+  background: var(--Black-White-White, #fff);
+
   position: fixed;
 `;
 
-const TitleWrap = styled.div`
-  display: flex;
-  height: 68px;
-  padding: 8px;
-  border-bottom: 2px solid black;
-  font-size: 20px;
-  font-weight: 800;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
-  align-self: stretch;
-`;
+const LogoButton = () => {
+  const LogoWrap = styled.div`
+    display: flex;
+    width: 80px;
+    height: 60px;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  `;
 
-const Title = styled.h1`
-  display: flex;
-  height: 68px;
-  font-size: 20px;
-  font-weight: 800;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
-  align-self: stretch;
-`;
+  const LogoFrame = styled.div`
+    display: flex;
+    width: 35px;
+    height: 35px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+  `;
 
-const SideBarCombine = styled.ul`
-  display: flex;
-  width: 242px;
-  padding: 32px 16px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 32px;
-  flex-shrink: 0;
-`;
+  const Logo = styled.svg`
+    width: 35px;
+    height: 38.747px;
+    flex-shrink: 0;
+  `;
 
-const SideBarItemWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  align-self: stretch;
-`;
+  const LogoSvg = () => (
+    <Logo
+      xmlns="http://www.w3.org/2000/svg"
+      width="36"
+      height="36"
+      viewBox="0 0 36 36"
+      fill="none"
+    >
+      <path
+        d="M15.2066 35.5022H3.93058C3.77028 35.5022 3.64062 35.3726 3.64062 35.2123V23.5996H15.2073V35.5022H15.2066Z"
+        fill="#FFD880"
+      />
+      <path
+        d="M17.3388 37.1465C25.0293 37.1465 31.2636 30.9135 31.2636 23.2246C31.2636 15.5358 25.0293 9.30273 17.3388 9.30273C9.64839 9.30273 3.41406 15.5358 3.41406 23.2246C3.41406 30.9135 9.64839 37.1465 17.3388 37.1465Z"
+        fill="#FFD880"
+      />
+      <path
+        d="M35.2243 9.21425H0.775703C0.623959 9.21425 0.5 9.09103 0.5 8.9386V5.53541C0.5 5.3837 0.623247 5.25977 0.775703 5.25977H35.2243C35.376 5.25977 35.5 5.38299 35.5 5.53541V8.9386C35.5 9.09103 35.3768 9.21425 35.2243 9.21425Z"
+        fill="#FF4C5C"
+      />
+      <path
+        d="M31.132 5.39908H22.7882C22.618 5.39908 22.4805 5.26091 22.4805 5.09139V-1.29191C22.4805 -1.46214 22.6187 -1.59961 22.7882 -1.59961H31.132C31.3022 -1.59961 31.4397 -1.46143 31.4397 -1.29191V5.09067C31.4405 5.2609 31.3022 5.39908 31.132 5.39908Z"
+        fill="#1A00E7"
+      />
+      <path
+        d="M17.9147 24.6195C19.134 24.6195 20.1225 22.5933 20.1225 20.0939C20.1225 17.5945 19.134 15.5684 17.9147 15.5684C16.6955 15.5684 15.707 17.5945 15.707 20.0939C15.707 22.5933 16.6955 24.6195 17.9147 24.6195Z"
+        fill="white"
+      />
+      <path
+        d="M25.1179 24.6195C26.3372 24.6195 27.3256 22.5933 27.3256 20.0939C27.3256 17.5945 26.3372 15.5684 25.1179 15.5684C23.8986 15.5684 22.9102 17.5945 22.9102 20.0939C22.9102 22.5933 23.8986 24.6195 25.1179 24.6195Z"
+        fill="white"
+      />
+      <path
+        d="M18.5418 23.4551C19.4472 23.4551 20.1812 21.9511 20.1812 20.0957C20.1812 18.2404 19.4472 16.7363 18.5418 16.7363C17.6363 16.7363 16.9023 18.2404 16.9023 20.0957C16.9023 21.9511 17.6363 23.4551 18.5418 23.4551Z"
+        fill="black"
+      />
+      <path
+        d="M25.7058 23.4532C26.6112 23.4532 27.3452 21.9491 27.3452 20.0938C27.3452 18.2384 26.6112 16.7344 25.7058 16.7344C24.8004 16.7344 24.0664 18.2384 24.0664 20.0938C24.0664 21.9491 24.8004 23.4532 25.7058 23.4532Z"
+        fill="black"
+      />
+      <path
+        d="M23.7529 25.6126C23.7225 25.619 23.6757 25.605 23.6137 25.5705C23.6167 25.4799 23.6097 25.3922 23.5904 25.3063C23.5518 25.1262 23.4793 24.9836 23.3734 24.8784C23.2495 24.7515 23.1039 24.7065 22.9361 24.7428C22.8291 24.7661 22.7104 24.8731 22.5789 25.0643C22.3824 25.353 22.2468 25.5342 22.1725 25.6073C21.9737 25.8137 21.7422 25.9452 21.4762 26.0025C21.3207 26.0358 21.1488 26.041 20.9617 26.0171C20.7535 25.9884 20.5939 25.9306 20.4823 25.8423C20.2384 25.6588 20.0163 25.4302 19.8163 25.1566C19.6052 24.8603 19.4702 24.5744 19.4111 24.2997C19.3971 24.2383 19.5339 24.0659 19.8192 23.7824C20.1051 23.4983 20.2852 23.3486 20.3577 23.3328C20.3852 23.327 20.4057 23.3398 20.4197 23.372C20.5056 23.5772 20.5916 23.7841 20.6781 23.9928C20.8214 24.243 20.9909 24.347 21.1868 24.3049C21.3213 24.2763 21.4604 24.1646 21.6036 23.9706C21.8527 23.6257 21.9843 23.4457 22.0001 23.4293C22.1866 23.2259 22.4017 23.0978 22.6461 23.0452C23.1045 22.9464 23.5442 23.0949 23.9657 23.4895C24.3393 23.8437 24.5779 24.2576 24.6796 24.7311C24.6907 24.7802 24.5521 24.9363 24.2651 25.1993C23.9786 25.4629 23.8073 25.6009 23.7529 25.6126Z"
+        fill="#FF7717"
+      />
+    </Logo>
+  );
+  return (
+    <LogoWrap>
+      <Link to="/">
+        <LogoFrame>
+          <LogoSvg />
+        </LogoFrame>
+      </Link>
+    </LogoWrap>
+  );
+};
 
-const SideBarItemHeader = styled.li`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  align-self: stretch;
-  span {
-    color: var(--main-black, #000);
-    font-family: Pretendard;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
-  }
-`;
+const AddProjectButton = () => {
+  const AddProjectWrap = styled.div`
+    display: inline-flex;
+    padding: 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
 
-const SideBarItem = styled.li`
-  display: flex;
-  padding: 12px 16px;
-  border: 1px solid black;
-  align-items: center;
-  gap: 8px;
-  align-self: stretch;
-  span {
-    color: var(--main-black, #000);
-    font-family: Pretendard;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
-  }
-`;
+    width: 80px;
+    height: 60px;
+  `;
+
+  const AddIcon = styled.svg`
+    width: 28px;
+    height: 28px;
+  `;
+
+  const AddIconSvg = () => (
+    <AddIcon
+      xmlns="http://www.w3.org/2000/svg"
+      width="28"
+      height="28"
+      viewBox="0 0 28 28"
+      fill="none"
+    >
+      <path
+        d="M14 9.33333V18.6667M9.33333 14H18.6667M9.1 24.5H18.9C20.8602 24.5 21.8403 24.5 22.589 24.1185C23.2475 23.783 23.783 23.2475 24.1185 22.589C24.5 21.8403 24.5 20.8602 24.5 18.9V9.1C24.5 7.13982 24.5 6.15972 24.1185 5.41103C23.783 4.75247 23.2475 4.21703 22.589 3.88148C21.8403 3.5 20.8602 3.5 18.9 3.5H9.1C7.13982 3.5 6.15972 3.5 5.41103 3.88148C4.75247 4.21703 4.21703 4.75247 3.88148 5.41103C3.5 6.15972 3.5 7.13982 3.5 9.1V18.9C3.5 20.8602 3.5 21.8403 3.88148 22.589C4.21703 23.2475 4.75247 23.783 5.41103 24.1185C6.15972 24.5 7.13982 24.5 9.1 24.5Z"
+        stroke="#BFBFBF"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </AddIcon>
+  );
+
+  return (
+    <AddProjectWrap>
+      <AddIconSvg />
+    </AddProjectWrap>
+  );
+};
+
+const HomeButton = () => {
+  const HomeWrap = styled.div`
+    display: inline-flex;
+    padding: 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    width: 80px;
+    height: 60px;
+  `;
+
+  const HomeIcon = styled.svg`
+    width: 28px;
+    height: 28px;
+  `;
+
+  const HomeIconSvg = () => (
+    <HomeIcon
+      xmlns="http://www.w3.org/2000/svg"
+      width="28"
+      height="28"
+      viewBox="0 0 28 28"
+      fill="none"
+    >
+      <path
+        d="M15.146 3.22454C14.7361 2.90575 14.5312 2.74635 14.3049 2.68508C14.1052 2.63102 13.8948 2.63102 13.6951 2.68508C13.4688 2.74635 13.2639 2.90575 12.854 3.22454L4.94129 9.37886C4.41236 9.79025 4.14789 9.99594 3.95736 10.2535C3.78859 10.4817 3.66287 10.7388 3.58637 11.0121C3.5 11.3206 3.5 11.6557 3.5 12.3258V20.7665C3.5 22.0733 3.5 22.7267 3.75432 23.2258C3.97802 23.6649 4.33498 24.0218 4.77402 24.2455C5.27315 24.4999 5.92654 24.4999 7.23333 24.4999H9.56667C9.89336 24.4999 10.0567 24.4999 10.1815 24.4363C10.2913 24.3804 10.3805 24.2911 10.4364 24.1814C10.5 24.0566 10.5 23.8932 10.5 23.5665V15.8665C10.5 15.2131 10.5 14.8864 10.6272 14.6369C10.739 14.4173 10.9175 14.2389 11.137 14.127C11.3866 13.9999 11.7133 13.9999 12.3667 13.9999H15.6333C16.2867 13.9999 16.6134 13.9999 16.863 14.127C17.0825 14.2389 17.261 14.4173 17.3728 14.6369C17.5 14.8864 17.5 15.2131 17.5 15.8665V23.5665C17.5 23.8932 17.5 24.0566 17.5636 24.1814C17.6195 24.2911 17.7087 24.3804 17.8185 24.4363C17.9433 24.4999 18.1066 24.4999 18.4333 24.4999H20.7667C22.0735 24.4999 22.7269 24.4999 23.226 24.2455C23.665 24.0218 24.022 23.6649 24.2457 23.2258C24.5 22.7267 24.5 22.0733 24.5 20.7665V12.3258C24.5 11.6557 24.5 11.3206 24.4136 11.0121C24.3371 10.7388 24.2114 10.4817 24.0426 10.2535C23.8521 9.99594 23.5876 9.79025 23.0587 9.37886L15.146 3.22454Z"
+        stroke="#FFD880"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </HomeIcon>
+  );
+  return (
+    <Link to="/">
+      <HomeWrap>
+        <HomeIconSvg />
+      </HomeWrap>
+    </Link>
+  );
+};
+
+const ProjectButton = () => {
+  const ProjectWrap = styled.div`
+    display: inline-flex;
+    padding: 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    width: 80px;
+    height: 60px;
+  `;
+
+  const ProjectIcon = styled.svg`
+    width: 28px;
+    height: 28px;
+  `;
+
+  const ProjectIconSvg = () => (
+    <ProjectIcon
+      xmlns="http://www.w3.org/2000/svg"
+      width="28"
+      height="28"
+      viewBox="0 0 28 28"
+      fill="none"
+    >
+      <path
+        d="M16.3346 2.64844V7.4674C16.3346 8.1208 16.3346 8.44749 16.4618 8.69706C16.5736 8.91658 16.7521 9.09506 16.9716 9.20691C17.2212 9.33407 17.5479 9.33407 18.2013 9.33407H23.0203M18.668 15.1673H9.33464M18.668 19.834H9.33464M11.668 10.5007H9.33464M16.3346 2.33398H10.268C8.30779 2.33398 7.32769 2.33398 6.579 2.71546C5.92043 3.05102 5.385 3.58645 5.04945 4.24502C4.66797 4.99371 4.66797 5.9738 4.66797 7.93398V20.0673C4.66797 22.0275 4.66797 23.0076 5.04945 23.7563C5.385 24.4149 5.92043 24.9503 6.579 25.2858C7.32769 25.6673 8.30779 25.6673 10.268 25.6673H17.7346C19.6948 25.6673 20.6749 25.6673 21.4236 25.2858C22.0822 24.9503 22.6176 24.4149 22.9532 23.7563C23.3346 23.0076 23.3346 22.0275 23.3346 20.0673V9.33398L16.3346 2.33398Z"
+        stroke="#BFBFBF"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </ProjectIcon>
+  );
+  return (
+    <Link to="/projects/board">
+      <ProjectWrap>
+        <ProjectIconSvg />
+      </ProjectWrap>
+    </Link>
+  );
+};
+
+const CalendarButton = () => {
+  const CalendarWrap = styled.div`
+    display: inline-flex;
+    padding: 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    width: 80px;
+    height: 60px;
+  `;
+
+  const CalendarIcon = styled.svg`
+    width: 28px;
+    height: 28px;
+  `;
+
+  const CalendarIconSvg = () => (
+    <CalendarIcon
+      xmlns="http://www.w3.org/2000/svg"
+      width="28"
+      height="28"
+      viewBox="0 0 28 28"
+      fill="none"
+    >
+      <path
+        d="M24.5 11.6673H3.5M18.6667 2.33398V7.00065M9.33333 2.33398V7.00065M9.1 25.6673H18.9C20.8602 25.6673 21.8403 25.6673 22.589 25.2858C23.2475 24.9503 23.783 24.4149 24.1185 23.7563C24.5 23.0076 24.5 22.0275 24.5 20.0673V10.2673C24.5 8.30713 24.5 7.32704 24.1185 6.57835C23.783 5.91978 23.2475 5.38435 22.589 5.04879C21.8403 4.66732 20.8602 4.66732 18.9 4.66732H9.1C7.13982 4.66732 6.15972 4.66732 5.41103 5.04879C4.75247 5.38435 4.21703 5.91978 3.88148 6.57835C3.5 7.32704 3.5 8.30713 3.5 10.2673V20.0673C3.5 22.0275 3.5 23.0076 3.88148 23.7563C4.21703 24.4149 4.75247 24.9503 5.41103 25.2858C6.15972 25.6673 7.13982 25.6673 9.1 25.6673Z"
+        stroke="#BFBFBF"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </CalendarIcon>
+  );
+  return (
+    <CalendarWrap>
+      <CalendarIconSvg />
+    </CalendarWrap>
+  );
+};
 
 export default function SideBar() {
   return (
     <SideBarWrap>
-      <TitleWrap>
-        <Link to="/">
-          <Title>LOGO</Title>
-        </Link>
-      </TitleWrap>
-      <SideBarCombine>
-        <SideBarItemWrap>
-          <SideBarItemHeader>
-            <span>-</span>
-          </SideBarItemHeader>
-          <SideBarItem>
-            <span>홈</span>
-          </SideBarItem>
-        </SideBarItemWrap>
-
-        <SideBarItemWrap>
-          <Link to='/projects/board'>
-          <SideBarItemHeader>
-            <span>프로젝트</span>
-          </SideBarItemHeader>
-          </Link>
-        </SideBarItemWrap>
-
-        <SideBarItemWrap>
-          <SideBarItemHeader>
-            <span>캘린더</span>
-          </SideBarItemHeader>
-        </SideBarItemWrap>
-
-        <SideBarItemWrap>
-          <SideBarItemHeader>
-            <span>한 눈에 보기</span>
-          </SideBarItemHeader>
-          <SideBarItem>
-            <span>업무 리스트</span>
-          </SideBarItem>
-          <SideBarItem>
-            <span>공유된 업무</span>
-          </SideBarItem>
-        </SideBarItemWrap>
-      </SideBarCombine>
+      <LogoButton />
+      <AddProjectButton />
+      <HomeButton />
+      <ProjectButton />
+      <CalendarButton />
     </SideBarWrap>
   );
 }
