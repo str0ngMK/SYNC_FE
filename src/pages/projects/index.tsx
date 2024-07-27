@@ -10,6 +10,9 @@ const ProejctFrame = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 32px;
+  display: flex;
+  flex: 1;
+  overflow-x: auto;
 `;
 
 const ProjectUpperFrame = styled.section`
@@ -18,12 +21,8 @@ const ProjectUpperFrame = styled.section`
   align-items: flex-start;
   gap: 24px;
   align-self: stretch;
-`;
 
-const ProjectLowerFrame = styled.section`
-  height: 632px;
-  flex-shrink: 0;
-  align-self: stretch;
+  idth: calc(100vw - 80px);
 `;
 
 const TabComponent = () => {
@@ -351,9 +350,7 @@ const Project = () => {
         <TabComponent />
         <SubHeaderComponent />
       </ProjectUpperFrame>
-      <ProjectLowerFrame>
-        <Outlet />
-      </ProjectLowerFrame>
+      <Outlet />
     </ProejctFrame>
   );
 };

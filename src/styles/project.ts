@@ -6,11 +6,14 @@ export const ProjectListFrame = styled.div`
   padding: 20px;
   align-items: flex-start;
   align-self: stretch;
+
   border-radius: 12px;
   border: 1px solid var(--Black-White-Black-10, #f4f4f4);
   background: var(--Black-White-White, #fff);
   flex-direction: column;
   overflow-x: auto;
+  margin-left: 40px;
+  margin-right: 40px;
 `;
 
 export const ProjectListHeader = styled.header`
