@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
@@ -348,17 +347,14 @@ const SubHeaderComponent = () => {
   );
 };
 
-const Project = () => {
-  const navigate = useNavigate();
-  return (
-    <ProejctFrame>
-      <ProjectUpperFrame>
-        <TabComponent />
-        <SubHeaderComponent />
-      </ProjectUpperFrame>
-      <Outlet />
-    </ProejctFrame>
-  );
-};
+const Project = () => (
+  <ProejctFrame>
+    <ProjectUpperFrame>
+      <TabComponent />
+      <SubHeaderComponent />
+    </ProjectUpperFrame>
+    <Outlet />
+  </ProejctFrame>
+);
 
 export default Project;
