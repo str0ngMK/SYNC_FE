@@ -72,24 +72,22 @@ const ProjectBoards = () => {
   // const [isOpen, openModal, modalRef, CreateProjectModalWrapper, closeModal] =
   //   useModal();
 
-  const [openModal, closeModal, isModalOpen] = useModal();
+  const [openModal] = useModal();
 
   useEffect(() => {
     const getProjectList = async () => {
       try {
-        const response: AxiosResponse<
+        const getProjectIdsResponse: AxiosResponse<
           AxiosRes<Project[]>,
           any
         > = await requiredJwtTokeninstance.get(
           `/project/api/v2?userId=abc123@gmail.com`,
         );
-        const test = await requiredJwtTokeninstance.get(
-          `http://129.213.161.199:31585/project/api/v1?projectIds=${response.data.value.join(',')}`,
+        const getProjectListResponse = await requiredJwtTokeninstance.get(
+          `http://129.213.161.199:31585/project/api/v1?projectIds=${getProjectIdsResponse.data.value.join(',')}`,
         );
-        console.log(test);
-        return response.data.value;
+        return getProjectListResponse.data.value;
       } catch (error) {
-        console.log(error);
         return undefined;
       }
     };
@@ -104,7 +102,7 @@ const ProjectBoards = () => {
         <h1 hidden>프로젝트 보드</h1>
       </Title>
       <ProjectBoardHeader>
-        <ProjectAddButton onClick={() => openModal}>
+        <ProjectAddButton onClick={() => openModal(CreateProjectModal)}>
           <img src={Add} alt="프로젝트 추가" />
           <span>프로젝트 추가</span>
         </ProjectAddButton>
@@ -115,9 +113,6 @@ const ProjectBoards = () => {
           <ProjectBoardItem key={project.projectId} project={project} />
         ))}
       </ProjectList>
-      {/* <CreateProjectModalWrapper isOpen={isOpen} modalRef={modalRef}>
-        <CreateProjectModal closeModal={closeModal} />
-      </CreateProjectModalWrapper> */}
     </Section>
   );
 };
