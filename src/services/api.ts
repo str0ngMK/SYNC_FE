@@ -1,3 +1,5 @@
+import { Cookies } from 'react-cookie';
+
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import config from 'config/config';
 
@@ -46,7 +48,7 @@ export const loginAPI = async ({
   password,
 }: Omit<User, 'username'>): Promise<APIResponse> => {
   try {
-    await axios.post(
+    const response = await axios.post(
       `${config.backendUrl}/login`,
       {},
       {
@@ -57,9 +59,16 @@ export const loginAPI = async ({
         },
       },
     );
+    const authHeaders: string | null = response.headers.authorization;
+    if (authHeaders) {
+      const token = authHeaders.split(' ')[1];
+      console.log(token);
+      const cookies = new Cookies(null, { path: '/' });
+      cookies.set('JWT_TOKEN', token);
+      return { result: 'OK', focus: '', errorMessage: '' };
+    }
     return { result: 'OK', focus: '', errorMessage: '' };
   } catch (error) {
-    console.error(error);
     if (error instanceof AxiosError && error.response) {
       if (error.response.data.message === '아이디가 잘못되었습니다.')
         return {
