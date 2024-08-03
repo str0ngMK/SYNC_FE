@@ -1,5 +1,4 @@
-import SettingsMember from '@components/dropdown/SettingsMemberDropdown';
-import SettingsRole from '@components/dropdown/settingsRoleDropdown';
+import { SettingsMember, SettingsRole } from '@components/dropdown';
 import useDropdown from '@hooks/useDropdown';
 import styled from 'styled-components';
 

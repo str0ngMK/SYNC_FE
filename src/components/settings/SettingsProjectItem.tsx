@@ -1,4 +1,4 @@
-import SettingsProject from '@components/dropdown/SettingsProjectDropdown';
+import { SettingsProject } from '@components/dropdown';
 import useDropdown from '@hooks/useDropdown';
 import styled from 'styled-components';
 
